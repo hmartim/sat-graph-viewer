@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAT-Graph · Case Law Demo</title>
+<style>
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:                 #f5f4f1;
+  --surface:            #ffffff;
+  --border:             #e0ddd8;
+  --text:               #1a1a2e;
+  --text-muted:         #64748b;
+  --navy:               #1e3a5f;
+  --navy-light:         #2d5282;
+  --stat-bg:            #eff6ff;
+  --stat-border:        #2563eb;
+  --stat-tag-bg:        #dbeafe;
+  --stat-tag-text:      #1d4ed8;
+  --interp-bg:          #f0fdf4;
+  --interp-border:      #16a34a;
+  --interp-tag-bg:      #dcfce7;
+  --interp-tag-text:    #15803d;
+  --conflict-bg:        #fffbeb;
+  --conflict-border:    #d97706;
+  --conflict-tag-bg:    #fef3c7;
+  --conflict-tag-text:  #92400e;
+  --conflict-red:       #dc2626;
+  --newprov-bg:         #faf5ff;
+  --newprov-border:     #7c3aed;
+  --newprov-tag-bg:     #ede9fe;
+  --newprov-tag-text:   #5b21b6;
+  --empty-bg:           #f8f7f4;
+  --radius:             8px;
+  --shadow:             0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md:          0 4px 8px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.05);
+}
+
+html { font-size: 15px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+header {
+  background: var(--navy);
+  color: #fff;
+  padding: 0 28px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.hdr-brand { display: flex; align-items: center; gap: 10px; }
+
+.hdr-logo {
+  font-size: .65rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .55;
+  font-weight: 600;
+}
+
+.hdr-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+.hdr-sep { opacity: .25; font-weight: 300; font-size: 1.1rem; }
+
+.hdr-sub {
+  font-size: .72rem;
+  opacity: .5;
+  letter-spacing: .02em;
+}
+
+.lang-toggle {
+  display: flex;
+  gap: 2px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  padding: 3px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.55);
+  font-size: .73rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 3px 9px;
+  border-radius: 4px;
+  letter-spacing: .06em;
+  transition: all .15s;
+}
+
+.lang-btn.active {
+  background: rgba(255,255,255,.2);
+  color: #fff;
+}
+
+/* ── App shell ────────────────────────────────────────────────── */
+.app {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 24px 56px;
+}
+
+/* ── Case tabs ────────────────────────────────────────────────── */
+.case-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.case-tabs::-webkit-scrollbar { height: 4px; }
+.case-tabs::-webkit-scrollbar-track { background: transparent; }
+.case-tabs::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+.case-tab {
+  flex: 0 0 auto;
+  min-width: 140px;
+  max-width: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 7px 12px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .15s, box-shadow .15s, background .15s;
+}
+
+.case-tab:hover { border-color: var(--navy-light); box-shadow: var(--shadow); }
+
+.case-tab.active {
+  border-color: var(--navy);
+  background: #eef3fb;
+  box-shadow: var(--shadow);
+}
+
+.tab-letter {
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.tab-name {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.tab-phenomenon {
+  font-size: .66rem;
+  color: var(--text-muted);
+}
+
+/* ── Timeline ─────────────────────────────────────────────────── */
+.timeline-section {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 24px 14px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+.timeline-label {
+  font-size: .67rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.timeline-wrapper { position: relative; padding: 0 6px; }
+
+/* Range input */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--navy) var(--pct, 0%),
+    #dde3ed var(--pct, 0%)
+  );
+}
+
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: #dde3ed;
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--navy);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1.5px var(--navy), var(--shadow);
+  margin-top: -8px;
+  transition: transform .12s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1.5px var(--navy);
+  cursor: grab;
+}
+
+/* Markers */
+.timeline-markers {
+  position: relative;
+  height: 46px;
+  margin-top: 4px;
+}
+
+.tl-marker {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.tl-marker-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--navy);
+  opacity: .35;
+  margin-bottom: 5px;
+  flex-shrink: 0;
+}
+
+.tl-marker-label {
+  font-size: .67rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-weight: 500;
+  text-align: center;
+}
+
+.timeline-date-display {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -.02em;
+  margin-top: 2px;
+  user-select: none;
+}
+
+/* ── Content area ─────────────────────────────────────────────── */
+.content-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+/* ── Panel ────────────────────────────────────────────────────── */
+.panel {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel.statutory  { border-top: 3px solid var(--stat-border);    background: var(--stat-bg); }
+.panel.interp     { border-top: 3px solid var(--interp-border);  background: var(--interp-bg); }
+.panel.conflict   { border-top: 3px solid var(--conflict-border);background: var(--conflict-bg); }
+.panel.newprov    { border-top: 3px solid var(--newprov-border);  background: var(--newprov-bg); }
+.panel.empty      { border-top: 3px solid var(--border);          background: var(--empty-bg); }
+
+/* Panel header */
+.ph {
+  padding: 13px 16px 11px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.ph-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.panel.statutory .ph-tag  { background: var(--stat-tag-bg);     color: var(--stat-tag-text); }
+.panel.interp    .ph-tag  { background: var(--interp-tag-bg);   color: var(--interp-tag-text); }
+.panel.conflict  .ph-tag  { background: var(--conflict-tag-bg); color: var(--conflict-tag-text); }
+.panel.newprov   .ph-tag  { background: var(--newprov-tag-bg);  color: var(--newprov-tag-text); }
+.panel.empty     .ph-tag  { background: #f1f5f9;                color: #94a3b8; }
+
+.ph-title {
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.ph-sub {
+  font-size: .73rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* Panel body */
+.pb {
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 460px;
+}
+
+.tb { margin-bottom: 16px; }
+.tb:last-child { margin-bottom: 0; }
+
+.tb-label {
+  font-size: .63rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.tb-content {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: .9rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.tb-content.italic { font-style: italic; }
+
+.diff-add {
+  background: #dcfce7;
+  color: #15803d;
+  border-radius: 2px;
+  padding: 0 2px;
+  font-style: italic; /* inherit panel italic */
+}
+
+.diff-del {
+  background: #fee2e2;
+  color: #b91c1c;
+  text-decoration: line-through;
+  border-radius: 2px;
+  padding: 0 2px;
+  font-style: italic;
+}
+
+.tb-content.bold-serif {
+  font-weight: 700;
+  font-size: .88rem;
+}
+
+.tb-content.small {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+/* Divider between conflict sub-panels */
+.conflict-panels-divider {
+  height: 1px;
+  background: rgba(217,119,6,.2);
+  margin: 0 16px;
+}
+
+/* Conflict alert strip */
+.conflict-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(220,38,38,.07);
+  border-bottom: 1px solid rgba(220,38,38,.15);
+}
+
+.conflict-alert-icon { font-size: 1rem; flex-shrink: 0; padding-top: 1px; }
+
+.conflict-alert-title {
+  font-size: .79rem;
+  font-weight: 700;
+  color: var(--conflict-red);
+}
+
+.conflict-alert-sub {
+  font-size: .71rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.45;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  color: var(--text-muted);
+  text-align: center;
+  gap: 8px;
+}
+
+.empty-icon { font-size: 1.6rem; opacity: .3; }
+
+.empty-text {
+  font-size: .8rem;
+  line-height: 1.55;
+}
+
+/* ── Graph view ───────────────────────────────────────────────── */
+.graph-view-section { margin-top: 14px; }
+
+details {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+summary {
+  padding: 11px 16px;
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .15s;
+}
+
+summary:hover { color: var(--text); }
+summary::-webkit-details-marker { display: none; }
+summary::marker { display: none; }
+
+.gv-inner {
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.gv-query-block { margin-top: 14px; }
+
+.gv-call {
+  font-family: 'Consolas', 'Fira Mono', monospace;
+  font-size: .76rem;
+  color: #334155;
+  background: #f1f5f9;
+  border-radius: 4px;
+  padding: 9px 13px;
+  margin-bottom: 6px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.gv-call .fn  { color: #1d4ed8; font-weight: 700; }
+.gv-call .arg { color: #6d28d9; }
+
+.gv-result {
+  font-family: 'Consolas', 'Fira Mono', monospace;
+  font-size: .73rem;
+  line-height: 1.65;
+  color: #e2e8f0;
+  background: #0f172a;
+  border-radius: 4px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  white-space: pre;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.jk  { color: #93c5fd; }  /* json key */
+.js  { color: #86efac; }  /* json string */
+.jn  { color: #fbbf24; }  /* json number */
+.jb  { color: #fb923c; }  /* json bool */
+.jnl { color: #94a3b8; }  /* json null */
+
+/* ── View toggle ──────────────────────────────────────────────── */
+.view-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.view-btns {
+  display: flex;
+  gap: 2px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 3px;
+  box-shadow: var(--shadow);
+}
+
+.view-btn {
+  background: none;
+  border: none;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 5px 14px;
+  border-radius: 5px;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: .01em;
+}
+
+.view-btn:hover { color: var(--text); background: #f1f5f9; }
+
+.view-btn.active {
+  background: var(--navy);
+  color: #fff;
+}
+
+.tab-add-btn {
+  flex: 0 0 auto;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  border-radius: var(--radius);
+  border: 1.5px dashed var(--border);
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition: border-color .15s, color .15s, background .15s;
+}
+
+.tab-add-btn:hover {
+  border-color: var(--navy-light);
+  color: var(--navy);
+  background: #f0f4ff;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  gap: 10px;
+  color: var(--text-muted);
+}
+
+.empty-icon {
+  font-size: 2.4rem;
+  opacity: .35;
+}
+
+.empty-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  opacity: .6;
+}
+
+.empty-sub {
+  font-size: .82rem;
+}
+
+/* ── Graph (timeline) container ───────────────────────────────── */
+.graph-container {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 20px 16px;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+
+.graph-title {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.graph-container svg { display: block; }
+
+/* ── Footer note ──────────────────────────────────────────────── */
+.footer-note {
+  margin-top: 28px;
+  padding: 15px 18px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  box-shadow: var(--shadow);
+}
+
+.fn-icon { font-size: .9rem; flex-shrink: 0; margin-top: 2px; }
+
+.fn-text {
+  font-size: .78rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.fn-text strong { color: var(--text); }
+.fn-text code {
+  font-family: 'Consolas', monospace;
+  font-size: .85em;
+  background: #f1f5f9;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #334155;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-brand">
+    <span class="hdr-logo">SAT-Graph</span>
+    <span class="hdr-sep">·</span>
+    <span class="hdr-title">Case Law Demo</span>
+    <span class="hdr-sep" style="font-size:.8rem">·</span>
+    <span class="hdr-sub">Interpretive Graph Overlay</span>
+  </div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn"        id="btn-pt" onclick="setLang('pt')">PT</button>
+  </div>
+</header>
+
+<input type="file" id="file-input" accept=".json" multiple style="display:none"
+       onchange="onFileLoad(this.files)">
+
+<div class="app">
+  <div class="case-tabs" id="case-tabs"></div>
+
+  <div class="view-toggle" id="view-toggle" style="display:none">
+    <div class="view-btns">
+      <button class="view-btn active" id="vbtn-panels" onclick="setViewMode('panels')">
+        ▤ &nbsp;Panels
+      </button>
+      <button class="view-btn" id="vbtn-graph" onclick="setViewMode('graph')">
+        ◫ &nbsp;Version Timeline
+      </button>
+    </div>
+  </div>
+
+  <div class="empty-state" id="empty-state">
+    <div class="empty-icon">⊕</div>
+    <div class="empty-title">No cases loaded</div>
+    <div class="empty-sub">Click <strong>+</strong> above to load a SAT-Graph JSON file</div>
+  </div>
+
+  <div class="timeline-section" id="timeline-section" style="display:none">
+    <div class="timeline-label">Query Date — drag to navigate legal time</div>
+    <div class="timeline-wrapper">
+      <input type="range" id="slider" min="0" max="1000" value="0"
+             oninput="onSlider(this.value)">
+      <div class="timeline-markers" id="tl-markers"></div>
+      <div class="timeline-date-display" id="tl-date"></div>
+    </div>
+  </div>
+
+  <div class="content-area" id="content-area" style="display:none"></div>
+
+  <div class="graph-container" id="graph-container" style="display:none">
+    <div class="graph-title">Version Timeline — validity intervals and causal actions</div>
+    <div id="graph-svg-wrap"></div>
+  </div>
+
+  <div class="graph-view-section" id="gv-section">
+    <details id="gv-details">
+      <summary>▸ &nbsp;Graph View — raw <code style="font-size:.9em;background:#f1f5f9;padding:1px 5px;border-radius:3px;color:#334155;">getValidVersions</code> result</summary>
+      <div class="gv-inner" id="gv-inner"></div>
+    </details>
+  </div>
+  <div class="footer-note">
+    <span class="fn-icon">ℹ</span>
+    <div class="fn-text">
+      <strong>Ontological Parsimony.</strong>
+      Every case is modelled with the same four primitives —
+      <code>Item</code>, <code>Version</code>, <code>Action</code>, <code>TextUnit</code> — without new classes.
+      Judicial interpretations create <em>Interpretive Versions</em> (I-TV) that
+      <em>overlay</em> Statutory Versions (S-TV) without terminating them.
+      Legislative amendment, judicial interpretation, overruling, and constitutional
+      dialogue are expressed through <strong>topology alone</strong>.
+      The Version Timeline view shows the raw <code>getValidVersions(itemId, date)</code>
+      result that drives every panel on this page.
+    </div>
+  </div>
+</div>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════
+// ENGINE
+// ═══════════════════════════════════════════════════════════════════
+
+/**
+ * getValidVersions — implements GET /items/{itemId}/valid-versions?at={date}
+ * Returns every Version whose validityInterval contains the query date.
+ */
+function getValidVersions(itemId, dateStr, dataset) {
+  const d = new Date(dateStr + 'T12:00:00Z');
+  return dataset.versions.filter(v => {
+    if (v.itemId !== itemId) return false;
+    const start = new Date(v.validityInterval[0]);
+    const end   = v.validityInterval[1] ? new Date(v.validityInterval[1]) : null;
+    return d >= start && (end === null || d <= end);
+  });
+}
+
+/**
+ * getItemHistory — implements GET /items/{itemId}/history
+ * Returns Actions ordered by eventTime that produced or terminated versions of this Item.
+ */
+function getItemHistory(itemId, dataset) {
+  const vids = new Set(
+    dataset.versions.filter(v => v.itemId === itemId).map(v => v.id)
+  );
+  return dataset.actions
+    .filter(a =>
+      a.producesVersionIds.some(id => vids.has(id)) ||
+      a.terminatesVersionIds.some(id => vids.has(id))
+    )
+    .sort((a, b) => new Date(a.eventTime) - new Date(b.eventTime));
+}
+
+/** Finds a single TextUnit by (versionId, aspect, language). Falls back to 'en'. */
+function getTU(versionId, aspect, lang, dataset) {
+  return dataset.textUnits.find(tu =>
+    tu.sourceId === versionId && tu.aspect === aspect && tu.language === lang
+  ) || dataset.textUnits.find(tu =>
+    tu.sourceId === versionId && tu.aspect === aspect && tu.language === 'en'
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+// CASES — populated dynamically via JSON load
+// ═══════════════════════════════════════════════════════════════
+
+let CASES = [];
+
+// ═══════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════
+
+let activeCaseIdx = 0;
+let lang = 'en';
+let sliderVal = 500;
+let viewMode = 'panels';
+
+// ═══════════════════════════════════════════════════════════════════
+// DATE UTILITIES
+// ═══════════════════════════════════════════════════════════════════
+
+function sliderToDate(val, cfg) {
+  const s = new Date(cfg.dateRange[0]).getTime();
+  const e = new Date(cfg.dateRange[1]).getTime();
+  return new Date(s + (val / 1000) * (e - s));
+}
+
+function dateToSlider(dateStr, cfg) {
+  const s = new Date(cfg.dateRange[0]).getTime();
+  const e = new Date(cfg.dateRange[1]).getTime();
+  const d = new Date(dateStr).getTime();
+  return Math.round(((d - s) / (e - s)) * 1000);
+}
+
+function isoDate(d) {
+  return d.toISOString().split('T')[0];
+}
+
+function fmtDate(d) {
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function esc(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// RENDER — orchestrator
+// ═══════════════════════════════════════════════════════════════════
+
+function render() {
+  const cfg = CASES[activeCaseIdx];
+  const date = sliderToDate(sliderVal, cfg);
+  const ds = isoDate(date);
+
+  const slider = document.getElementById('slider');
+  slider.style.setProperty('--pct', (sliderVal / 10) + '%');
+  document.getElementById('tl-date').textContent = fmtDate(date);
+
+  renderMarkers(cfg);
+
+  const panelsEl  = document.getElementById('content-area');
+  const graphEl   = document.getElementById('graph-container');
+  const gvSection = document.getElementById('gv-section');
+
+  if (viewMode === 'panels') {
+    panelsEl.style.display = '';
+    graphEl.style.display  = 'none';
+    gvSection.style.display = '';
+    renderContent(cfg, ds);
+    renderGraphView(cfg, ds);
+  } else {
+    panelsEl.style.display = 'none';
+    graphEl.style.display  = '';
+    gvSection.style.display = 'none';
+    document.getElementById('graph-svg-wrap').innerHTML =
+      buildTimelineSVG(cfg, ds);
+  }
+}
+
+// ── Markers ─────────────────────────────────────────────────────────
+
+function renderMarkers(cfg) {
+  const [s, e] = cfg.dateRange.map(d => new Date(d).getTime());
+  document.getElementById('tl-markers').innerHTML = cfg.keyDates.map(kd => {
+    const pct = ((new Date(kd.date).getTime() - s) / (e - s)) * 100;
+    return `<div class="tl-marker" style="left:${pct.toFixed(2)}%">
+      <div class="tl-marker-dot"></div>
+      <div class="tl-marker-label">${esc(kd.label)}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Content dispatcher ───────────────────────────────────────────────
+
+function renderContent(cfg, ds) {
+  const area = document.getElementById('content-area');
+  if      (cfg.type === 'mutation') renderMutation(area, cfg, ds);
+  else if (cfg.type === 'dialogue') renderDialogue(area, cfg, ds);
+  else if (cfg.type === 'split')    renderSplit(area, cfg, ds);
+}
+
+// ── Case A — Interpretive Mutation ────────────────────────────────────
+
+function renderMutation(area, cfg, ds) {
+  const all   = getValidVersions(cfg.primaryItemId, ds, cfg.dataset);
+  const stat  = all.find(v => v.type === 'statutory');
+  const interp = all.filter(v => v.type === 'interpretive');
+  area.innerHTML =
+    panelStatutory(stat, cfg) +
+    panelInterp(interp[0] || null, cfg);
+}
+
+// ── Case B — Constitutional Dialogue ─────────────────────────────────
+
+function renderDialogue(area, cfg, ds) {
+  const primAll  = getValidVersions(cfg.primaryItemId,   ds, cfg.dataset);
+  const secAll   = getValidVersions(cfg.secondaryItemId, ds, cfg.dataset);
+  const primStat = primAll.find(v => v.type === 'statutory');
+  const primInterp = primAll.filter(v => v.type === 'interpretive');
+  const secStat  = secAll.find(v => v.type === 'statutory');
+
+  if (!secStat) {
+    // Before EC 96/2017: standard two-column
+    area.innerHTML =
+      panelStatutory(primStat, cfg) +
+      panelInterp(primInterp[0] || null, cfg);
+  } else {
+    // Constitutional dialogue: two Items side by side
+    area.innerHTML =
+      panelDialoguePrimary(primStat, primInterp[0] || null, cfg) +
+      panelDialogueSecondary(secStat, cfg);
+  }
+}
+
+// ── Case C — Jurisprudential Split ────────────────────────────────────
+
+function renderSplit(area, cfg, ds) {
+  const all    = getValidVersions(cfg.primaryItemId, ds, cfg.dataset);
+  const stat   = all.find(v => v.type === 'statutory');
+  const interps = all.filter(v => v.type === 'interpretive');
+
+  if (interps.length < 2) {
+    area.innerHTML =
+      panelStatutory(stat, cfg) +
+      panelInterp(interps[0] || null, cfg);
+  } else {
+    area.innerHTML =
+      panelStatutory(stat, cfg) +
+      panelConflict(interps, cfg);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PANEL BUILDERS
+// ═══════════════════════════════════════════════════════════════════
+
+// ── Word-level diff helpers ──────────────────────────────────────
+
+function getPrevVersion(ver, dataset) {
+  if (!ver.producedByActionId) return null;
+  const action = dataset.actions.find(a => a.id === ver.producedByActionId);
+  if (!action?.terminatesVersionIds?.length) return null;
+  return dataset.versions.find(v => v.id === action.terminatesVersionIds[0]) || null;
+}
+
+function wordDiff(wordsA, wordsB) {
+  const m = wordsA.length, n = wordsB.length;
+  const dp = Array.from({length: m + 1}, () => new Array(n + 1).fill(0));
+  for (let i = 1; i <= m; i++)
+    for (let j = 1; j <= n; j++)
+      dp[i][j] = wordsA[i-1] === wordsB[j-1]
+        ? dp[i-1][j-1] + 1
+        : Math.max(dp[i-1][j], dp[i][j-1]);
+  const ops = [];
+  let i = m, j = n;
+  while (i > 0 || j > 0) {
+    if (i > 0 && j > 0 && wordsA[i-1] === wordsB[j-1]) {
+      ops.unshift({text: wordsB[j-1], type: 'same'}); i--; j--;
+    } else if (j > 0 && (i === 0 || dp[i][j-1] >= dp[i-1][j])) {
+      ops.unshift({text: wordsB[j-1], type: 'add'}); j--;
+    } else {
+      ops.unshift({text: wordsA[i-1], type: 'del'}); i--;
+    }
+  }
+  return ops;
+}
+
+function renderWordDiff(textA, textB) {
+  const wordsA = textA.trim().split(/\s+/);
+  const wordsB = textB.trim().split(/\s+/);
+  const ops = wordDiff(wordsA, wordsB);
+  return '"' + ops.map(op => {
+    const w = esc(op.text);
+    if (op.type === 'add') return `<span class="diff-add">${w}</span>`;
+    if (op.type === 'del') return `<span class="diff-del">${w}</span>`;
+    return w;
+  }).join(' ') + '"';
+}
+
+// ── Panel builders ───────────────────────────────────────────────
+
+function panelStatutory(ver, cfg) {
+  if (!ver) return panelEmpty('S-TV', 'No statutory version at this date');
+
+  const item   = cfg.dataset.items.find(i => i.id === ver.itemId);
+  const tu     = getTU(ver.id, 'canonical', lang, cfg.dataset);
+  const since  = ver.validityInterval[0].substring(0, 10);
+
+  const action      = ver.producedByActionId
+    ? cfg.dataset.actions.find(a => a.id === ver.producedByActionId) : null;
+  const actionLabel = action?.metadata?.label || action?.metadata?.amendmentNumber || null;
+  const subLabel    = action ? (actionLabel || 'Amended') : 'Original text';
+
+  const prevVer  = getPrevVersion(ver, cfg.dataset);
+  const prevTU   = prevVer ? getTU(prevVer.id, 'canonical', lang, cfg.dataset) : null;
+  const textHtml = (tu && prevTU)
+    ? renderWordDiff(prevTU.content, tu.content)
+    : tu ? `"${esc(tu.content)}"` : null;
+
+  return `<div class="panel statutory">
+    <div class="ph">
+      <div class="ph-tag">S-TV · Statutory Version</div>
+      <div class="ph-title">${esc(item?.label || ver.itemId)}</div>
+      <div class="ph-sub">Valid from ${since} · ${esc(subLabel)}</div>
+    </div>
+    <div class="pb">
+      ${textHtml !== null
+        ? `<div class="tb">
+            <div class="tb-label">Canonical Text</div>
+            <div class="tb-content italic">${textHtml}</div>
+          </div>`
+        : emptyState('Text not available')}
+    </div>
+  </div>`;
+}
+
+function panelInterp(ver, cfg) {
+  if (!ver) return `<div class="panel empty">
+    <div class="ph">
+      <div class="ph-tag">I-TV · Interpretive Version</div>
+      <div class="ph-title">No interpretation yet</div>
+    </div>
+    <div class="pb">
+      <div class="empty-state">
+        <div class="empty-icon">○</div>
+        <div class="empty-text">No interpretive version active at this date.<br>
+          Statutory text applies directly.</div>
+      </div>
+    </div>
+  </div>`;
+
+  const action = cfg.dataset.actions.find(a => a.id === ver.producedByActionId);
+  const ratio   = getTU(ver.id, 'ratio',   lang, cfg.dataset);
+  const holding = getTU(ver.id, 'holding', lang, cfg.dataset);
+  const label   = action?.metadata?.label || action?.metadata?.caseNumber || 'Judicial Interpretation';
+  const chamber = action?.metadata?.chamber || '';
+  const vote    = action?.metadata?.vote ? ` · ${action.metadata.vote}` : '';
+  const since   = ver.validityInterval[0].substring(0,10);
+  const until   = ver.validityInterval[1]
+    ? ` → ${ver.validityInterval[1].substring(0,10)}`
+    : ' → present';
+
+  return `<div class="panel interp">
+    <div class="ph">
+      <div class="ph-tag">I-TV · Interpretive Version</div>
+      <div class="ph-title">${esc(label)}</div>
+      <div class="ph-sub">${esc(chamber)}${esc(vote)} · ${since}${until}</div>
+    </div>
+    <div class="pb">
+      ${ratio   ? `<div class="tb">
+                    <div class="tb-label">Ratio Decidendi</div>
+                    <div class="tb-content">${esc(ratio.content)}</div>
+                  </div>` : ''}
+      ${holding ? `<div class="tb">
+                    <div class="tb-label">Holding</div>
+                    <div class="tb-content bold-serif">${esc(holding.content)}</div>
+                  </div>` : ''}
+    </div>
+  </div>`;
+}
+
+function panelConflict(interps, cfg) {
+  const subPanels = interps.map(ver => {
+    const action  = cfg.dataset.actions.find(a => a.id === ver.producedByActionId);
+    const holding = getTU(ver.id, 'holding', lang, cfg.dataset);
+    const ratio   = getTU(ver.id, 'ratio',   lang, cfg.dataset);
+    const label   = action?.metadata?.label || action?.metadata?.chamber || '?';
+    return `<div style="padding:14px 16px;">
+      <div style="font-size:.67rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+                  color:#92400e;margin-bottom:10px;">${esc(label)}</div>
+      ${holding ? `<div class="tb">
+        <div class="tb-label">Holding</div>
+        <div class="tb-content bold-serif" style="font-size:.86rem;">${esc(holding.content)}</div>
+      </div>` : ''}
+      ${ratio ? `<div class="tb">
+        <div class="tb-label">Ratio Decidendi</div>
+        <div class="tb-content small">${esc(ratio.content)}</div>
+      </div>` : ''}
+    </div>`;
+  });
+
+  const vCount = interps.length + 1; // +1 for the S-TV
+
+  return `<div class="panel conflict">
+    <div class="ph">
+      <div class="ph-tag">⚠ Conflict Detected</div>
+      <div class="ph-title">Jurisprudential Split</div>
+      <div class="ph-sub">|V<sub>valid</sub>| = ${vCount} · No Plenary resolution</div>
+    </div>
+    <div class="conflict-alert">
+      <span class="conflict-alert-icon">⚠</span>
+      <div>
+        <div class="conflict-alert-title">Jurisprudential Split Active</div>
+        <div class="conflict-alert-sub">
+          ${interps.length} conflicting interpretive versions simultaneously valid —
+          outcome varies by panel composition
+        </div>
+      </div>
+    </div>
+    <div class="pb" style="padding:0; max-height:420px;">
+      ${subPanels.join('<div class="conflict-panels-divider"></div>')}
+    </div>
+  </div>`;
+}
+
+function panelDialoguePrimary(stat, interp, cfg) {
+  const item     = cfg.dataset.items.find(i => i.id === cfg.primaryItemId);
+  const tu       = stat ? getTU(stat.id, 'canonical', lang, cfg.dataset) : null;
+  const action   = interp
+    ? cfg.dataset.actions.find(a => a.id === interp.producedByActionId)
+    : null;
+  const holding  = interp ? getTU(interp.id, 'holding', lang, cfg.dataset) : null;
+  const iLabel   = action?.metadata?.label || action?.metadata?.caseNumber || '';
+
+  return `<div class="panel statutory">
+    <div class="ph">
+      <div class="ph-tag">S-TV + I-TV overlay</div>
+      <div class="ph-title">${esc(item?.label)}</div>
+      <div class="ph-sub">Constitutional provision · judicial interpretation overlaid</div>
+    </div>
+    <div class="pb">
+      ${tu ? `<div class="tb">
+        <div class="tb-label">Statutory Text (S-TV)</div>
+        <div class="tb-content italic">"${esc(tu.content)}"</div>
+      </div>` : ''}
+      ${holding ? `<div class="tb" style="padding-top:14px;border-top:1px solid rgba(37,99,235,.15);">
+        <div class="tb-label" style="color:#1d4ed8;">I-TV · ${esc(iLabel)}</div>
+        <div class="tb-content bold-serif" style="color:#1e3a5f;">${esc(holding.content)}</div>
+      </div>` : ''}
+    </div>
+  </div>`;
+}
+
+function panelDialogueSecondary(ver, cfg) {
+  if (!ver) return `<div class="panel empty">
+    <div class="ph">
+      <div class="ph-tag">New Provision</div>
+      <div class="ph-title">Art. 225, §7</div>
+      <div class="ph-sub">Not yet in force</div>
+    </div>
+    <div class="pb">
+      <div class="empty-state">
+        <div class="empty-icon">○</div>
+        <div class="empty-text">Art. 225, §7 does not exist yet.<br>
+          EC 96/2017 has not been enacted.</div>
+      </div>
+    </div>
+  </div>`;
+
+  const item    = cfg.dataset.items.find(i => i.id === cfg.secondaryItemId);
+  const tu      = getTU(ver.id, 'canonical', lang, cfg.dataset);
+  const summary = getTU(ver.id, 'summary',   lang, cfg.dataset);
+  const since   = ver.validityInterval[0].substring(0,10);
+
+  return `<div class="panel newprov">
+    <div class="ph">
+      <div class="ph-tag">↩ Legislative Override · New S-TV</div>
+      <div class="ph-title">${esc(item?.label)}</div>
+      <div class="ph-sub">Created by EC 96/2017 · ${since}</div>
+    </div>
+    <div class="pb">
+      ${tu ? `<div class="tb">
+        <div class="tb-label">Statutory Text (S-TV)</div>
+        <div class="tb-content italic">"${esc(tu.content)}"</div>
+      </div>` : ''}
+      ${summary ? `<div class="tb">
+        <div class="tb-label">Context</div>
+        <div class="tb-content small">${esc(summary.content)}</div>
+      </div>` : ''}
+    </div>
+  </div>`;
+}
+
+function panelEmpty(tag, msg) {
+  return `<div class="panel empty">
+    <div class="ph">
+      <div class="ph-tag">${esc(tag)}</div>
+    </div>
+    <div class="pb">
+      <div class="empty-state">
+        <div class="empty-icon">○</div>
+        <div class="empty-text">${esc(msg)}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function emptyState(msg) {
+  return `<div class="empty-state">
+    <div class="empty-icon">○</div>
+    <div class="empty-text">${esc(msg)}</div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// GRAPH VIEW
+// ═══════════════════════════════════════════════════════════════════
+
+function renderGraphView(cfg, ds) {
+  const inner = document.getElementById('gv-inner');
+
+  const queries = [];
+  queries.push({
+    itemId: cfg.primaryItemId,
+    result: getValidVersions(cfg.primaryItemId, ds, cfg.dataset).map(v => ({
+      id: v.id, type: v.type, validityInterval: v.validityInterval
+    }))
+  });
+
+  if (cfg.type === 'dialogue') {
+    queries.push({
+      itemId: cfg.secondaryItemId,
+      result: getValidVersions(cfg.secondaryItemId, ds, cfg.dataset).map(v => ({
+        id: v.id, type: v.type, validityInterval: v.validityInterval
+      }))
+    });
+  }
+
+  inner.innerHTML = queries.map(q => `
+    <div class="gv-query-block">
+      <div class="gv-call"><span class="fn">getValidVersions</span>(<span class="arg">"${esc(q.itemId)}"</span>, <span class="arg">"${ds}"</span>)</div>
+      <div class="gv-result">${hlJSON(q.result)}</div>
+    </div>`).join('');
+}
+
+function hlJSON(obj) {
+  return JSON.stringify(obj, null, 2)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"([^"]+)":/g,           '<span class="jk">"$1"</span>:')
+    .replace(/: "([^"]*)"/g,          ': <span class="js">"$1"</span>')
+    .replace(/: (-?\d+\.?\d*)/g,      ': <span class="jn">$1</span>')
+    .replace(/: (true|false)\b/g,     ': <span class="jb">$1</span>')
+    .replace(/: null\b/g,             ': <span class="jnl">null</span>');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CASE TABS
+// ═══════════════════════════════════════════════════════════════════
+
+function renderTabs() {
+  const tabs = CASES.map((c, i) => `
+    <button class="case-tab ${i === activeCaseIdx ? 'active' : ''}"
+            onclick="selectCase(${i})">
+      <span class="tab-letter">Case ${c.letter}</span>
+      <span class="tab-name">${esc(c.title)}</span>
+      <span class="tab-phenomenon">${esc(c.phenomenon)}</span>
+    </button>`).join('');
+
+  const addBtn = `<button class="tab-add-btn" title="Load JSON"
+      onclick="document.getElementById('file-input').click()">+</button>`;
+
+  document.getElementById('case-tabs').innerHTML = tabs + addBtn;
+
+  const empty = CASES.length === 0;
+  document.getElementById('empty-state').style.display    = empty ? '' : 'none';
+  document.getElementById('view-toggle').style.display    = empty ? 'none' : '';
+  document.getElementById('timeline-section').style.display = empty ? 'none' : '';
+  document.getElementById('content-area').style.display   = empty ? 'none' : '';
+  document.getElementById('graph-container').style.display = empty || viewMode !== 'graph' ? 'none' : '';
+  document.getElementById('gv-section').style.display     = empty ? 'none' : '';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// EVENT HANDLERS
+// ═══════════════════════════════════════════════════════════════════
+
+function selectCase(idx) {
+  activeCaseIdx = idx;
+  const cfg = CASES[idx];
+  sliderVal = dateToSlider(cfg.dateRange[0], cfg);
+  document.getElementById('slider').value = sliderVal;
+  renderTabs();
+  render();
+}
+
+function onSlider(val) {
+  sliderVal = parseInt(val);
+  render();
+}
+
+function setLang(l) {
+  lang = l;
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', l === 'pt');
+  render();
+}
+
+function setViewMode(m) {
+  viewMode = m;
+  document.getElementById('vbtn-panels').classList.toggle('active', m === 'panels');
+  document.getElementById('vbtn-graph').classList.toggle('active',  m === 'graph');
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// TIMELINE GRAPH — buildTimelineSVG
+// ═══════════════════════════════════════════════════════════════════
+
+/**
+ * Builds a compressed-time X scale from a set of event dates.
+ * Each gap between consecutive significant dates gets at least MIN_FRAC
+ * of the total display width, preventing long empty stretches.
+ */
+function buildTimeScale(eventDates, rangeStart, rangeEnd, left, right) {
+  const allDates = [...new Set([rangeStart, ...eventDates, rangeEnd])].sort();
+  const times    = allDates.map(d => new Date(d + 'T12:00:00Z').getTime());
+
+  const MIN_FRAC = 0.13;
+  const totalTime = times[times.length - 1] - times[0];
+
+  let fracs = [];
+  for (let i = 0; i < times.length - 1; i++) {
+    fracs.push(Math.max(MIN_FRAC, (times[i + 1] - times[i]) / totalTime));
+  }
+  const sum = fracs.reduce((a, b) => a + b, 0);
+  fracs = fracs.map(f => f / sum);
+
+  const W = right - left;
+  const positions = [left];
+  let cum = 0;
+  for (const f of fracs) { cum += f * W; positions.push(left + cum); }
+
+  return function toX(dateStr) {
+    const d = new Date(dateStr.length <= 10
+      ? dateStr + 'T12:00:00Z' : dateStr).getTime();
+    for (let i = 0; i < times.length - 1; i++) {
+      if (d >= times[i] && d <= times[i + 1]) {
+        const t = (d - times[i]) / (times[i + 1] - times[i]);
+        return positions[i] + t * (positions[i + 1] - positions[i]);
+      }
+    }
+    return d <= times[0] ? positions[0] : positions[positions.length - 1];
+  };
+}
+
+function buildTimelineSVG(cfg, currentDs) {
+  const ds = cfg.dataset;
+
+  // Collect relevant item IDs (constitutional provisions / statutes only)
+  const relevantIds = [cfg.primaryItemId];
+  if (cfg.type === 'dialogue' && cfg.secondaryItemId)
+    relevantIds.push(cfg.secondaryItemId);
+
+  // Build rows: one per version of each relevant item (S-TV / I-TV only)
+  const rows = [];
+  relevantIds.forEach((itemId, itemIdx) => {
+    const item = ds.items.find(i => i.id === itemId);
+    if (itemIdx > 0) rows.push({ type: 'sep', label: item?.label || '' });
+
+    ds.versions
+      .filter(v => v.itemId === itemId &&
+                   (v.type === 'statutory' || v.type === 'interpretive'))
+      .sort((a, b) => new Date(a.validityInterval[0]) - new Date(b.validityInterval[0]))
+      .forEach(ver => {
+        const action  = ds.actions.find(a => a.id === ver.producedByActionId);
+        const holding = getTU(ver.id, 'holding',   lang, ds);
+        const canonical = getTU(ver.id, 'canonical', lang, ds);
+        rows.push({
+          type: 'ver', ver, action,
+          snippet: (holding || canonical)?.content?.substring(0, 80) || '',
+          itemLabel: item?.label || itemId,
+        });
+      });
+  });
+
+  // Valid IDs at current date
+  const validIds = new Set();
+  relevantIds.forEach(id =>
+    getValidVersions(id, currentDs, ds).forEach(v => validIds.add(v.id))
+  );
+
+  // Layout constants
+  const SVG_W   = 820;
+  const L_MARGIN = 152;   // left label column
+  const R_MARGIN = 16;
+  const T_MARGIN = 36;
+  const ROW_H   = 60;
+  const BAR_H   = 28;
+  const SEP_H   = 28;
+
+  // Compute total height
+  const verRows = rows.filter(r => r.type === 'ver').length;
+  const sepRows = rows.filter(r => r.type === 'sep').length;
+  const SVG_H   = T_MARGIN + verRows * ROW_H + sepRows * SEP_H + 42;
+
+  // Build X scale from action event dates
+  const eventDates = ds.actions.map(a => a.eventTime.substring(0, 10));
+  const toX = buildTimeScale(
+    eventDates, cfg.dateRange[0], cfg.dateRange[1],
+    L_MARGIN, SVG_W - R_MARGIN
+  );
+
+  const currentX = toX(currentDs);
+  const isConflict = cfg.type === 'split';
+
+  let s = `<svg width="100%" viewBox="0 0 ${SVG_W} ${SVG_H}"
+    xmlns="http://www.w3.org/2000/svg"
+    style="font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;min-width:${SVG_W}px">`;
+
+  // Background
+  s += `<rect width="${SVG_W}" height="${SVG_H}" fill="#fafaf9" rx="8"/>`;
+
+  // Column header labels
+  s += txt(L_MARGIN - 8, 18, 'VERSION', 9, '#94a3b8', 'end', '700', '.08em');
+  s += txt(L_MARGIN + (SVG_W - R_MARGIN - L_MARGIN) / 2, 18, 'VALIDITY INTERVAL', 9, '#94a3b8', 'middle', '700', '.08em');
+
+  // Key-event vertical guide lines + bottom axis labels
+  cfg.keyDates.forEach(kd => {
+    const x = toX(kd.date);
+    s += `<line x1="${x}" y1="${T_MARGIN - 6}" x2="${x}" y2="${SVG_H - 32}"
+           stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+    s += `<line x1="${x}" y1="${SVG_H - 32}" x2="${x}" y2="${SVG_H - 26}"
+           stroke="#cbd5e1" stroke-width="1.5"/>`;
+    s += txt(x, SVG_H - 14, kd.label, 9, '#94a3b8', 'middle', '500');
+  });
+
+  // Bottom axis line
+  s += `<line x1="${L_MARGIN - 10}" y1="${SVG_H - 32}" x2="${SVG_W - R_MARGIN}"
+         y2="${SVG_H - 32}" stroke="#cbd5e1" stroke-width="1.5"/>`;
+
+  // Draw rows
+  let y = T_MARGIN;
+  let verIdx = 0;
+
+  rows.forEach(row => {
+    if (row.type === 'sep') {
+      // Item separator
+      s += `<line x1="${L_MARGIN - 10}" y1="${y + SEP_H / 2}"
+             x2="${SVG_W - R_MARGIN}" y2="${y + SEP_H / 2}"
+             stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>`;
+      s += txt(L_MARGIN - 8, y + SEP_H / 2 + 4,
+               row.label?.split('—')[0]?.trim() || '', 8.5, '#94a3b8', 'end', '600');
+      y += SEP_H;
+      return;
+    }
+
+    const { ver, action, snippet } = row;
+    const barY    = y + (ROW_H - BAR_H) / 2;
+    const isStat  = ver.type === 'statutory';
+    const isValid = validIds.has(ver.id);
+    const hasEnd  = ver.validityInterval[1] !== null;
+
+    const startX  = toX(ver.validityInterval[0].substring(0, 10));
+    const endX    = hasEnd
+      ? toX(ver.validityInterval[1].substring(0, 10))
+      : SVG_W - R_MARGIN;
+    const barW    = Math.max(8, endX - startX);
+
+    // Colors
+    const fill    = isStat    ? '#2563eb'
+                  : isConflict ? '#d97706'
+                  : '#16a34a';
+    const opacity = isValid   ? '1' : '0.3';
+
+    // Row label (left side)
+    const vLabel  = isStat ? 'S-TV₀' : `I-TV${'₀₁₂₃₄₅₆₇₈₉'[verIdx] ?? verIdx}`;
+    const aLabel  = action?.metadata?.caseNumber || action?.metadata?.label || '';
+
+    s += txt(L_MARGIN - 10, barY + BAR_H / 2 + 3,
+             vLabel, 11, isValid ? fill : '#94a3b8', 'end', '800');
+    if (aLabel) {
+      s += txt(L_MARGIN - 10, barY + BAR_H / 2 + 14,
+               aLabel, 8, '#94a3b8', 'end', '500');
+    }
+
+    // Bar
+    s += `<rect x="${startX}" y="${barY}" width="${barW}" height="${BAR_H}"
+           rx="${BAR_H / 2}" fill="${fill}" opacity="${opacity}"/>`;
+
+    // Valid highlight ring
+    if (isValid) {
+      s += `<rect x="${startX}" y="${barY}" width="${barW}" height="${BAR_H}"
+             rx="${BAR_H / 2}" fill="none" stroke="white" stroke-width="2.5"
+             opacity="0.45"/>`;
+    }
+
+    // Start date inside bar
+    const dateLabel = ver.validityInterval[0].substring(0, 10);
+    s += txt(startX + 10, barY + BAR_H / 2 + 4,
+             dateLabel, 9, 'white', 'start', '600', undefined, opacity);
+
+    // End date or arrow
+    if (hasEnd) {
+      const endLabel = ver.validityInterval[1].substring(0, 10);
+      s += txt(endX - 10, barY + BAR_H / 2 + 4,
+               endLabel, 9, 'white', 'end', '600', undefined, opacity);
+      // Termination circle
+      s += `<circle cx="${endX}" cy="${barY + BAR_H / 2}" r="7"
+             fill="white" stroke="${fill}" stroke-width="2" opacity="${opacity}"/>`;
+      s += txt(endX, barY + BAR_H / 2 + 4, '×', 10, fill, 'middle', '700', undefined, opacity);
+    } else {
+      s += txt(endX - 10, barY + BAR_H / 2 + 5,
+               '→', 16, 'white', 'end', '300', undefined, String(parseFloat(opacity) * 0.7));
+    }
+
+    // Snippet tooltip (small text below bar, only if valid)
+    if (isValid && snippet) {
+      s += txt(startX + 10, barY + BAR_H + 13,
+               snippet.length > 72 ? snippet.substring(0, 72) + '…' : snippet,
+               8, fill, 'start', '400');
+    }
+
+    y += ROW_H;
+    if (!isStat) verIdx++;
+  });
+
+  // Overruling arrows between versions (curved, drawn OVER bars)
+  ds.actions.forEach(action => {
+    if (!action.terminatesVersionIds?.length || !action.producesVersionIds?.length) return;
+    action.terminatesVersionIds.forEach(srcId => {
+      action.producesVersionIds.forEach(dstId => {
+        // Find Y positions of these two versions in our row list
+        let yRows = [];
+        let cy = T_MARGIN;
+        rows.forEach(row => {
+          if (row.type === 'sep') { cy += SEP_H; return; }
+          if (row.ver.id === srcId || row.ver.id === dstId) {
+            yRows.push({ id: row.ver.id, y: cy + (ROW_H - BAR_H) / 2 + BAR_H / 2 });
+          }
+          cy += ROW_H;
+        });
+        if (yRows.length < 2) return;
+        const [src, dst] = yRows;
+        const ex = toX(action.eventTime.substring(0, 10));
+        const midY = (src.y + dst.y) / 2;
+        s += `<path d="M ${ex} ${src.y} Q ${ex + 40} ${midY} ${ex} ${dst.y}"
+               fill="none" stroke="#dc2626" stroke-width="1.8"
+               stroke-dasharray="5,3" opacity="0.7"
+               marker-end="url(#arrowRed)"/>`;
+        s += txt(ex + 44, midY + 4,
+                 action.type, 9, '#dc2626', 'start', '700');
+      });
+    });
+  });
+
+  // Current date line (drawn last, on top of everything)
+  s += `<defs>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10z" fill="#dc2626"/>
+    </marker>
+  </defs>`;
+
+  s += `<line x1="${currentX}" y1="${T_MARGIN - 4}" x2="${currentX}"
+         y2="${SVG_H - 32}" stroke="#dc2626" stroke-width="2"
+         stroke-dasharray="6,3"/>`;
+  // Date pill on the line
+  s += `<rect x="${currentX - 40}" y="${T_MARGIN - 21}" width="80" height="18"
+         rx="5" fill="#dc2626"/>`;
+  s += txt(currentX, T_MARGIN - 9, currentDs, 9.5, 'white', 'middle', '700');
+
+  s += '</svg>';
+  return s;
+}
+
+/** Helper: SVG text element */
+function txt(x, y, content, size, fill, anchor='start', weight='400',
+             spacing, opacity) {
+  const attrs = [
+    `x="${x}"`, `y="${y}"`,
+    `font-size="${size}"`, `fill="${fill}"`,
+    `text-anchor="${anchor}"`, `font-weight="${weight}"`,
+    spacing ? `letter-spacing="${spacing}"` : '',
+    opacity  ? `opacity="${opacity}"` : '',
+  ].filter(Boolean).join(' ');
+  return `<text ${attrs}>${esc(content)}</text>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DYNAMIC JSON LOADING
+// ═══════════════════════════════════════════════════════════════════
+
+function onFileLoad(files) {
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        const data = JSON.parse(e.target.result);
+        addCaseFromData(data, file.name);
+      } catch (err) {
+        alert('Could not parse ' + file.name + ':\n' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  });
+  // Reset file input so the same file can be re-loaded
+  document.getElementById('file-input').value = '';
+}
+
+function addCaseFromData(data, filename) {
+  if (!data.items || !data.versions || !data.actions) {
+    alert(filename + ' does not look like a SAT-Graph dataset (missing items/versions/actions).');
+    return;
+  }
+
+  const primaryItemId   = detectPrimaryItem(data);
+  const caseType        = detectCaseType(data, primaryItemId);
+  const secondaryItemId = caseType === 'dialogue'
+    ? detectSecondaryItem(data, primaryItemId) : null;
+  const dateRange = detectDateRange(data);
+  const keyDates  = detectKeyDates(data, dateRange);
+
+  const letter = CASES.length < 26
+    ? String.fromCharCode(65 + CASES.length)
+    : String(CASES.length + 1);
+
+  CASES.push({
+    id:            'loaded_' + Date.now(),
+    letter,
+    title:         data.metadata?.caseName || filename.replace(/\.json$/i, ''),
+    phenomenon:    data.metadata?.phenomenon || phenomenonLabel(caseType),
+    dataset:       data,
+    type:          caseType,
+    primaryItemId,
+    secondaryItemId,
+    dateRange,
+    keyDates,
+    loaded:        true,
+  });
+
+  renderTabs();
+  selectCase(CASES.length - 1);
+}
+
+// ── Auto-detection helpers ──────────────────────────────────────────
+
+const PRIMARY_TYPES = new Set([
+  'constitutional-provision', 'statute', 'provision',
+  'legislative-provision', 'statutory-provision',
+]);
+
+function detectPrimaryItem(data) {
+  return (
+    data.items.find(i => PRIMARY_TYPES.has(i.typeId)) ||
+    data.items[0]
+  )?.id;
+}
+
+function detectCaseType(data, primaryId) {
+  if (!primaryId) return 'mutation';
+
+  // Dialogue: multiple primary-type items + a Creation/Legislative Override action
+  const provCount = data.items.filter(i => PRIMARY_TYPES.has(i.typeId)).length;
+  const hasCreation = data.actions.some(a =>
+    a.type === 'Creation' || a.type === 'Legislative Override'
+  );
+  if (provCount >= 2 && hasCreation) return 'dialogue';
+
+  // Split: two I-TVs of the same item overlap in time
+  const interps = data.versions.filter(v =>
+    v.itemId === primaryId && v.type === 'interpretive'
+  );
+  for (let i = 0; i < interps.length; i++) {
+    for (let j = i + 1; j < interps.length; j++) {
+      const iEnd = interps[i].validityInterval[1];
+      const jStart = new Date(interps[j].validityInterval[0]);
+      if (!iEnd || new Date(iEnd) > jStart) return 'split';
+    }
+  }
+
+  return 'mutation';
+}
+
+function detectSecondaryItem(data, primaryId) {
+  for (const action of data.actions) {
+    if (action.type !== 'Creation' && action.type !== 'Legislative Override') continue;
+    for (const vId of action.producesVersionIds) {
+      const ver = data.versions.find(v => v.id === vId);
+      if (ver && ver.itemId !== primaryId) return ver.itemId;
+    }
+  }
+  return null;
+}
+
+function detectDateRange(data) {
+  const dates = [
+    ...data.versions.flatMap(v =>
+      [v.validityInterval[0], v.validityInterval[1]].filter(Boolean)
+    ),
+    ...data.actions.map(a => a.eventTime),
+  ].map(d => d.substring(0, 10)).sort();
+
+  const first = dates[0] || '1988-01-01';
+  const last  = new Date(dates[dates.length - 1] || '2020-01-01');
+  last.setFullYear(last.getFullYear() + 4);
+  return [first, last.toISOString().substring(0, 10)];
+}
+
+function detectKeyDates(data, dateRange) {
+  const kd = data.actions
+    .sort((a, b) => a.eventTime.localeCompare(b.eventTime))
+    .map(a => ({
+      date:  a.eventTime.substring(0, 10),
+      label: a.metadata?.label || a.metadata?.caseNumber || a.type,
+    }));
+
+  // Always add the range start if there's no event at that date
+  const startDate = dateRange[0];
+  if (!kd.some(k => k.date === startDate)) {
+    kd.unshift({ date: startDate, label: startDate.substring(0, 4) });
+  }
+  return kd;
+}
+
+
+function phenomenonLabel(type) {
+  return {
+    mutation: 'Interpretive Mutation',
+    dialogue: 'Constitutional Dialogue',
+    split:    'Jurisprudential Split',
+  }[type] || 'Custom Case';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════
+
+renderTabs(); // CASES is empty on load — shows empty state
+</script>
+</body>
+</html>
