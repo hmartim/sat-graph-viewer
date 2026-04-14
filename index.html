@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAT-Graph · Case Law Demo</title>
+<title>SAT-Graph Viewer</title>
 <style>
 /* ── Reset & Base ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -692,14 +692,9 @@ summary::marker { display: none; }
   <div class="hdr-brand">
     <span class="hdr-logo">SAT-Graph</span>
     <span class="hdr-sep">·</span>
-    <span class="hdr-title">Case Law Demo</span>
-    <span class="hdr-sep" style="font-size:.8rem">·</span>
-    <span class="hdr-sub">Interpretive Graph Overlay</span>
+    <span class="hdr-title">Viewer</span>
   </div>
-  <div class="lang-toggle">
-    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-    <button class="lang-btn"        id="btn-pt" onclick="setLang('pt')">PT</button>
-  </div>
+  <div class="lang-toggle" id="lang-toggle"></div>
 </header>
 
 <input type="file" id="file-input" accept=".json" multiple style="display:none"
@@ -1016,7 +1011,14 @@ function renderWordDiff(textA, textB) {
 // ── Panel builders ───────────────────────────────────────────────
 
 function panelStatutory(ver, cfg) {
-  if (!ver) return panelEmpty('S-TV', 'No statutory version at this date');
+  if (!ver) {
+    const hasAny = cfg.dataset.versions.some(
+      v => v.itemId === cfg.primaryItemId && v.type === 'statutory'
+    );
+    return panelEmpty('S-TV', hasAny
+      ? 'No statutory version at this date'
+      : 'No statutory basis — principle derived from judge-made law');
+  }
 
   const item   = cfg.dataset.items.find(i => i.id === ver.itemId);
   const tu     = getTU(ver.id, 'canonical', lang, cfg.dataset);
@@ -1066,9 +1068,10 @@ function panelInterp(ver, cfg) {
   </div>`;
 
   const action = cfg.dataset.actions.find(a => a.id === ver.producedByActionId);
+  const facts   = getTU(ver.id, 'facts',   lang, cfg.dataset);
   const ratio   = getTU(ver.id, 'ratio',   lang, cfg.dataset);
   const holding = getTU(ver.id, 'holding', lang, cfg.dataset);
-  const label   = action?.metadata?.label || action?.metadata?.caseNumber || 'Judicial Interpretation';
+  const label   = action?.metadata?.label || action?.metadata?.caseNumber || 'Legal Interpretation';
   const chamber = action?.metadata?.chamber || '';
   const vote    = action?.metadata?.vote ? ` · ${action.metadata.vote}` : '';
   const since   = ver.validityInterval[0].substring(0,10);
@@ -1083,6 +1086,10 @@ function panelInterp(ver, cfg) {
       <div class="ph-sub">${esc(chamber)}${esc(vote)} · ${since}${until}</div>
     </div>
     <div class="pb">
+      ${facts   ? `<div class="tb">
+                    <div class="tb-label">Facts</div>
+                    <div class="tb-content small">${esc(facts.content)}</div>
+                  </div>` : ''}
       ${ratio   ? `<div class="tb">
                     <div class="tb-label">Ratio Decidendi</div>
                     <div class="tb-content">${esc(ratio.content)}</div>
@@ -1306,6 +1313,7 @@ function selectCase(idx) {
   sliderVal = dateToSlider(cfg.dateRange[0], cfg);
   document.getElementById('slider').value = sliderVal;
   renderTabs();
+  renderLangToggle();
   render();
 }
 
@@ -1314,10 +1322,40 @@ function onSlider(val) {
   render();
 }
 
+function renderLangToggle() {
+  const toggle = document.getElementById('lang-toggle');
+  const cfg = CASES[activeCaseIdx];
+  const textUnits = cfg?.dataset?.textUnits;
+
+  if (!textUnits || textUnits.length === 0) {
+    toggle.innerHTML = '';
+    toggle.style.display = 'none';
+    return;
+  }
+
+  const langs = [...new Set(textUnits.map(tu => tu.language))].sort();
+
+  if (langs.length <= 1) {
+    toggle.innerHTML = '';
+    toggle.style.display = 'none';
+    lang = langs[0] || 'en';
+    return;
+  }
+
+  // Keep current lang if still available; otherwise default to first
+  if (!langs.includes(lang)) lang = langs[0];
+
+  toggle.style.display = 'flex';
+  toggle.innerHTML = langs.map(l =>
+    `<button class="lang-btn${l === lang ? ' active' : ''}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`
+  ).join('');
+}
+
 function setLang(l) {
   lang = l;
-  document.getElementById('btn-en').classList.toggle('active', l === 'en');
-  document.getElementById('btn-pt').classList.toggle('active', l === 'pt');
+  document.querySelectorAll('#lang-toggle .lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent === l.toUpperCase());
+  });
   render();
 }
 
@@ -1656,18 +1694,24 @@ function addCaseFromData(data, filename) {
 
   renderTabs();
   selectCase(CASES.length - 1);
+  renderLangToggle();
 }
 
 // ── Auto-detection helpers ──────────────────────────────────────────
 
-const PRIMARY_TYPES = new Set([
-  'constitutional-provision', 'statute', 'provision',
-  'legislative-provision', 'statutory-provision',
-]);
+/** Items that have at least one statutory or interpretive version are "primary". */
+function getPrimaryItemIds(data) {
+  return new Set(
+    data.versions
+      .filter(v => v.type === 'statutory' || v.type === 'interpretive')
+      .map(v => v.itemId)
+  );
+}
 
 function detectPrimaryItem(data) {
+  const primaryIds = getPrimaryItemIds(data);
   return (
-    data.items.find(i => PRIMARY_TYPES.has(i.typeId)) ||
+    data.items.find(i => primaryIds.has(i.id)) ||
     data.items[0]
   )?.id;
 }
@@ -1675,8 +1719,9 @@ function detectPrimaryItem(data) {
 function detectCaseType(data, primaryId) {
   if (!primaryId) return 'mutation';
 
-  // Dialogue: multiple primary-type items + a Creation/Legislative Override action
-  const provCount = data.items.filter(i => PRIMARY_TYPES.has(i.typeId)).length;
+  // Dialogue: multiple items with statutory/interpretive versions + a Creation/Legislative Override action
+  const primaryIds = getPrimaryItemIds(data);
+  const provCount = data.items.filter(i => primaryIds.has(i.id)).length;
   const hasCreation = data.actions.some(a =>
     a.type === 'Creation' || a.type === 'Legislative Override'
   );

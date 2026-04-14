@@ -1,0 +1,400 @@
+{
+  "metadata": {
+    "caseName": "Duty of Care — Evolution from Donoghue v. Stevenson (1932) to Robinson (2018)",
+    "description": "Cross-jurisdictional example: the common-law principle of duty of care in negligence, established by Donoghue v. Stevenson and progressively refined through Anns (1977), Caparo (1990), and Robinson (2018). Illustrates how the framework models interpretive drift in a judge-made principle across nearly a century, analogously to the mutation of statutory provisions in civil-law systems.",
+    "jurisdiction": "United Kingdom - House of Lords / Supreme Court",
+    "demonstration": "Shows how the Interpretive Graph Overlay handles a chain of binding precedents that successively refine the same judge-made principle without any statutory basis. Each landmark decision terminates the previous interpretive version and produces a new one, while the abstract principle (the Item) remains continuously identifiable."
+  },
+  "items": [
+    {
+      "id": "urn:lex:uk:common-law;principle!duty-of-care",
+      "typeId": "common-law-principle",
+      "label": "Duty of Care (Negligence)",
+      "metadata": {
+        "description": "Judge-made legal principle establishing the general duty of care in the law of negligence, with no underlying statutory basis"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson",
+      "typeId": "judgment",
+      "label": "Donoghue v. Stevenson [1932] AC 562",
+      "metadata": {
+        "description": "Landmark House of Lords decision establishing the modern law of negligence and the neighbour principle"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson!opinion-atkin",
+      "typeId": "judgment-component",
+      "label": "Opinion of Lord Atkin",
+      "parentId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson",
+      "metadata": {
+        "description": "Leading majority opinion containing the formulation of the neighbour principle"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton",
+      "typeId": "judgment",
+      "label": "Anns v. Merton London Borough Council [1978] AC 728",
+      "metadata": {
+        "description": "House of Lords decision expanding duty of care through a two-stage test based on proximity and policy considerations"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton!opinion-wilberforce",
+      "typeId": "judgment-component",
+      "label": "Opinion of Lord Wilberforce",
+      "parentId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton",
+      "metadata": {
+        "description": "Leading opinion formulating the two-stage test for duty of care"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman",
+      "typeId": "judgment",
+      "label": "Caparo Industries plc v. Dickman [1990] 2 AC 605",
+      "metadata": {
+        "description": "House of Lords decision establishing the three-stage test for duty of care (foreseeability, proximity, fair-just-reasonable)"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman!opinion-bridge",
+      "typeId": "judgment-component",
+      "label": "Opinion of Lord Bridge",
+      "parentId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman",
+      "metadata": {
+        "description": "Leading opinion formulating the three-stage Caparo test"
+      }
+    },
+    {
+      "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable",
+      "typeId": "judgment",
+      "label": "Robinson v. Chief Constable of West Yorkshire Police [2018] UKSC 4",
+      "metadata": {
+        "description": "Supreme Court decision clarifying that the Caparo test is not a universal formula; novel cases should be decided by analogy with established categories"
+      }
+    },
+    {
+      "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable!opinion-reed",
+      "typeId": "judgment-component",
+      "label": "Opinion of Lord Reed",
+      "parentId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable",
+      "metadata": {
+        "description": "Leading opinion articulating the incremental, analogy-based approach to novel duty-of-care situations"
+      }
+    }
+  ],
+  "versions": [
+    {
+      "id": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue",
+      "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
+      "type": "interpretive",
+      "validityInterval": ["1932-05-26T00:00:00Z", "1977-05-11T23:59:59Z"],
+      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-duty-of-care",
+      "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
+      "metadata": {
+        "versionType": "commonLawPrecedent",
+        "authorityLevel": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns",
+      "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
+      "type": "interpretive",
+      "validityInterval": ["1977-05-12T00:00:00Z", "1990-02-07T23:59:59Z"],
+      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
+      "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
+      "metadata": {
+        "versionType": "commonLawPrecedent",
+        "authorityLevel": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo",
+      "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
+      "type": "interpretive",
+      "validityInterval": ["1990-02-08T00:00:00Z", "2018-02-07T23:59:59Z"],
+      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
+      "terminatedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care",
+      "metadata": {
+        "versionType": "commonLawPrecedent",
+        "authorityLevel": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson",
+      "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
+      "type": "interpretive",
+      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "producedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care",
+      "metadata": {
+        "versionType": "commonLawPrecedent",
+        "authorityLevel": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin",
+      "itemId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson!opinion-atkin",
+      "type": "documentary",
+      "validityInterval": ["1932-05-26T00:00:00Z", null],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce",
+      "itemId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton!opinion-wilberforce",
+      "type": "documentary",
+      "validityInterval": ["1977-05-12T00:00:00Z", null],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge",
+      "itemId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman!opinion-bridge",
+      "type": "documentary",
+      "validityInterval": ["1990-02-08T00:00:00Z", null],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
+    },
+    {
+      "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed",
+      "itemId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable!opinion-reed",
+      "type": "documentary",
+      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
+    }
+  ],
+  "textUnits": [
+    {
+      "id": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "You must take reasonable care to avoid acts or omissions which you can reasonably foresee would be likely to injure your neighbour. A manufacturer owes a duty of care to the ultimate consumer of a product where there is no reasonable possibility of intermediate examination, and where the absence of such care may result in injury to the consumer's health."
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue~holding;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue",
+      "language": "en",
+      "aspect": "holding",
+      "content": "A duty of care exists independently of any contractual relationship. Manufacturers owe a duty of care to consumers of their products, breach of which gives rise to liability in tort for negligence."
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "A duty of care is established by a two-stage inquiry. First, there must be a sufficient relationship of proximity or neighbourhood between the alleged wrongdoer and the person who has suffered damage, such that carelessness on the part of the former may be likely to cause damage to the latter. Second, if the first question is answered affirmatively, it is necessary to consider whether there are any considerations which ought to negative, or to reduce or limit the scope of the duty, the class of persons to whom it is owed, or the damages to which a breach of it may give rise."
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns~holding;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns",
+      "language": "en",
+      "aspect": "holding",
+      "content": "The neighbour principle is extended through a two-stage test: proximity-foreseeability plus policy considerations. A duty of care arises unless there are policy reasons to exclude it."
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "The establishment of a duty of care requires a three-stage test. First, the harm must be reasonably foreseeable as a result of the defendant's conduct. Second, there must be a relationship of proximity or neighbourhood between the parties. Third, it must be fair, just, and reasonable in all the circumstances to impose a duty of care. The law should develop novel categories of duty incrementally and by analogy with established categories, rather than by applying a single, universal principle."
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo~holding;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo",
+      "language": "en",
+      "aspect": "holding",
+      "content": "The Anns two-stage test is departed from. A duty of care arises only where foreseeability, proximity, and fair-just-reasonable considerations are all satisfied. Policy considerations are reintroduced as an explicit filter."
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "The three-stage Caparo test is not a universal formula to be applied mechanically to every duty-of-care question. Where established categories of duty exist, courts should apply them directly. Where a novel situation arises, courts should develop the law incrementally by analogy with established categories, rather than applying Caparo as a free-standing test. The Caparo criteria remain useful analytical tools but do not constitute a mandatory gateway in all circumstances."
+    },
+    {
+      "id": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson~holding;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson",
+      "language": "en",
+      "aspect": "holding",
+      "content": "In established categories of duty of care, the Caparo three-stage test does not need to be reapplied. Novel situations are decided incrementally by analogy with established categories. Policy-sensitive analysis remains relevant for genuinely novel cases."
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "The rule that you are to love your neighbour becomes in law: you must not injure your neighbour. You must take reasonable care to avoid acts or omissions which you can reasonably foresee would be likely to injure your neighbour. Who, then, in law, is my neighbour? The answer seems to be persons who are so closely and directly affected by my act that I ought reasonably to have them in contemplation as being so affected when I am directing my mind to the acts or omissions which are called in question."
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "The position has now been reached that in order to establish that a duty of care arises in a particular situation, it is not necessary to bring the facts of that situation within those of previous situations in which a duty of care has been held to exist. Rather the question has to be approached in two stages. First one has to ask whether, as between the alleged wrongdoer and the person who has suffered damage, there is a sufficient relationship of proximity or neighbourhood such that, in the reasonable contemplation of the former, carelessness on his part may be likely to cause damage to the latter, in which case a prima facie duty of care arises. Secondly, if the first question is answered affirmatively, it is necessary to consider whether there are any considerations which ought to negative, or to reduce or limit the scope of the duty or the class of person to whom it is owed."
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "What emerges is that, in addition to the foreseeability of damage, necessary ingredients in any situation giving rise to a duty of care are that there should exist between the party owing the duty and the party to whom it is owed a relationship characterised by the law as one of proximity or neighbourhood and that the situation should be one in which the court considers it fair, just and reasonable that the law should impose a duty of a given scope upon the one party for the benefit of the other."
+    },
+    {
+      "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "It is normally only in a novel type of case, where established principles do not provide an answer, that the courts need to go beyond those principles in order to decide whether a duty of care should be recognised. The characterisation of Caparo as laying down a tripartite test applicable to all claims in negligence is mistaken. In the ordinary run of cases, courts consider what has been decided previously and follow the precedents unless it is necessary to consider whether the precedents should be departed from."
+    }
+  ],
+  "actions": [
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-duty-of-care",
+      "parentId": null,
+      "type": "Establishment",
+      "eventTime": "1932-05-26T00:00:00Z",
+      "validityInterval": ["1932-05-26T00:00:00Z", "1977-05-11T23:59:59Z"],
+      "sourceVersionIds": [
+        "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin"
+      ],
+      "terminatesVersionIds": [],
+      "producesVersionIds": ["urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"],
+      "metadata": {
+        "court": "House of Lords",
+        "chamber": "Appellate Committee",
+        "rapporteur": "Lord Atkin",
+        "vote": "3-2",
+        "caseNumber": "[1932] AC 562",
+        "citation": "Donoghue v. Stevenson [1932] UKHL 100",
+        "label": "Donoghue v. Stevenson Adjudication Event",
+        "authorityLevel": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
+      "parentId": null,
+      "type": "Refinement",
+      "eventTime": "1977-05-12T00:00:00Z",
+      "validityInterval": ["1977-05-12T00:00:00Z", "1990-02-07T23:59:59Z"],
+      "sourceVersionIds": [
+        "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"
+      ],
+      "terminatesVersionIds": ["urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"],
+      "producesVersionIds": ["urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"],
+      "metadata": {
+        "court": "House of Lords",
+        "chamber": "Appellate Committee",
+        "rapporteur": "Lord Wilberforce",
+        "caseNumber": "[1978] AC 728",
+        "citation": "Anns v. Merton London Borough Council [1978] AC 728",
+        "label": "Anns v. Merton Adjudication Event",
+        "refines": "Donoghue v. Stevenson",
+        "authorityLevel": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
+      "parentId": null,
+      "type": "Refinement",
+      "eventTime": "1990-02-08T00:00:00Z",
+      "validityInterval": ["1990-02-08T00:00:00Z", "2018-02-07T23:59:59Z"],
+      "sourceVersionIds": [
+        "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge"
+      ],
+      "terminatesVersionIds": ["urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"],
+      "producesVersionIds": ["urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"],
+      "metadata": {
+        "court": "House of Lords",
+        "chamber": "Appellate Committee",
+        "rapporteur": "Lord Bridge",
+        "caseNumber": "[1990] 2 AC 605",
+        "citation": "Caparo Industries plc v. Dickman [1990] 2 AC 605",
+        "label": "Caparo v. Dickman Adjudication Event",
+        "refines": "Anns v. Merton",
+        "departsFrom": "Anns two-stage test",
+        "authorityLevel": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care",
+      "parentId": null,
+      "type": "Refinement",
+      "eventTime": "2018-02-08T00:00:00Z",
+      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "sourceVersionIds": [
+        "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed"
+      ],
+      "terminatesVersionIds": ["urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"],
+      "producesVersionIds": ["urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson"],
+      "metadata": {
+        "court": "Supreme Court of the United Kingdom",
+        "rapporteur": "Lord Reed",
+        "caseNumber": "[2018] UKSC 4",
+        "citation": "Robinson v. Chief Constable of West Yorkshire Police [2018] UKSC 4",
+        "label": "Robinson v. Chief Constable Adjudication Event",
+        "refines": "Caparo Industries plc v. Dickman",
+        "clarifies": "Caparo test is not a universal formula",
+        "authorityLevel": "binding"
+      }
+    }
+  ],
+  "sampleQueries": [
+    {
+      "query": "getValidVersions('urn:lex:uk:common-law;principle!duty-of-care', '1950-01-01')",
+      "expectedResult": [
+        "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"
+      ],
+      "interpretation": "On January 1, 1950, the duty of care principle is governed by Donoghue's original neighbour principle. The Item exists only as an interpretive version derived from the 1932 precedent; there is no underlying statutory text."
+    },
+    {
+      "query": "getValidVersions('urn:lex:uk:common-law;principle!duty-of-care', '1985-06-01')",
+      "expectedResult": [
+        "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"
+      ],
+      "interpretation": "On June 1, 1985, the duty of care principle is governed by the Anns two-stage test (proximity-foreseeability plus policy). Donoghue's version has been superseded."
+    },
+    {
+      "query": "getValidVersions('urn:lex:uk:common-law;principle!duty-of-care', '2000-03-15')",
+      "expectedResult": [
+        "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"
+      ],
+      "interpretation": "On March 15, 2000, the duty of care principle is governed by the Caparo three-stage test (foreseeability, proximity, fair-just-reasonable). The Anns test has been departed from."
+    },
+    {
+      "query": "getValidVersions('urn:lex:uk:common-law;principle!duty-of-care', '2024-01-01')",
+      "expectedResult": [
+        "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson"
+      ],
+      "interpretation": "On January 1, 2024, the duty of care principle is governed by Robinson's incremental, analogy-based approach. Caparo remains a useful analytical tool but is no longer applied mechanically to all cases."
+    },
+    {
+      "query": "getItemHistory('urn:lex:uk:common-law;principle!duty-of-care')",
+      "expectedResult": [
+        "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-duty-of-care",
+        "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
+        "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
+        "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care"
+      ],
+      "interpretation": "Timeline of actions affecting this Item: (1) Establishment by Donoghue v. Stevenson (1932) created the neighbour principle; (2) Refinement by Anns v. Merton (1977) introduced the two-stage test; (3) Refinement by Caparo v. Dickman (1990) introduced the three-stage test, departing from Anns; (4) Refinement by Robinson (2018) clarified that Caparo is not a universal formula. Unlike the Brazilian cases, no underlying statutory version exists — the principle lives entirely through its chain of interpretive versions, demonstrating the framework's ability to model nearly a century of common-law evolution without any statutory anchor."
+    }
+  ]
+}

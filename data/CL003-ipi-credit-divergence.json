@@ -8,7 +8,7 @@
   "items": [
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988!art153_par3_inc2",
-      "typeId": "constitutional-provision",
+      "typeId": "item",
       "label": "Art. 153, §3, II - IPI Non-Cumulativity",
       "metadata": {
         "description": "Constitutional provision establishing the non-cumulative principle for IPI (Tax on Industrialized Products)"
@@ -82,7 +82,7 @@
     {
       "id": "urn:lex:br:stf.1turma:acordao:2018-05-15;re.fictitious-1@2018-05-15!voto-relator",
       "itemId": "urn:lex:br:stf.1turma:acordao:2018-05-15;re.fictitious-1!voto-relator",
-      "type": "statutory",
+      "type": "documentary",
       "validityInterval": ["2018-05-15T00:00:00Z", null],
       "metadata": {
         "versionType": "judgmentComponent"
@@ -91,7 +91,7 @@
     {
       "id": "urn:lex:br:stf.2turma:acordao:2018-08-20;re.fictitious-2@2018-08-20!voto-relator",
       "itemId": "urn:lex:br:stf.2turma:acordao:2018-08-20;re.fictitious-2!voto-relator",
-      "type": "statutory",
+      "type": "documentary",
       "validityInterval": ["2018-08-20T00:00:00Z", null],
       "metadata": {
         "versionType": "judgmentComponent"

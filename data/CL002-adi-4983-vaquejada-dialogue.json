@@ -8,7 +8,7 @@
   "items": [
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par1_inc7",
-      "typeId": "constitutional-provision",
+      "typeId": "item",
       "label": "Art. 225, §1, VII - Protection of fauna",
       "metadata": {
         "description": "Constitutional provision prohibiting practices that subject animals to cruelty"
@@ -50,7 +50,7 @@
     },
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par7",
-      "typeId": "constitutional-provision",
+      "typeId": "paragraph",
       "label": "Art. 225, §7 - Cultural sports exception",
       "metadata": {
         "description": "Constitutional provision creating exception for animal sports as cultural manifestations (added by EC 96/2017)"
@@ -90,7 +90,7 @@
     {
       "id": "urn:lex:br:stf:acordao:2016-10-06;adi.4983@2016-10-06!voto-marco-aurelio",
       "itemId": "urn:lex:br:stf:acordao:2016-10-06;adi.4983!voto-marco-aurelio",
-      "type": "statutory",
+      "type": "documentary",
       "validityInterval": ["2016-10-06T00:00:00Z", null],
       "metadata": {
         "versionType": "judgmentComponent"

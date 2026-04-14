@@ -8,7 +8,7 @@
   "items": [
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988!art5_inc57",
-      "typeId": "constitutional-provision",
+      "typeId": "item",
       "label": "Art. 5, LVII - Presumption of Innocence",
       "metadata": {
         "description": "Constitutional provision on presumption of innocence"
@@ -83,7 +83,7 @@
     {
       "id": "urn:lex:br:stf:acordao:2016-02-17;hc.126292@2016-02-17!voto-zavascki",
       "itemId": "urn:lex:br:stf:acordao:2016-02-17;hc.126292!voto-zavascki",
-      "type": "statutory",
+      "type": "documentary",
       "validityInterval": ["2016-02-17T00:00:00Z", null],
       "metadata": {
         "versionType": "judgmentComponent"
@@ -92,7 +92,7 @@
     {
       "id": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54@2019-11-07!voto-marco-aurelio",
       "itemId": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54!voto-marco-aurelio",
-      "type": "statutory",
+      "type": "documentary",
       "validityInterval": ["2019-11-07T00:00:00Z", null],
       "metadata": {
         "versionType": "judgmentComponent"

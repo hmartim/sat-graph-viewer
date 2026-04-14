@@ -9,7 +9,7 @@
   "items": [
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988!art6_cpt",
-      "typeId": "constitutional-provision",
+      "typeId": "article-caput",
       "label": "Art. 6, caput — Social Rights",
       "metadata": {
         "description": "Enumerates the social rights guaranteed by the Brazilian Federal Constitution"
@@ -17,7 +17,7 @@
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2000-02-14;26",
-      "typeId": "legislation",
+      "typeId": "contitutional-amendment",
       "label": "Constitutional Amendment 26/2000 (EC 26/2000)",
       "metadata": {
         "description": "Added 'moradia' (housing) to the list of social rights"
@@ -25,7 +25,7 @@
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2010-02-04;64",
-      "typeId": "legislation",
+      "typeId": "contitutional-amendment",
       "label": "Constitutional Amendment 64/2010 (EC 64/2010)",
       "metadata": {
         "description": "Added 'alimentação' (food) to the list of social rights"
@@ -33,7 +33,7 @@
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2015-09-15;90",
-      "typeId": "legislation",
+      "typeId": "contitutional-amendment",
       "label": "Constitutional Amendment 90/2015 (EC 90/2015)",
       "metadata": {
         "description": "Added 'transporte' (transportation) to the list of social rights"
