@@ -1,9 +1,24 @@
 {
   "metadata": {
     "caseName": "HC 126.292/SP - Presumption of Innocence",
-    "description": "Case A: Interpretive Mutation - The constitutional text remained unchanged, but the binding interpretation governing imprisonment after second-instance conviction underwent two mutations (2016 and 2019)",
+    "description": "Case A: Interpretive Mutation. The constitutional text remained unchanged, but the authoritative interpretation governing imprisonment after second-instance conviction underwent two mutations (2016 and 2019).",
     "jurisdiction": "Brazil - Supreme Federal Court (STF)",
-    "demonstration": "Shows how Statutory Versions (constitutional text) remain active while being overlaid by Interpretive Versions (judicial interpretations) without textual amendment"
+    "demonstration": "Shows how Statutory Versions (constitutional text) remain active while being overlaid by Interpretive Versions (judicial interpretations) without textual amendment",
+    "intervalSemantics": "half-open intervals: start <= target < end; null end means current/open-ended",
+    "sources": [
+      {
+        "label": "STF news: HC 126.292/SP",
+        "url": "https://portal.stf.jus.br/noticias/verNoticiaDetalhe.asp?idConteudo=310153&ori=1"
+      },
+      {
+        "label": "STF news: ADCs 43, 44 and 54",
+        "url": "https://portal.stf.jus.br/noticias/verNoticiaDetalhe.asp?idConteudo=429359&ori=1"
+      },
+      {
+        "label": "ADC 43/44/54 judgment PDF",
+        "url": "https://www.stf.jus.br/arquivo/cms/noticiaNoticiaStf/anexo/ADC434454.pdf"
+      }
+    ]
   },
   "items": [
     {
@@ -15,7 +30,7 @@
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-02-17;hc.126292",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292",
       "typeId": "judgment",
       "label": "HC 126.292/SP",
       "metadata": {
@@ -23,16 +38,16 @@
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-02-17;hc.126292!voto-zavascki",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292!voto-zavascki",
       "typeId": "judgment-component",
       "label": "Vote of Rapporteur Minister Teori Zavascki",
-      "parentId": "urn:lex:br:stf:acordao:2016-02-17;hc.126292",
+      "parentId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292",
       "metadata": {
         "description": "Majority vote establishing the new interpretation"
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54",
       "typeId": "judgment",
       "label": "ADCs 43, 44 and 54",
       "metadata": {
@@ -40,10 +55,10 @@
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54!voto-marco-aurelio",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54!voto-marco-aurelio",
       "typeId": "judgment-component",
       "label": "Vote of Rapporteur Minister Marco Aurélio",
-      "parentId": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54",
+      "parentId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54",
       "metadata": {
         "description": "Majority vote restoring strict interpretation of presumption of innocence"
       }
@@ -54,48 +69,74 @@
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art5_inc57",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art5_inc57",
       "type": "statutory",
-      "validityInterval": ["1988-10-05T00:00:00Z", null],
+      "validityInterval": [
+        "1988-10-05T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "original"
+        "versionType": "original",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "constitutional_text"
       }
     },
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2016-02-17!art5_inc57,hc126292",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art5_inc57",
       "type": "interpretive",
-      "validityInterval": ["2016-02-17T00:00:00Z", "2019-11-06T23:59:59Z"],
-      "producedByActionId": "urn:lex:br:stf:acordao:2016-02-17;hc.126292#interpretation-art5-inc57",
-      "terminatedByActionId": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54#overruling-art5-inc57",
+      "validityInterval": [
+        "2016-02-17T00:00:00Z",
+        "2019-11-07T00:00:00Z"
+      ],
+      "producedByActionId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292#interpretation-art5-inc57",
+      "terminatedByActionId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54#overruling-art5-inc57",
       "metadata": {
-        "versionType": "interpretiveMutation"
+        "versionType": "interpretiveMutation",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "authoritative"
       }
     },
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2019-11-07!art5_inc57,adc43",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art5_inc57",
       "type": "interpretive",
-      "validityInterval": ["2019-11-07T00:00:00Z", null],
-      "producedByActionId": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54#overruling-art5-inc57",
+      "validityInterval": [
+        "2019-11-07T00:00:00Z",
+        null
+      ],
+      "producedByActionId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54#overruling-art5-inc57",
       "metadata": {
-        "versionType": "interpretiveOverruling"
+        "versionType": "interpretiveOverruling",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "controlling",
+        "overrules": [
+          "urn:lex:br:federal:constituicao:1988-10-05;1988@2016-02-17!art5_inc57,hc126292"
+        ]
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-02-17;hc.126292@2016-02-17!voto-zavascki",
-      "itemId": "urn:lex:br:stf:acordao:2016-02-17;hc.126292!voto-zavascki",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292@2016-02-17!voto-zavascki",
+      "itemId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292!voto-zavascki",
       "type": "documentary",
-      "validityInterval": ["2016-02-17T00:00:00Z", null],
+      "validityInterval": [
+        "2016-02-17T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "judgmentComponent"
+        "versionType": "judgmentComponent",
+        "intervalSemantics": "half-open"
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54@2019-11-07!voto-marco-aurelio",
-      "itemId": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54!voto-marco-aurelio",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54@2019-11-07!voto-marco-aurelio",
+      "itemId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54!voto-marco-aurelio",
       "type": "documentary",
-      "validityInterval": ["2019-11-07T00:00:00Z", null],
+      "validityInterval": [
+        "2019-11-07T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "judgmentComponent"
+        "versionType": "judgmentComponent",
+        "intervalSemantics": "half-open"
       }
     }
   ],
@@ -149,33 +190,33 @@
       "content": "Imprisonment before final judgment (trânsito em julgado) violates the constitutional presumption of innocence."
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-02-17;hc.126292@2016-02-17!voto-zavascki~canonical;en",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292@2016-02-17!voto-zavascki~canonical;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:br:stf:acordao:2016-02-17;hc.126292@2016-02-17!voto-zavascki",
+      "sourceId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292@2016-02-17!voto-zavascki",
       "language": "en",
       "aspect": "canonical",
       "content": "[Full text of Minister Teori Zavascki's vote explaining that maintaining a criminal sentence at the second instance concludes the analysis of facts and evidence establishing the defendant's guilt, authorizing the beginning of sentence execution]"
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-02-17;hc.126292@2016-02-17!voto-zavascki~ratio;en",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292@2016-02-17!voto-zavascki~ratio;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:br:stf:acordao:2016-02-17;hc.126292@2016-02-17!voto-zavascki",
+      "sourceId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292@2016-02-17!voto-zavascki",
       "language": "en",
       "aspect": "ratio",
       "content": "The provisional execution of a criminal conviction issued at the appellate level, even when subject to special or extraordinary appeals, does not compromise the constitutional principle of presumption of innocence. After second-instance confirmation, the principle of non-culpability is exhausted, as appeals to higher courts (STJ or STF) do not address facts and evidence, but only matters of law."
     },
     {
-      "id": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54@2019-11-07!voto-marco-aurelio~canonical;en",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54@2019-11-07!voto-marco-aurelio~canonical;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54@2019-11-07!voto-marco-aurelio",
+      "sourceId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54@2019-11-07!voto-marco-aurelio",
       "language": "en",
       "aspect": "canonical",
       "content": "[Full text of Minister Marco Aurélio's vote explaining that the constitutional text 'no one shall be considered guilty until final judgment' requires exhaustion of all appeal possibilities]"
     },
     {
-      "id": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54@2019-11-07!voto-marco-aurelio~ratio;en",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54@2019-11-07!voto-marco-aurelio~ratio;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54@2019-11-07!voto-marco-aurelio",
+      "sourceId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54@2019-11-07!voto-marco-aurelio",
       "language": "en",
       "aspect": "ratio",
       "content": "Based on the presumption of innocence principle (Article 5, LVII), which establishes that 'no one shall be considered guilty until final judgment of a criminal conviction,' sentence execution can only begin after final judgment. The principle applies throughout all stages of criminal proceedings."
@@ -183,36 +224,50 @@
   ],
   "actions": [
     {
-      "id": "urn:lex:br:stf:acordao:2016-02-17;hc.126292#interpretation-art5-inc57",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292#interpretation-art5-inc57",
       "parentId": null,
       "type": "Interpretation",
       "eventTime": "2016-02-17T00:00:00Z",
-      "validityInterval": ["2016-02-17T00:00:00Z", "2019-11-06T23:59:59Z"],
+      "validityInterval": [
+        "2016-02-17T00:00:00Z",
+        "2019-11-07T00:00:00Z"
+      ],
       "sourceVersionIds": [
-        "urn:lex:br:stf:acordao:2016-02-17;hc.126292@2016-02-17!voto-zavascki"
+        "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292@2016-02-17!voto-zavascki"
       ],
       "terminatesVersionIds": [],
-      "producesVersionIds": ["urn:lex:br:federal:constituicao:1988-10-05;1988@2016-02-17!art5_inc57,hc126292"],
+      "producesVersionIds": [
+        "urn:lex:br:federal:constituicao:1988-10-05;1988@2016-02-17!art5_inc57,hc126292"
+      ],
       "metadata": {
         "court": "Supremo Tribunal Federal",
         "chamber": "Plenário",
         "rapporteur": "Teori Zavascki",
         "vote": "7-4 (approximate)",
         "caseNumber": "HC 126.292/SP",
-        "label": "HC 126.292 Adjudication Event"
+        "label": "HC 126.292 Adjudication Event",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "authoritative"
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54#overruling-art5-inc57",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54#overruling-art5-inc57",
       "parentId": null,
       "type": "Overruling",
       "eventTime": "2019-11-07T00:00:00Z",
-      "validityInterval": ["2019-11-07T00:00:00Z", null],
-      "sourceVersionIds": [
-        "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54@2019-11-07!voto-marco-aurelio"
+      "validityInterval": [
+        "2019-11-07T00:00:00Z",
+        null
       ],
-      "terminatesVersionIds": ["urn:lex:br:federal:constituicao:1988-10-05;1988@2016-02-17!art5_inc57,hc126292"],
-      "producesVersionIds": ["urn:lex:br:federal:constituicao:1988-10-05;1988@2019-11-07!art5_inc57,adc43"],
+      "sourceVersionIds": [
+        "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54@2019-11-07!voto-marco-aurelio"
+      ],
+      "terminatesVersionIds": [
+        "urn:lex:br:federal:constituicao:1988-10-05;1988@2016-02-17!art5_inc57,hc126292"
+      ],
+      "producesVersionIds": [
+        "urn:lex:br:federal:constituicao:1988-10-05;1988@2019-11-07!art5_inc57,adc43"
+      ],
       "metadata": {
         "court": "Supremo Tribunal Federal",
         "chamber": "Plenário",
@@ -220,7 +275,9 @@
         "vote": "6-5",
         "caseNumber": "ADCs 43, 44 and 54",
         "overrules": "HC 126.292",
-        "label": "ADCs 43, 44, 54 Adjudication Event"
+        "label": "ADCs 43, 44, 54 Adjudication Event",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "controlling"
       }
     }
   ],
@@ -231,7 +288,7 @@
         "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art5_inc57",
         "urn:lex:br:federal:constituicao:1988-10-05;1988@2016-02-17!art5_inc57,hc126292"
       ],
-      "interpretation": "On June 1, 2017, both the original statutory text (S-TV) and the binding interpretation (I-TV) coexist. The interpretation provides the binding meaning: imprisonment allowed after second-instance conviction."
+      "interpretation": "On June 1, 2017, both the original constitutional text (S-TV) and the 2016 interpretive overlay (I-TV) coexist. The I-TV gives the period's authoritative meaning: imprisonment after second-instance conviction was treated as allowed."
     },
     {
       "query": "getValidVersions('urn:lex:br:federal:constituicao:1988-10-05;1988!art5_inc57', '2020-01-01')",
@@ -239,13 +296,13 @@
         "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art5_inc57",
         "urn:lex:br:federal:constituicao:1988-10-05;1988@2019-11-07!art5_inc57,adc43"
       ],
-      "interpretation": "After November 2019, the statutory text (S-TV) remains active, overlaid by the reversed interpretation (I-TV): imprisonment prohibited before final judgment."
+      "interpretation": "After 2019-11-07, the statutory text (S-TV) remains active, overlaid by the ADC 43/44/54 interpretive version: imprisonment for sentence execution requires final judgment, without excluding pretrial/custodial measures that satisfy their own legal requirements."
     },
     {
       "query": "getItemHistory('urn:lex:br:federal:constituicao:1988-10-05;1988!art5_inc57')",
       "expectedResult": [
-        "urn:lex:br:stf:acordao:2016-02-17;hc.126292#interpretation-art5-inc57",
-        "urn:lex:br:stf:acordao:2019-11-07;adc.43-44-54#overruling-art5-inc57"
+        "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292#interpretation-art5-inc57",
+        "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adc:2019-11-07;43-44-54#overruling-art5-inc57"
       ],
       "interpretation": "Timeline of actions affecting this Item: Interpretation action by HC 126.292 (2016-02-17) creating interpretive version allowing early imprisonment, followed by Overruling action by ADCs 43/44/54 (2019-11-07) terminating the previous interpretation and creating new one prohibiting early imprisonment. The original statutory version (1988-10-05) was never modified by an action, only overlaid by judicial interpretations."
     }

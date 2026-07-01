@@ -3,7 +3,18 @@
     "caseName": "Duty of Care — Evolution from Donoghue v. Stevenson (1932) to Robinson (2018)",
     "description": "Cross-jurisdictional example: the common-law principle of duty of care in negligence, established by Donoghue v. Stevenson and progressively refined through Anns (1977), Caparo (1990), and Robinson (2018). Illustrates how the framework models interpretive drift in a judge-made principle across nearly a century, analogously to the mutation of statutory provisions in civil-law systems.",
     "jurisdiction": "United Kingdom - House of Lords / Supreme Court",
-    "demonstration": "Shows how the Interpretive Graph Overlay handles a chain of binding precedents that successively refine the same judge-made principle without any statutory basis. Each landmark decision terminates the previous interpretive version and produces a new one, while the abstract principle (the Item) remains continuously identifiable."
+    "demonstration": "Shows how the Interpretive Graph Overlay handles a chain of binding precedents that successively refine the same judge-made principle without any statutory basis. Each landmark decision terminates the previous interpretive version and produces a new one, while the abstract principle (the Item) remains continuously identifiable.",
+    "intervalSemantics": "half-open intervals: start <= target < end; null end means current/open-ended",
+    "sources": [
+      {
+        "label": "UK Supreme Court: Robinson v Chief Constable of West Yorkshire Police",
+        "url": "https://supremecourt.uk/cases/uksc-2016-0082"
+      },
+      {
+        "label": "BAILII/UKHL-style references for Donoghue, Anns and Caparo",
+        "url": "https://www.bailii.org/"
+      }
+    ]
   },
   "items": [
     {
@@ -88,83 +99,115 @@
       "id": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue",
       "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
       "type": "interpretive",
-      "validityInterval": ["1932-05-26T00:00:00Z", "1977-05-11T23:59:59Z"],
+      "validityInterval": [
+        "1932-05-26T00:00:00Z",
+        "1977-05-12T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-duty-of-care",
       "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
       "metadata": {
         "versionType": "commonLawPrecedent",
-        "authorityLevel": "binding"
+        "authorityLevel": "binding",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns",
       "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
       "type": "interpretive",
-      "validityInterval": ["1977-05-12T00:00:00Z", "1990-02-07T23:59:59Z"],
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        "1990-02-08T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
       "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
       "metadata": {
         "versionType": "commonLawPrecedent",
-        "authorityLevel": "binding"
+        "authorityLevel": "binding",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo",
       "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
       "type": "interpretive",
-      "validityInterval": ["1990-02-08T00:00:00Z", "2018-02-07T23:59:59Z"],
+      "validityInterval": [
+        "1990-02-08T00:00:00Z",
+        "2018-02-08T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
       "terminatedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care",
       "metadata": {
         "versionType": "commonLawPrecedent",
-        "authorityLevel": "binding"
+        "authorityLevel": "binding",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson",
       "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
       "type": "interpretive",
-      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "validityInterval": [
+        "2018-02-08T00:00:00Z",
+        null
+      ],
       "producedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care",
       "metadata": {
         "versionType": "commonLawPrecedent",
-        "authorityLevel": "binding"
+        "authorityLevel": "binding",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson!opinion-atkin",
       "type": "documentary",
-      "validityInterval": ["1932-05-26T00:00:00Z", null],
+      "validityInterval": [
+        "1932-05-26T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "judgmentComponent"
+        "versionType": "judgmentComponent",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton!opinion-wilberforce",
       "type": "documentary",
-      "validityInterval": ["1977-05-12T00:00:00Z", null],
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "judgmentComponent"
+        "versionType": "judgmentComponent",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman!opinion-bridge",
       "type": "documentary",
-      "validityInterval": ["1990-02-08T00:00:00Z", null],
+      "validityInterval": [
+        "1990-02-08T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "judgmentComponent"
+        "versionType": "judgmentComponent",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed",
       "itemId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable!opinion-reed",
       "type": "documentary",
-      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "validityInterval": [
+        "2018-02-08T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "judgmentComponent"
+        "versionType": "judgmentComponent",
+        "intervalSemantics": "half-open"
       }
     }
   ],
@@ -272,12 +315,17 @@
       "parentId": null,
       "type": "Establishment",
       "eventTime": "1932-05-26T00:00:00Z",
-      "validityInterval": ["1932-05-26T00:00:00Z", "1977-05-11T23:59:59Z"],
+      "validityInterval": [
+        "1932-05-26T00:00:00Z",
+        "1977-05-12T00:00:00Z"
+      ],
       "sourceVersionIds": [
         "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin"
       ],
       "terminatesVersionIds": [],
-      "producesVersionIds": ["urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"
+      ],
       "metadata": {
         "court": "House of Lords",
         "chamber": "Appellate Committee",
@@ -286,7 +334,8 @@
         "caseNumber": "[1932] AC 562",
         "citation": "Donoghue v. Stevenson [1932] UKHL 100",
         "label": "Donoghue v. Stevenson Adjudication Event",
-        "authorityLevel": "binding"
+        "authorityLevel": "binding",
+        "intervalSemantics": "half-open"
       }
     },
     {
@@ -294,12 +343,19 @@
       "parentId": null,
       "type": "Refinement",
       "eventTime": "1977-05-12T00:00:00Z",
-      "validityInterval": ["1977-05-12T00:00:00Z", "1990-02-07T23:59:59Z"],
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        "1990-02-08T00:00:00Z"
+      ],
       "sourceVersionIds": [
         "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"
       ],
-      "terminatesVersionIds": ["urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"],
-      "producesVersionIds": ["urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"],
+      "terminatesVersionIds": [
+        "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"
+      ],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"
+      ],
       "metadata": {
         "court": "House of Lords",
         "chamber": "Appellate Committee",
@@ -308,7 +364,8 @@
         "citation": "Anns v. Merton London Borough Council [1978] AC 728",
         "label": "Anns v. Merton Adjudication Event",
         "refines": "Donoghue v. Stevenson",
-        "authorityLevel": "binding"
+        "authorityLevel": "binding",
+        "intervalSemantics": "half-open"
       }
     },
     {
@@ -316,12 +373,19 @@
       "parentId": null,
       "type": "Refinement",
       "eventTime": "1990-02-08T00:00:00Z",
-      "validityInterval": ["1990-02-08T00:00:00Z", "2018-02-07T23:59:59Z"],
+      "validityInterval": [
+        "1990-02-08T00:00:00Z",
+        "2018-02-08T00:00:00Z"
+      ],
       "sourceVersionIds": [
         "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge"
       ],
-      "terminatesVersionIds": ["urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"],
-      "producesVersionIds": ["urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"],
+      "terminatesVersionIds": [
+        "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"
+      ],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"
+      ],
       "metadata": {
         "court": "House of Lords",
         "chamber": "Appellate Committee",
@@ -331,7 +395,8 @@
         "label": "Caparo v. Dickman Adjudication Event",
         "refines": "Anns v. Merton",
         "departsFrom": "Anns two-stage test",
-        "authorityLevel": "binding"
+        "authorityLevel": "binding",
+        "intervalSemantics": "half-open"
       }
     },
     {
@@ -339,12 +404,19 @@
       "parentId": null,
       "type": "Refinement",
       "eventTime": "2018-02-08T00:00:00Z",
-      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "validityInterval": [
+        "2018-02-08T00:00:00Z",
+        null
+      ],
       "sourceVersionIds": [
         "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed"
       ],
-      "terminatesVersionIds": ["urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"],
-      "producesVersionIds": ["urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson"],
+      "terminatesVersionIds": [
+        "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"
+      ],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson"
+      ],
       "metadata": {
         "court": "Supreme Court of the United Kingdom",
         "rapporteur": "Lord Reed",
@@ -353,7 +425,8 @@
         "label": "Robinson v. Chief Constable Adjudication Event",
         "refines": "Caparo Industries plc v. Dickman",
         "clarifies": "Caparo test is not a universal formula",
-        "authorityLevel": "binding"
+        "authorityLevel": "binding",
+        "intervalSemantics": "half-open"
       }
     }
   ],

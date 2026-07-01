@@ -2,9 +2,36 @@
   "metadata": {
     "caseName": "Art. 6 — Point-in-Time Retrieval (Social Rights)",
     "phenomenon": "Legislative Amendment Chain",
-    "description": "Use Case 1: Demonstrates deterministic point-in-time retrieval. The constitutional text of Art. 6 (social rights) was amended three times (EC 26/2000, EC 64/2010, EC 90/2015), each producing a new Statutory Version that supersedes the previous one. No judicial interpretation overlays exist. A query for 2001-05-20 returns exactly one version: the one produced by EC 26/2000.",
+    "description": "Use Case 1: deterministic point-in-time retrieval over a purely legislative amendment chain. The constitutional text of Art. 6 was amended three times (EC 26/2000, EC 64/2010, EC 90/2015), each producing a new Statutory Version that supersedes the previous one. No judicial interpretation overlays exist. A query for 2001-05-20 returns exactly one version: the one produced by EC 26/2000.",
     "jurisdiction": "Brazil — Federal Constitution (Art. 6, caput)",
-    "queryExample": "getValidVersions('urn:lex:br:federal:constituicao:1988-10-05;1988!art6_cpt', '2001-05-20') → 1 result"
+    "queryExample": "getValidVersions('urn:lex:br:federal:constituicao:1988-10-05;1988!art6_cpt', '2001-05-20') → 1 result",
+    "intervalSemantics": "half-open intervals: start <= target < end; null end means current/open-ended",
+    "sources": [
+      {
+        "label": "Constitutional Amendment 26/2000",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:emenda.constitucional:2000-02-14;26",
+        "identifierSystem": "URN LexML Brasil",
+        "sourcePortal": "normas.leg.br"
+      },
+      {
+        "label": "Constitutional Amendment 64/2010",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:emenda.constitucional:2010-02-04;64",
+        "identifierSystem": "URN LexML Brasil",
+        "sourcePortal": "normas.leg.br"
+      },
+      {
+        "label": "Constitutional Amendment 90/2015",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:emenda.constitucional:2015-09-15;90",
+        "identifierSystem": "URN LexML Brasil",
+        "sourcePortal": "normas.leg.br"
+      },
+      {
+        "label": "Current Constitution text",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:constituicao:1988-10-05;1988",
+        "identifierSystem": "URN LexML Brasil",
+        "sourcePortal": "normas.leg.br"
+      }
+    ]
   },
   "items": [
     {
@@ -17,7 +44,7 @@
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2000-02-14;26",
-      "typeId": "contitutional-amendment",
+      "typeId": "constitutional-amendment",
       "label": "Constitutional Amendment 26/2000 (EC 26/2000)",
       "metadata": {
         "description": "Added 'moradia' (housing) to the list of social rights"
@@ -25,7 +52,7 @@
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2010-02-04;64",
-      "typeId": "contitutional-amendment",
+      "typeId": "constitutional-amendment",
       "label": "Constitutional Amendment 64/2010 (EC 64/2010)",
       "metadata": {
         "description": "Added 'alimentação' (food) to the list of social rights"
@@ -33,7 +60,7 @@
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2015-09-15;90",
-      "typeId": "contitutional-amendment",
+      "typeId": "constitutional-amendment",
       "label": "Constitutional Amendment 90/2015 (EC 90/2015)",
       "metadata": {
         "description": "Added 'transporte' (transportation) to the list of social rights"
@@ -45,50 +72,75 @@
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art6_cpt",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art6_cpt",
       "type": "statutory",
-      "validityInterval": ["1988-10-05T00:00:00Z", "2000-02-13T23:59:59Z"],
+      "validityInterval": [
+        "1988-10-05T00:00:00Z",
+        "2000-02-14T00:00:00Z"
+      ],
       "terminatedByActionId": "urn:lex:br:federal:emenda.constitucional:2000-02-14;26#amendment-art6",
       "metadata": {
         "versionType": "original",
         "amendment": null,
-        "addedRights": []
+        "addedRights": [],
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art6_cpt",
       "type": "statutory",
-      "validityInterval": ["2000-02-14T00:00:00Z", "2010-02-03T23:59:59Z"],
+      "validityInterval": [
+        "2000-02-14T00:00:00Z",
+        "2010-02-04T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:br:federal:emenda.constitucional:2000-02-14;26#amendment-art6",
       "terminatedByActionId": "urn:lex:br:federal:emenda.constitucional:2010-02-04;64#amendment-art6",
       "metadata": {
         "versionType": "amendment",
         "amendment": "EC 26/2000",
-        "addedRights": ["moradia"]
+        "addedRights": [
+          "moradia"
+        ],
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2010-02-04!art6_cpt",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art6_cpt",
       "type": "statutory",
-      "validityInterval": ["2010-02-04T00:00:00Z", "2015-09-14T23:59:59Z"],
+      "validityInterval": [
+        "2010-02-04T00:00:00Z",
+        "2015-09-15T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:br:federal:emenda.constitucional:2010-02-04;64#amendment-art6",
       "terminatedByActionId": "urn:lex:br:federal:emenda.constitucional:2015-09-15;90#amendment-art6",
       "metadata": {
         "versionType": "amendment",
         "amendment": "EC 64/2010",
-        "addedRights": ["moradia", "alimentação"]
+        "addedRights": [
+          "moradia",
+          "alimentação"
+        ],
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2015-09-15!art6_cpt",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art6_cpt",
       "type": "statutory",
-      "validityInterval": ["2015-09-15T00:00:00Z", null],
+      "validityInterval": [
+        "2015-09-15T00:00:00Z",
+        null
+      ],
       "producedByActionId": "urn:lex:br:federal:emenda.constitucional:2015-09-15;90#amendment-art6",
       "metadata": {
         "versionType": "amendment",
         "amendment": "EC 90/2015",
-        "addedRights": ["moradia", "alimentação", "transporte"]
+        "addedRights": [
+          "moradia",
+          "alimentação",
+          "transporte"
+        ],
+        "intervalSemantics": "half-open"
       }
     }
   ],
@@ -97,73 +149,97 @@
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art6_cpt",
       "language": "pt",
       "aspect": "canonical",
-      "content": "São direitos sociais a educação, a saúde, o trabalho, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição."
+      "content": "São direitos sociais a educação, a saúde, o trabalho, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art6_cpt~canonical;pt",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art6_cpt",
       "language": "en",
       "aspect": "canonical",
-      "content": "The social rights are education, health, work, leisure, security, social security, protection of motherhood and childhood, and assistance to the destitute, as set forth in this Constitution."
+      "content": "The social rights are education, health, work, leisure, security, social security, protection of motherhood and childhood, and assistance to the destitute, as set forth in this Constitution.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art6_cpt~canonical;en",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art6_cpt",
       "language": "en",
       "aspect": "summary",
-      "content": "Original 1988 text. Lists 9 social rights. Does not include housing (moradia), food (alimentação), or transportation (transporte)."
+      "content": "Original 1988 text. Lists 9 social rights. Does not include housing (moradia), food (alimentação), or transportation (transporte).",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art6_cpt~summary;en",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt",
       "language": "pt",
       "aspect": "canonical",
-      "content": "São direitos sociais a educação, a saúde, o trabalho, a moradia, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição."
+      "content": "São direitos sociais a educação, a saúde, o trabalho, a moradia, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt~canonical;pt",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt",
       "language": "en",
       "aspect": "canonical",
-      "content": "The social rights are education, health, work, housing, leisure, security, social security, protection of motherhood and childhood, and assistance to the destitute, as set forth in this Constitution."
+      "content": "The social rights are education, health, work, housing, leisure, security, social security, protection of motherhood and childhood, and assistance to the destitute, as set forth in this Constitution.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt~canonical;en",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt",
       "language": "en",
       "aspect": "summary",
-      "content": "EC 26/2000 added 'moradia' (housing). This version was valid from 2000-02-14 to 2010-02-03. A query for 2001-05-20 returns this version — the example from Use Case 1."
+      "content": "EC 26/2000 added 'moradia' (housing). This version is valid on the half-open interval [2000-02-14, 2010-02-04). A query for 2001-05-20 returns this version — the example from Use Case 1.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt~summary;en",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2010-02-04!art6_cpt",
       "language": "pt",
       "aspect": "canonical",
-      "content": "São direitos sociais a educação, a saúde, a alimentação, o trabalho, a moradia, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição."
+      "content": "São direitos sociais a educação, a saúde, a alimentação, o trabalho, a moradia, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2010-02-04!art6_cpt~canonical;pt",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2010-02-04!art6_cpt",
       "language": "en",
       "aspect": "canonical",
-      "content": "The social rights are education, health, food, work, housing, leisure, security, social security, protection of motherhood and childhood, and assistance to the destitute, as set forth in this Constitution."
+      "content": "The social rights are education, health, food, work, housing, leisure, security, social security, protection of motherhood and childhood, and assistance to the destitute, as set forth in this Constitution.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2010-02-04!art6_cpt~canonical;en",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2010-02-04!art6_cpt",
       "language": "en",
       "aspect": "summary",
-      "content": "EC 64/2010 added 'alimentação' (food). This version was valid from 2010-02-04 to 2015-09-14."
+      "content": "EC 64/2010 added 'alimentação' (food). This version is valid on the half-open interval [2010-02-04, 2015-09-15).",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2010-02-04!art6_cpt~summary;en",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2015-09-15!art6_cpt",
       "language": "pt",
       "aspect": "canonical",
-      "content": "São direitos sociais a educação, a saúde, a alimentação, o trabalho, a moradia, o transporte, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição."
+      "content": "São direitos sociais a educação, a saúde, a alimentação, o trabalho, a moradia, o transporte, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2015-09-15!art6_cpt~canonical;pt",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2015-09-15!art6_cpt",
       "language": "en",
       "aspect": "canonical",
-      "content": "The social rights are education, health, food, work, housing, transportation, leisure, security, social security, protection of motherhood and childhood, and assistance to the destitute, as set forth in this Constitution."
+      "content": "The social rights are education, health, food, work, housing, transportation, leisure, security, social security, protection of motherhood and childhood, and assistance to the destitute, as set forth in this Constitution.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2015-09-15!art6_cpt~canonical;en",
+      "sourceType": "Version"
     },
     {
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2015-09-15!art6_cpt",
       "language": "en",
       "aspect": "summary",
-      "content": "EC 90/2015 added 'transporte' (transportation). Current text as of 2015-09-15. No further amendments."
+      "content": "EC 90/2015 added 'transporte' (transportation). Current text as of 2015-09-15. No further amendments.",
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2015-09-15!art6_cpt~summary;en",
+      "sourceType": "Version"
     }
   ],
   "actions": [
@@ -171,7 +247,10 @@
       "id": "urn:lex:br:federal:emenda.constitucional:2000-02-14;26#amendment-art6",
       "type": "Amendment",
       "eventTime": "2000-02-14T00:00:00Z",
-      "validityInterval": ["2000-02-14T00:00:00Z", null],
+      "validityInterval": [
+        "2000-02-14T00:00:00Z",
+        null
+      ],
       "sourceVersionIds": [],
       "terminatesVersionIds": [
         "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art6_cpt"
@@ -185,14 +264,19 @@
         "caseNumber": "EC 26/2000",
         "label": "EC 26/2000 — adds 'moradia'",
         "addedText": "moradia",
-        "purpose": "Adds housing (moradia) as an explicit social right"
+        "purpose": "Adds housing (moradia) as an explicit social right",
+        "authorityLevel": "constitutional_text",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2010-02-04;64#amendment-art6",
       "type": "Amendment",
       "eventTime": "2010-02-04T00:00:00Z",
-      "validityInterval": ["2010-02-04T00:00:00Z", null],
+      "validityInterval": [
+        "2010-02-04T00:00:00Z",
+        null
+      ],
       "sourceVersionIds": [],
       "terminatesVersionIds": [
         "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt"
@@ -206,14 +290,19 @@
         "caseNumber": "EC 64/2010",
         "label": "EC 64/2010 — adds 'alimentação'",
         "addedText": "alimentação",
-        "purpose": "Adds food (alimentação) as an explicit social right"
+        "purpose": "Adds food (alimentação) as an explicit social right",
+        "authorityLevel": "constitutional_text",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2015-09-15;90#amendment-art6",
       "type": "Amendment",
       "eventTime": "2015-09-15T00:00:00Z",
-      "validityInterval": ["2015-09-15T00:00:00Z", null],
+      "validityInterval": [
+        "2015-09-15T00:00:00Z",
+        null
+      ],
       "sourceVersionIds": [],
       "terminatesVersionIds": [
         "urn:lex:br:federal:constituicao:1988-10-05;1988@2010-02-04!art6_cpt"
@@ -227,7 +316,9 @@
         "caseNumber": "EC 90/2015",
         "label": "EC 90/2015 — adds 'transporte'",
         "addedText": "transporte",
-        "purpose": "Adds transportation (transporte) as an explicit social right"
+        "purpose": "Adds transportation (transporte) as an explicit social right",
+        "authorityLevel": "constitutional_text",
+        "intervalSemantics": "half-open"
       }
     }
   ],
@@ -237,7 +328,7 @@
       "expectedResult": [
         "urn:lex:br:federal:constituicao:1988-10-05;1988@2000-02-14!art6_cpt"
       ],
-      "interpretation": "On May 20, 2001, only one version is valid: the one produced by EC 26/2000. The original (1988) version was terminated on 2000-02-13. No judicial interpretation exists, so |V_valid| = 1. This is the use case from the research paper: deterministic point-in-time retrieval."
+      "interpretation": "On May 20, 2001, only one version is valid: the one produced by EC 26/2000. The original 1988 version ended at 2000-02-14T00:00:00Z under half-open interval semantics. No judicial interpretation exists, so |V_valid| = 1."
     },
     {
       "query": "getValidVersions('urn:lex:br:federal:constituicao:1988-10-05;1988!art6_cpt', '1999-12-31')",
@@ -265,7 +356,7 @@
   ],
   "notes": {
     "contrastWithCaseLaw": "Unlike the case law examples (HC 126.292, ADI 4983, IPI), this case has no judicial Interpretive Versions. Every action is a legislative Amendment, and each amendment terminates the prior S-TV before creating the new one. The result is always |V_valid| = 1 — a single, unambiguous text at any query date. This is the baseline scenario that motivated the SAT-Graph model: even without judicial overlays, temporal retrieval must be version-aware.",
-    "pointInTime": "The research paper's Use Case 1 queries this item at 2001-05-20, which falls within the EC 26/2000 window (2000-02-14 to 2010-02-03). The deterministic answer: 'moradia' is a social right; 'alimentação' and 'transporte' are not yet.",
+    "pointInTime": "The paper's Use Case 1 queries this item at 2001-05-20, which falls within the EC 26/2000 half-open window [2000-02-14, 2010-02-04). The deterministic answer: 'moradia' is a social right; 'alimentação' and 'transporte' are not yet.",
     "topologyInsight": "Legislative amendments follow the superseding model: S-TV_n → Amendment → S-TV_{n+1}. The old S-TV is terminated (terminatesVersionIds is non-empty). This is the opposite of judicial interpretations, which follow the overlay model (terminatesVersionIds: [])."
   }
 }

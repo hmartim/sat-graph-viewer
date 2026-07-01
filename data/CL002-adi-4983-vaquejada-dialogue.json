@@ -1,9 +1,24 @@
 {
   "metadata": {
     "caseName": "ADI 4983 - Vaquejada Constitutional Dialogue",
-    "description": "Case B: Constitutional Dialogue - The STF declared vaquejada unconstitutional (2016), Congress enacted Constitutional Amendment 96 (2017) creating an exception, demonstrating legislative response to judicial interpretation through new constitutional provision",
+    "description": "Case B: Constitutional Dialogue. The STF declared Ceará's vaquejada statute unconstitutional in ADI 4983 (2016); Congress then enacted EC 96/2017, creating Art. 225, §7; later STF review upheld the EC 96/2017 framework subject to legal regulation and animal-welfare safeguards.",
     "jurisdiction": "Brazil - Supreme Federal Court (STF) and National Congress",
-    "demonstration": "Shows how the legislature can respond to judicial interpretation by creating a new constitutional provision that establishes an exception, rather than directly overriding the interpretation"
+    "demonstration": "Shows how the legislature can respond to judicial interpretation by creating a new constitutional provision that establishes an exception, rather than directly overriding the interpretation",
+    "intervalSemantics": "half-open intervals: start <= target < end; null end means current/open-ended",
+    "sources": [
+      {
+        "label": "STF news: ADI 4983",
+        "url": "https://portal.stf.jus.br/noticias/verNoticiaDetalhe.asp?idConteudo=326838&ori=1"
+      },
+      {
+        "label": "LexML: ADI 5728 / DF",
+        "url": "https://www.lexml.gov.br/urn/urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2025-03-17;5728-5208901"
+      },
+      {
+        "label": "MPF news: ADI 5772",
+        "url": "https://www.mpf.mp.br/o-mpf/unidades/procuradoria-geral-da-republica-pgr/noticias/stf-valida-vaquejada-mas-determina-que-pratica-deve-evitar-crueldade-contra-animais"
+      }
+    ]
   },
   "items": [
     {
@@ -23,7 +38,7 @@
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-10-06;adi.4983",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243",
       "typeId": "judgment",
       "label": "ADI 4983",
       "metadata": {
@@ -31,10 +46,10 @@
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-10-06;adi.4983!voto-marco-aurelio",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243!voto-marco-aurelio",
       "typeId": "judgment-component",
       "label": "Vote of Rapporteur Minister Marco Aurélio",
-      "parentId": "urn:lex:br:stf:acordao:2016-10-06;adi.4983",
+      "parentId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243",
       "metadata": {
         "description": "Majority vote finding intrinsic cruelty in vaquejada practice"
       }
@@ -55,6 +70,22 @@
       "metadata": {
         "description": "Constitutional provision creating exception for animal sports as cultural manifestations (added by EC 96/2017)"
       }
+    },
+    {
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2025-03-17;5728-5208901",
+      "typeId": "judgment",
+      "label": "ADI 5728/DF",
+      "metadata": {
+        "description": "STF judgment declaring the constitutionality of Constitutional Amendment 96/2017."
+      }
+    },
+    {
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2026-03-05;5772",
+      "typeId": "judgment",
+      "label": "ADI 5772/DF",
+      "metadata": {
+        "description": "STF judgment validating vaquejada-related norms while requiring compliance with animal-welfare safeguards."
+      }
     }
   ],
   "versions": [
@@ -62,48 +93,100 @@
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@1988-10-05!art225_par1_inc7",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par1_inc7",
       "type": "statutory",
-      "validityInterval": ["1988-10-05T00:00:00Z", null],
+      "validityInterval": [
+        "1988-10-05T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "original"
+        "versionType": "original",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "constitutional_text"
       }
     },
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2016-10-06!art225_par1_inc7,adi4983",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par1_inc7",
       "type": "interpretive",
-      "validityInterval": ["2016-10-06T00:00:00Z", null],
-      "producedByActionId": "urn:lex:br:stf:acordao:2016-10-06;adi.4983#interpretation-art225",
+      "validityInterval": [
+        "2016-10-06T00:00:00Z",
+        null
+      ],
+      "producedByActionId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243#interpretation-art225",
       "metadata": {
-        "versionType": "judicialInterpretation"
+        "versionType": "judicialInterpretation",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "controlling"
       }
     },
     {
       "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2017-06-06!art225_par7",
       "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par7",
       "type": "statutory",
-      "validityInterval": ["2017-06-06T00:00:00Z", null],
+      "validityInterval": [
+        "2017-06-06T00:00:00Z",
+        null
+      ],
       "producedByActionId": "urn:lex:br:federal:emenda.constitucional:2017-06-06;96#creation-art225-par7",
       "metadata": {
-        "versionType": "constitutionalCreation"
+        "versionType": "constitutionalCreation",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "constitutional_text"
       }
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-10-06;adi.4983@2016-10-06!voto-marco-aurelio",
-      "itemId": "urn:lex:br:stf:acordao:2016-10-06;adi.4983!voto-marco-aurelio",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243@2016-10-06!voto-marco-aurelio",
+      "itemId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243!voto-marco-aurelio",
       "type": "documentary",
-      "validityInterval": ["2016-10-06T00:00:00Z", null],
+      "validityInterval": [
+        "2016-10-06T00:00:00Z",
+        null
+      ],
       "metadata": {
-        "versionType": "judgmentComponent"
+        "versionType": "judgmentComponent",
+        "intervalSemantics": "half-open"
       }
     },
     {
       "id": "urn:lex:br:federal:emenda.constitucional:2017-06-06;96@2017-06-06!art1_cpt_alt1_art225_par7",
       "itemId": "urn:lex:br:federal:emenda.constitucional:2017-06-06;96!art1_cpt_alt1_art225_par7",
       "type": "statutory",
-      "validityInterval": ["2017-06-06T00:00:00Z", null],
+      "validityInterval": [
+        "2017-06-06T00:00:00Z",
+        null
+      ],
       "metadata": {
         "versionType": "amendmentProvision",
-        "alterationType": "addition"
+        "alterationType": "addition",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "legislative_text"
+      }
+    },
+    {
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2025-03-17!art225_par7,adi5728",
+      "itemId": "urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par7",
+      "type": "interpretive",
+      "validityInterval": [
+        "2025-03-17T00:00:00Z",
+        null
+      ],
+      "producedByActionId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2025-03-17;5728-5208901#interpretation-art225-par7",
+      "metadata": {
+        "versionType": "interpretiveConfirmation",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "controlling"
+      }
+    },
+    {
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2025-03-17;5728-5208901@2025-03-17!decision",
+      "itemId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2025-03-17;5728-5208901",
+      "type": "documentary",
+      "validityInterval": [
+        "2025-03-17T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgment",
+        "intervalSemantics": "half-open"
       }
     }
   ],
@@ -170,20 +253,20 @@
       "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2017-06-06!art225_par7",
       "language": "en",
       "aspect": "summary",
-      "content": "Constitutional Amendment 96/2017 added paragraph 7 to Article 225, creating an exception to the prohibition of animal cruelty for sports practices recognized as cultural manifestations, effectively overriding the STF's interpretation in ADI 4983."
+      "content": "Constitutional Amendment 96/2017 added paragraph 7 to Article 225, creating a constitutionally textualized exception for animal-based sports that are registered cultural manifestations and are regulated by specific law ensuring animal welfare. It qualifies, rather than deletes, the general cruelty prohibition and the ADI 4983 interpretation."
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-10-06;adi.4983@2016-10-06!voto-marco-aurelio~canonical;en",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243@2016-10-06!voto-marco-aurelio~canonical;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:br:stf:acordao:2016-10-06;adi.4983@2016-10-06!voto-marco-aurelio",
+      "sourceId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243@2016-10-06!voto-marco-aurelio",
       "language": "en",
       "aspect": "canonical",
       "content": "[Full text of Minister Marco Aurélio's vote analyzing technical reports and constitutional environmental protection principles]"
     },
     {
-      "id": "urn:lex:br:stf:acordao:2016-10-06;adi.4983@2016-10-06!voto-marco-aurelio~ratio;en",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243@2016-10-06!voto-marco-aurelio~ratio;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:br:stf:acordao:2016-10-06;adi.4983@2016-10-06!voto-marco-aurelio",
+      "sourceId": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243@2016-10-06!voto-marco-aurelio",
       "language": "en",
       "aspect": "ratio",
       "content": "The practice of vaquejada involves intrinsic cruelty to animals, as demonstrated by technical reports showing fractures, tissue ruptures, and neurological damage. This violates the explicit constitutional prohibition in Article 225, §1, VII, which forbids practices that subject animals to cruelty."
@@ -211,20 +294,41 @@
       "language": "en",
       "aspect": "summary",
       "content": "Article 1 caput of EC 96/2017 creates a new paragraph 7 in Article 225, establishing an exception to the animal cruelty prohibition for sports recognized as cultural manifestations. This was enacted as a legislative response to the STF's decision in ADI 4983."
+    },
+    {
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2025-03-17!art225_par7,adi5728~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2025-03-17!art225_par7,adi5728",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "The constitutional amendment does not make every animal-based cultural practice legitimate. It only protects registered cultural sports regulated by specific law that guarantees animal welfare; therefore EC 96/2017 preserves both cultural rights and the constitutional prohibition of animal cruelty."
+    },
+    {
+      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988@2025-03-17!art225_par7,adi5728~holding;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:br:federal:constituicao:1988-10-05;1988@2025-03-17!art225_par7,adi5728",
+      "language": "en",
+      "aspect": "holding",
+      "content": "EC 96/2017 is constitutional, provided that the animal-based sport is a registered cultural manifestation and is regulated by specific law that ensures the welfare of the animals involved."
     }
   ],
   "actions": [
     {
-      "id": "urn:lex:br:stf:acordao:2016-10-06;adi.4983#interpretation-art225",
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243#interpretation-art225",
       "parentId": null,
       "type": "Interpretation",
       "eventTime": "2016-10-06T00:00:00Z",
-      "validityInterval": ["2016-10-06T00:00:00Z", null],
+      "validityInterval": [
+        "2016-10-06T00:00:00Z",
+        null
+      ],
       "sourceVersionIds": [
-        "urn:lex:br:stf:acordao:2016-10-06;adi.4983@2016-10-06!voto-marco-aurelio"
+        "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243@2016-10-06!voto-marco-aurelio"
       ],
       "terminatesVersionIds": [],
-      "producesVersionIds": ["urn:lex:br:federal:constituicao:1988-10-05;1988@2016-10-06!art225_par1_inc7,adi4983"],
+      "producesVersionIds": [
+        "urn:lex:br:federal:constituicao:1988-10-05;1988@2016-10-06!art225_par1_inc7,adi4983"
+      ],
       "metadata": {
         "court": "Supremo Tribunal Federal",
         "chamber": "Plenário",
@@ -232,7 +336,9 @@
         "vote": "6-5",
         "caseNumber": "ADI 4983",
         "challengedLaw": "Ceará State Law 15.299/2013",
-        "label": "ADI 4983 Adjudication Event"
+        "label": "ADI 4983 Adjudication Event",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "controlling"
       }
     },
     {
@@ -240,12 +346,17 @@
       "parentId": null,
       "type": "Creation",
       "eventTime": "2017-06-06T00:00:00Z",
-      "validityInterval": ["2017-06-06T00:00:00Z", null],
+      "validityInterval": [
+        "2017-06-06T00:00:00Z",
+        null
+      ],
       "sourceVersionIds": [
         "urn:lex:br:federal:emenda.constitucional:2017-06-06;96@2017-06-06!art1_cpt_alt1_art225_par7"
       ],
       "terminatesVersionIds": [],
-      "producesVersionIds": ["urn:lex:br:federal:constituicao:1988-10-05;1988@2017-06-06!art225_par7"],
+      "producesVersionIds": [
+        "urn:lex:br:federal:constituicao:1988-10-05;1988@2017-06-06!art225_par7"
+      ],
       "metadata": {
         "legislature": "National Congress",
         "amendmentNumber": "96/2017",
@@ -253,7 +364,34 @@
         "purpose": "Create exception for animal sports as cultural manifestations",
         "effect": "Adds paragraph 7 to Article 225, creating exception to animal cruelty prohibition",
         "context": "Backlash amendment in response to ADI 4983 judicial decision",
-        "label": "EC 96/2017 Art. 1 - Creation of Art. 225, §7"
+        "label": "EC 96/2017 Art. 1 - Creation of Art. 225, §7",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "constitutional_text"
+      }
+    },
+    {
+      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2025-03-17;5728-5208901#interpretation-art225-par7",
+      "parentId": null,
+      "type": "Interpretation",
+      "eventTime": "2025-03-17T00:00:00Z",
+      "validityInterval": [
+        "2025-03-17T00:00:00Z",
+        null
+      ],
+      "sourceVersionIds": [
+        "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2025-03-17;5728-5208901@2025-03-17!decision"
+      ],
+      "terminatesVersionIds": [],
+      "producesVersionIds": [
+        "urn:lex:br:federal:constituicao:1988-10-05;1988@2025-03-17!art225_par7,adi5728"
+      ],
+      "metadata": {
+        "court": "Supremo Tribunal Federal",
+        "chamber": "Plenário",
+        "caseNumber": "ADI 5728/DF",
+        "label": "ADI 5728 interpretive confirmation of EC 96/2017",
+        "intervalSemantics": "half-open",
+        "authorityLevel": "controlling"
       }
     }
   ],
@@ -284,7 +422,7 @@
     {
       "query": "getItemHistory('urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par1_inc7')",
       "expectedResult": [
-        "urn:lex:br:stf:acordao:2016-10-06;adi.4983#interpretation-art225"
+        "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2016-10-06;4983-4425243#interpretation-art225"
       ],
       "interpretation": "Timeline of actions affecting this Item: Interpretation action by ADI 4983 (2016-10-06) creating interpretive version declaring vaquejada unconstitutional. The original statutory version (1988-10-05) prohibiting animal cruelty was never modified by an action, only overlaid by this judicial interpretation."
     },
@@ -294,11 +432,20 @@
         "urn:lex:br:federal:emenda.constitucional:2017-06-06;96#creation-art225-par7"
       ],
       "interpretation": "Timeline of actions affecting this Item: Creation action by EC 96/2017 (2017-06-06) establishing the new paragraph 7 as a legislative response to ADI 4983, creating an exception for animal sports as cultural manifestations."
+    },
+    {
+      "query": "getValidVersions('urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par7', '2026-04-24')",
+      "expectedResult": [
+        "urn:lex:br:federal:constituicao:1988-10-05;1988@2017-06-06!art225_par7",
+        "urn:lex:br:federal:constituicao:1988-10-05;1988@2025-03-17!art225_par7,adi5728"
+      ],
+      "interpretation": "The current answer is conditional: vaquejada is constitutionally permitted only if it qualifies as a registered cultural manifestation and is regulated by specific law that ensures animal welfare. The ADI 4983 cruelty interpretation remains relevant as the general prohibition, while Art. 225, §7 and ADI 5728 define the exception."
     }
   ],
   "notes": {
     "constitutionalDialogue": "This case exemplifies the 'backlash effect' where the legislature responds to a judicial constitutional interpretation by creating a new constitutional provision that provides an exception. The Amendment Event (EC 96/2017) creates a new paragraph 7 that coexists with the judicial interpretation of inciso VII, demonstrating legislative power to modify the constitutional framework in response to judicial decisions.",
     "topologyInsight": "The graph structure shows two independent Items (inciso VII and paragraph 7) with separate version chains. The judicial interpretation of inciso VII (declaring vaquejada unconstitutional) remains valid, while paragraph 7 creates a constitutional exception for cultural animal sports. This models the legal reality: both norms coexist, creating a complex interpretive landscape where practitioners must consider both the prohibition and the exception.",
-    "modelingNote": "Unlike Case A (HC 126.292) where Overruling terminated a previous Interpretive Version, here the legislative response creates a new constitutional provision rather than terminating the judicial interpretation. This demonstrates that constitutional dialogue can occur through creation of new norms that qualify or limit (but don't formally revoke) existing interpretations."
+    "modelingNote": "Unlike Case A (HC 126.292) where Overruling terminated a previous Interpretive Version, here the legislative response creates a new constitutional provision rather than terminating the judicial interpretation. This demonstrates that constitutional dialogue can occur through creation of new norms that qualify or limit (but don't formally revoke) existing interpretations.",
+    "updatedLegalStatus": "As of ADI 5728/DF, EC 96/2017 is constitutional when the practice is a registered cultural manifestation and is regulated by law guaranteeing animal welfare. ADI 5772/DF further supports the point that vaquejada-related norms are valid only under statutory animal-welfare safeguards."
   }
 }
