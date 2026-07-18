@@ -422,9 +422,10 @@
     {
       "query": "getItemHistory('urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par7')",
       "expectedResult": [
-        "urn:lex:br:federal:emenda.constitucional:2017-06-06;96#creation-art225-par7"
+        "urn:lex:br:federal:emenda.constitucional:2017-06-06;96#creation-art225-par7",
+        "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2025-03-17;5728-5208901#interpretation-art225-par7"
       ],
-      "interpretation": "Timeline of actions affecting this Item: Creation action by EC 96/2017 (2017-06-06) establishing the new paragraph 7 as a legislative response to ADI 4983, creating an exception for animal sports as cultural manifestations."
+      "interpretation": "Timeline of actions affecting this Item: Creation action by EC 96/2017 (2017-06-06) establishing the new paragraph 7 as a legislative response to ADI 4983, followed by the Interpretation action of ADI 5728 (2025-03-17) upholding its constitutionality conditioned on registration and welfare-ensuring regulation."
     },
     {
       "query": "getValidVersions('urn:lex:br:federal:constituicao:1988-10-05;1988!art225_par7', '2026-04-24')",
