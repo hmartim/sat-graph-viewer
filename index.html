@@ -281,7 +281,13 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   background: var(--navy);
   opacity: .35;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.tl-marker-connector {
+  width: 1px;
+  background: rgba(30, 41, 59, .2);
   flex-shrink: 0;
 }
 
@@ -291,6 +297,7 @@ input[type="range"]::-moz-range-thumb {
   white-space: nowrap;
   font-weight: 500;
   text-align: center;
+  margin-top: 2px;
 }
 
 .timeline-date-display {
@@ -862,16 +869,67 @@ function render() {
 
 // ── Markers ─────────────────────────────────────────────────────────
 
+// Marker layout only depends on the active case (dates/labels), not on the
+// slider value, so we skip recomputing it on every slider drag tick.
+let markersLaidOutFor = null;
+const MARKER_ROW_H = 16;
+
 function renderMarkers(cfg) {
+  if (markersLaidOutFor === cfg.id) return;
+  markersLaidOutFor = cfg.id;
+
   const [s, e] = cfg.dateRange.map(d => new Date(d).getTime());
-  document.getElementById('tl-markers').innerHTML = cfg.keyDates.map(kd => {
-    const pct = ((new Date(kd.date).getTime() - s) / (e - s)) * 100;
-    return `<div class="tl-marker" style="left:${pct.toFixed(2)}%">
+  const markersEl = document.getElementById('tl-markers');
+
+  const base = cfg.keyDates.map(kd => ({
+    label: kd.label,
+    pct: ((new Date(kd.date).getTime() - s) / (e - s)) * 100,
+  }));
+
+  // Pass 1: render at row 0 to measure each label's actual rendered width.
+  markersEl.innerHTML = base.map(m => `
+    <div class="tl-marker" style="left:${m.pct.toFixed(2)}%">
       <div class="tl-marker-dot"></div>
-      <div class="tl-marker-label">${esc(kd.label)}</div>
-    </div>`;
-  }).join('');
+      <div class="tl-marker-label">${esc(m.label)}</div>
+    </div>`).join('');
+
+  const wrapWidth = markersEl.clientWidth;
+  const labelEls  = markersEl.querySelectorAll('.tl-marker-label');
+  const items = base.map((m, i) => ({
+    ...m,
+    centerPx: (m.pct / 100) * wrapWidth,
+    halfW: labelEls[i].getBoundingClientRect().width / 2,
+  })).sort((a, b) => a.centerPx - b.centerPx);
+
+  // Pass 2: greedily stack labels whose bounding boxes would overlap onto
+  // successive rows (like interval-graph coloring), with a small gap buffer.
+  const GAP = 10;
+  const rowRightEdge = [];
+  items.forEach(item => {
+    let row = 0;
+    while (rowRightEdge[row] !== undefined && item.centerPx - item.halfW < rowRightEdge[row] + GAP) {
+      row++;
+    }
+    rowRightEdge[row] = item.centerPx + item.halfW;
+    item.row = row;
+  });
+
+  markersEl.innerHTML = items.map(item => `
+    <div class="tl-marker" style="left:${item.pct.toFixed(2)}%">
+      <div class="tl-marker-dot"></div>
+      <div class="tl-marker-connector" style="height:${item.row * MARKER_ROW_H}px"></div>
+      <div class="tl-marker-label">${esc(item.label)}</div>
+    </div>`).join('');
+
+  const maxRow = items.reduce((m, it) => Math.max(m, it.row), 0);
+  markersEl.style.height = (46 + maxRow * MARKER_ROW_H) + 'px';
 }
+
+window.addEventListener('resize', () => {
+  if (CASES.length === 0) return;
+  markersLaidOutFor = null;
+  renderMarkers(CASES[activeCaseIdx]);
+});
 
 // ── Content dispatcher ───────────────────────────────────────────────
 
@@ -1379,6 +1437,15 @@ function buildTimeScale(eventDates, rangeStart, rangeEnd, left, right) {
   };
 }
 
+/** Measures rendered text width (in SVG user units) via an offscreen canvas,
+ *  so overlapping SVG labels can be detected without touching the DOM. */
+let _measureCtx = null;
+function measureTextWidth(text, size, weight) {
+  if (!_measureCtx) _measureCtx = document.createElement('canvas').getContext('2d');
+  _measureCtx.font = `${weight} ${size}px -apple-system, BlinkMacSystemFont, system-ui, sans-serif`;
+  return _measureCtx.measureText(text).width;
+}
+
 function buildTimelineSVG(cfg, currentDs) {
   const ds = cfg.dataset;
 
@@ -1424,10 +1491,11 @@ function buildTimelineSVG(cfg, currentDs) {
   const BAR_H   = 28;
   const SEP_H   = 28;
 
-  // Compute total height
+  // Compute content height (bars + separators)
   const verRows = rows.filter(r => r.type === 'ver').length;
   const sepRows = rows.filter(r => r.type === 'sep').length;
-  const SVG_H   = T_MARGIN + verRows * ROW_H + sepRows * SEP_H + 42;
+  const contentBottom = T_MARGIN + verRows * ROW_H + sepRows * SEP_H;
+  const AXIS_Y = contentBottom + 10;
 
   // Build X scale from action event dates
   const eventDates = ds.actions.map(a => a.eventTime.substring(0, 10));
@@ -1438,6 +1506,30 @@ function buildTimelineSVG(cfg, currentDs) {
 
   const currentX = toX(currentDs);
   const isConflict = cfg.type === 'split';
+
+  // Lay out bottom axis labels, staggering ones that would collide onto
+  // extra rows (interval-graph-coloring greedy pass, same idea as the
+  // query-date slider markers above).
+  const AXIS_ROW_H = 13;
+  const AXIS_GAP   = 8;
+  const keyItems = cfg.keyDates.map(kd => ({
+    x: toX(kd.date),
+    label: kd.label,
+    halfW: measureTextWidth(kd.label, 9, 500) / 2,
+  })).sort((a, b) => a.x - b.x);
+
+  const axisRowRightEdge = [];
+  keyItems.forEach(item => {
+    let row = 0;
+    while (axisRowRightEdge[row] !== undefined && item.x - item.halfW < axisRowRightEdge[row] + AXIS_GAP) {
+      row++;
+    }
+    axisRowRightEdge[row] = item.x + item.halfW;
+    item.row = row;
+  });
+  const maxAxisRow = keyItems.reduce((m, it) => Math.max(m, it.row), 0);
+
+  const SVG_H = AXIS_Y + 32 + maxAxisRow * AXIS_ROW_H;
 
   let s = `<svg width="100%" viewBox="0 0 ${SVG_W} ${SVG_H}"
     xmlns="http://www.w3.org/2000/svg"
@@ -1450,19 +1542,20 @@ function buildTimelineSVG(cfg, currentDs) {
   s += txt(L_MARGIN - 8, 18, 'VERSION', 9, '#94a3b8', 'end', '700', '.08em');
   s += txt(L_MARGIN + (SVG_W - R_MARGIN - L_MARGIN) / 2, 18, 'VALIDITY INTERVAL', 9, '#94a3b8', 'middle', '700', '.08em');
 
-  // Key-event vertical guide lines + bottom axis labels
-  cfg.keyDates.forEach(kd => {
-    const x = toX(kd.date);
-    s += `<line x1="${x}" y1="${T_MARGIN - 6}" x2="${x}" y2="${SVG_H - 32}"
+  // Key-event vertical guide lines + bottom axis labels (staggered by row
+  // to avoid collisions; deeper rows get a longer tick "connector").
+  keyItems.forEach(item => {
+    const tickEnd = AXIS_Y + 6 + item.row * AXIS_ROW_H;
+    s += `<line x1="${item.x}" y1="${T_MARGIN - 6}" x2="${item.x}" y2="${AXIS_Y}"
            stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,3"/>`;
-    s += `<line x1="${x}" y1="${SVG_H - 32}" x2="${x}" y2="${SVG_H - 26}"
+    s += `<line x1="${item.x}" y1="${AXIS_Y}" x2="${item.x}" y2="${tickEnd}"
            stroke="#cbd5e1" stroke-width="1.5"/>`;
-    s += txt(x, SVG_H - 14, kd.label, 9, '#94a3b8', 'middle', '500');
+    s += txt(item.x, tickEnd + 12, item.label, 9, '#94a3b8', 'middle', '500');
   });
 
   // Bottom axis line
-  s += `<line x1="${L_MARGIN - 10}" y1="${SVG_H - 32}" x2="${SVG_W - R_MARGIN}"
-         y2="${SVG_H - 32}" stroke="#cbd5e1" stroke-width="1.5"/>`;
+  s += `<line x1="${L_MARGIN - 10}" y1="${AXIS_Y}" x2="${SVG_W - R_MARGIN}"
+         y2="${AXIS_Y}" stroke="#cbd5e1" stroke-width="1.5"/>`;
 
   // Draw rows
   let y = T_MARGIN;
@@ -1520,23 +1613,36 @@ function buildTimelineSVG(cfg, currentDs) {
              opacity="0.45"/>`;
     }
 
-    // Start date inside bar
+    // Start / end date labels: keep them inside the bar if there's room for
+    // both without colliding, otherwise show one combined label above the
+    // bar (narrow bars, e.g. short-lived versions, would otherwise overlap).
     const dateLabel = ver.validityInterval[0].substring(0, 10);
-    s += txt(startX + 10, barY + BAR_H / 2 + 4,
-             dateLabel, 9, 'white', 'start', '600', undefined, opacity);
+    const endLabel  = hasEnd ? ver.validityInterval[1].substring(0, 10) : null;
+    const startW    = measureTextWidth(dateLabel, 9, 600);
+    const endW      = endLabel ? measureTextWidth(endLabel, 9, 600) : 14;
+    const fitsInline = barW >= startW + endW + 26;
 
-    // End date or arrow
+    if (fitsInline) {
+      s += txt(startX + 10, barY + BAR_H / 2 + 4,
+               dateLabel, 9, 'white', 'start', '600', undefined, opacity);
+      if (hasEnd) {
+        s += txt(endX - 10, barY + BAR_H / 2 + 4,
+                 endLabel, 9, 'white', 'end', '600', undefined, opacity);
+      } else {
+        s += txt(endX - 10, barY + BAR_H / 2 + 5,
+                 '→', 16, 'white', 'end', '300', undefined, String(parseFloat(opacity) * 0.7));
+      }
+    } else {
+      const rangeLabel = hasEnd ? `${dateLabel} → ${endLabel}` : `${dateLabel} →`;
+      s += txt((startX + endX) / 2, barY - 6,
+               rangeLabel, 8, isValid ? fill : '#94a3b8', 'middle', '700');
+    }
+
     if (hasEnd) {
-      const endLabel = ver.validityInterval[1].substring(0, 10);
-      s += txt(endX - 10, barY + BAR_H / 2 + 4,
-               endLabel, 9, 'white', 'end', '600', undefined, opacity);
       // Termination circle
       s += `<circle cx="${endX}" cy="${barY + BAR_H / 2}" r="7"
              fill="white" stroke="${fill}" stroke-width="2" opacity="${opacity}"/>`;
       s += txt(endX, barY + BAR_H / 2 + 4, '×', 10, fill, 'middle', '700', undefined, opacity);
-    } else {
-      s += txt(endX - 10, barY + BAR_H / 2 + 5,
-               '→', 16, 'white', 'end', '300', undefined, String(parseFloat(opacity) * 0.7));
     }
 
     // Snippet tooltip (small text below bar, only if valid)
@@ -1588,7 +1694,7 @@ function buildTimelineSVG(cfg, currentDs) {
   </defs>`;
 
   s += `<line x1="${currentX}" y1="${T_MARGIN - 4}" x2="${currentX}"
-         y2="${SVG_H - 32}" stroke="#dc2626" stroke-width="2"
+         y2="${AXIS_Y}" stroke="#dc2626" stroke-width="2"
          stroke-dasharray="6,3"/>`;
   // Date pill on the line
   s += `<rect x="${currentX - 40}" y="${T_MARGIN - 21}" width="80" height="18"
@@ -1633,6 +1739,15 @@ function onFileLoad(files) {
   document.getElementById('file-input').value = '';
 }
 
+/** Derives a tab label from the dataset filename prefix (e.g. "CL001-foo.json" → "CL001"),
+ *  falling back to a sequential letter/number when the filename has no such prefix. */
+function caseLabelFromFilename(filename, idx) {
+  const base = filename.replace(/\.json$/i, '');
+  const prefix = base.match(/^([A-Za-z]+\d+)(?:-|$)/);
+  if (prefix) return prefix[1];
+  return idx < 26 ? String.fromCharCode(65 + idx) : String(idx + 1);
+}
+
 function addCaseFromData(data, filename) {
   if (!data.items || !data.versions || !data.actions) {
     alert(filename + ' does not look like a SAT-Graph dataset (missing items/versions/actions).');
@@ -1646,9 +1761,7 @@ function addCaseFromData(data, filename) {
   const dateRange = detectDateRange(data);
   const keyDates  = detectKeyDates(data, dateRange);
 
-  const letter = CASES.length < 26
-    ? String.fromCharCode(65 + CASES.length)
-    : String(CASES.length + 1);
+  const letter = caseLabelFromFilename(filename, CASES.length);
 
   CASES.push({
     id:            'loaded_' + Date.now(),
