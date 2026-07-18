@@ -759,41 +759,13 @@ summary::marker { display: none; }
   </div>
 </div>
 
+<script src="engine.js"></script>
 <script>
 
 // ═══════════════════════════════════════════════════════════════════
-// ENGINE
+// ENGINE — temporal resolution (parseQueryInstant, getValidVersions,
+// getItemHistory) lives in engine.js, shared with the CI test suite.
 // ═══════════════════════════════════════════════════════════════════
-
-/**
- * getValidVersions — implements GET /items/{itemId}/valid-versions?at={date}
- * Returns every Version whose validityInterval contains the query date.
- */
-function getValidVersions(itemId, dateStr, dataset) {
-  const d = new Date(dateStr + 'T12:00:00Z');
-  return dataset.versions.filter(v => {
-    if (v.itemId !== itemId) return false;
-    const start = new Date(v.validityInterval[0]);
-    const end   = v.validityInterval[1] ? new Date(v.validityInterval[1]) : null;
-    return d >= start && (end === null || d <= end);
-  });
-}
-
-/**
- * getItemHistory — implements GET /items/{itemId}/history
- * Returns Actions ordered by eventTime that produced or terminated versions of this Item.
- */
-function getItemHistory(itemId, dataset) {
-  const vids = new Set(
-    dataset.versions.filter(v => v.itemId === itemId).map(v => v.id)
-  );
-  return dataset.actions
-    .filter(a =>
-      a.producesVersionIds.some(id => vids.has(id)) ||
-      a.terminatesVersionIds.some(id => vids.has(id))
-    )
-    .sort((a, b) => new Date(a.eventTime) - new Date(b.eventTime));
-}
 
 /** Finds a single TextUnit by (versionId, aspect, language). Falls back to 'en'. */
 function getTU(versionId, aspect, lang, dataset) {
@@ -842,7 +814,7 @@ function isoDate(d) {
 }
 
 function fmtDate(d) {
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
 function esc(s) {

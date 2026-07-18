@@ -1,0 +1,14 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Corpus validation (structure, integrity, fixtures)
+        run: python3 validate.py data/
+      - name: Engine conformance (behaviour of the code the viewer loads)
+        run: node test_engine.js data/
