@@ -1739,11 +1739,12 @@ function onFileLoad(files) {
   document.getElementById('file-input').value = '';
 }
 
-/** Derives a tab label from the dataset filename prefix (e.g. "CL001-foo.json" → "CL001"),
- *  falling back to a sequential letter/number when the filename has no such prefix. */
+/** Derives a tab label from the dataset filename prefix — an optional letter
+ *  code followed by digits, e.g. "CL001-foo.json" → "CL001" or "001-foo.json"
+ *  → "001" — falling back to a sequential letter/number when there is none. */
 function caseLabelFromFilename(filename, idx) {
   const base = filename.replace(/\.json$/i, '');
-  const prefix = base.match(/^([A-Za-z]+\d+)(?:-|$)/);
+  const prefix = base.match(/^([A-Za-z]*\d+)(?:-|$)/);
   if (prefix) return prefix[1];
   return idx < 26 ? String.fromCharCode(65 + idx) : String(idx + 1);
 }
