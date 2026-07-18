@@ -78,14 +78,6 @@
       "metadata": {
         "description": "STF judgment declaring the constitutionality of Constitutional Amendment 96/2017."
       }
-    },
-    {
-      "id": "urn:lex:br:supremo.tribunal.federal;plenario:acordao;adi:2026-03-05;5772",
-      "typeId": "judgment",
-      "label": "ADI 5772/DF",
-      "metadata": {
-        "description": "STF judgment validating vaquejada-related norms while requiring compliance with animal-welfare safeguards."
-      }
     }
   ],
   "versions": [
@@ -391,7 +383,8 @@
         "caseNumber": "ADI 5728/DF",
         "label": "ADI 5728 interpretive confirmation of EC 96/2017",
         "intervalSemantics": "half-open",
-        "authorityLevel": "controlling"
+        "authorityLevel": "controlling",
+        "rapporteur": "Dias Toffoli"
       }
     }
   ],

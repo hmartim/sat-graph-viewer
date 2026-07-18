@@ -1,28 +1,34 @@
 {
   "metadata": {
-    "caseName": "Duty of Care — Evolution from Donoghue v. Stevenson (1932) to Robinson (2018)",
-    "description": "Cross-jurisdictional example: the common-law principle of duty of care in negligence, established by Donoghue v. Stevenson and progressively refined through Anns (1977), Caparo (1990), and Robinson (2018). Illustrates how the framework models interpretive drift in a judge-made principle across nearly a century, analogously to the mutation of statutory provisions in civil-law systems.",
-    "jurisdiction": "United Kingdom - House of Lords / Supreme Court",
-    "demonstration": "Shows how the Interpretive Graph Overlay handles a chain of binding precedents that successively refine the same judge-made principle without any statutory basis. Each landmark decision terminates the previous interpretive version and produces a new one, while the abstract principle (the Item) remains continuously identifiable.",
-    "intervalSemantics": "half-open intervals: start <= target < end; null end means current/open-ended",
-    "sources": [
-      {
-        "label": "UK Supreme Court: Robinson v Chief Constable of West Yorkshire Police",
-        "url": "https://supremecourt.uk/cases/uksc-2016-0082"
-      },
-      {
-        "label": "BAILII/UKHL-style references for Donoghue, Anns and Caparo",
-        "url": "https://www.bailii.org/"
-      }
-    ]
+    "caseName": "Duty-Recognition Methodology — Donoghue v. Stevenson (1932) to Robinson (2018)",
+    "description": "Cross-jurisdictional case study: the common-law methodology for recognizing duties of care in genuinely novel negligence cases, articulated through Donoghue (1932), generalized in Anns (1977), reoriented in Caparo (1990), and authoritatively clarified in Robinson (2018), previously articulated in Michael (2015). Murphy v. Brentwood (1990) is materialized as a scoped Overruling of a specific Anns proposition (local-authority liability for loss to the defective building itself), not of the Anns judgment as a document; Murphy also marked the final disapproval of the broader Anns formula, a methodology-level effect acknowledged but not separately materialized here. Versions of the methodology Item are curated snapshots of the current authoritative articulation within a cumulative doctrinal lineage (provenance-based, not purely additive). The encoding is deliberately selective; further authorities (e.g., Stovin, Gorringe) belong to related doctrinal branches not materialized here.",
+    "doctrinalScope": "English law of negligence",
+    "appellateCourts": ["House of Lords", "Supreme Court of the United Kingdom"],
+    "crossJurisdictionNote": "Donoghue v Stevenson arose on appeal from Scotland but is treated here as a foundational authority in the English law of negligence.",
+    "conventions": {
+      "validityIntervals": "Half-open [start, end): start inclusive, end exclusive; end(Version N) equals start(Version N+1) within a lineage.",
+      "aspectVsNature": "TextUnit.aspect identifies the legal-reasoning role exposed to retrieval; metadata.textUnitNature records whether the content is a source excerpt, a curated extraction, or a synthesized doctrinal articulation.",
+      "derivation": "Top-level derivesFromVersionIds instantiates the framework's pre-existing derivation relation (R2) as a navigable graph relation.",
+      "vocabulary": "leadingOpinionBy is used for UK courts; Brazilian case studies retain the native term rapporteur (relator)."
+    }
   },
   "items": [
     {
-      "id": "urn:lex:uk:common-law;principle!duty-of-care",
-      "typeId": "common-law-principle",
-      "label": "Duty of Care (Negligence)",
+      "id": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
+      "typeId": "common-law-doctrine",
+      "label": "Duty-Recognition Methodology (Novel Negligence Cases)",
       "metadata": {
-        "description": "Judge-made legal principle establishing the general duty of care in the law of negligence, with no underlying statutory basis"
+        "description": "The general methodology for recognizing duties of care in genuinely novel negligence cases. Versions are curated snapshots of the current authoritative articulation within a cumulative doctrinal lineage; they do not imply that later precedents wholly displace earlier ones."
+      }
+    },
+    {
+      "id": "urn:lex:uk:common-law;proposition!anns-local-authority-loss-to-defective-building",
+      "typeId": "precedential-proposition",
+      "label": "Anns Proposition: Local-Authority Liability for Loss to the Defective Building Itself",
+      "metadata": {
+        "description": "Proposition that a local authority exercising building-control functions may owe owners or occupiers a private-law duty permitting recovery for the cost of remedying, or the diminution in value caused by, dangerous latent defects in the building itself, independently of personal injury or damage to other property.",
+        "scopeExclusion": "Personal injury and damage to property other than the defective building are outside the scope of this Item.",
+        "extractedFromVersionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"
       }
     },
     {
@@ -30,7 +36,7 @@
       "typeId": "judgment",
       "label": "Donoghue v. Stevenson [1932] AC 562",
       "metadata": {
-        "description": "Landmark House of Lords decision establishing the modern law of negligence and the neighbour principle"
+        "description": "House of Lords decision associated with the modern general formulation of the duty of care (neighbour principle)"
       }
     },
     {
@@ -39,7 +45,7 @@
       "label": "Opinion of Lord Atkin",
       "parentId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson",
       "metadata": {
-        "description": "Leading majority opinion containing the formulation of the neighbour principle"
+        "description": "Leading opinion containing the formulation of the neighbour principle"
       }
     },
     {
@@ -47,7 +53,7 @@
       "typeId": "judgment",
       "label": "Anns v. Merton London Borough Council [1978] AC 728",
       "metadata": {
-        "description": "House of Lords decision expanding duty of care through a two-stage test based on proximity and policy considerations"
+        "description": "House of Lords decision generalizing the method for extending duties of care through a two-stage approach. The judgment remains a documentary Item; the authority of one of its propositions was later overruled by Murphy."
       }
     },
     {
@@ -56,7 +62,7 @@
       "label": "Opinion of Lord Wilberforce",
       "parentId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton",
       "metadata": {
-        "description": "Leading opinion formulating the two-stage test for duty of care"
+        "description": "Leading opinion formulating the two-stage approach"
       }
     },
     {
@@ -64,7 +70,7 @@
       "typeId": "judgment",
       "label": "Caparo Industries plc v. Dickman [1990] 2 AC 605",
       "metadata": {
-        "description": "House of Lords decision establishing the three-stage test for duty of care (foreseeability, proximity, fair-just-reasonable)"
+        "description": "House of Lords decision departing from the broad Anns approach and favoring incremental development by analogy with established categories"
       }
     },
     {
@@ -73,7 +79,24 @@
       "label": "Opinion of Lord Bridge",
       "parentId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman",
       "metadata": {
-        "description": "Leading opinion formulating the three-stage Caparo test"
+        "description": "Leading opinion emphasizing foreseeability, proximity, fairness, and incremental development by analogy"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood",
+      "typeId": "judgment",
+      "label": "Murphy v. Brentwood District Council [1991] 1 AC 398",
+      "metadata": {
+        "description": "House of Lords decision (seven-member panel) expressly departing from Anns insofar as it recognized a private-law duty of local authorities in the exercise of building-control functions for loss relating to the defective building itself, leaving personal injury open; it also marked the final disapproval of the broader Anns formula"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood!opinion-keith",
+      "typeId": "judgment-component",
+      "label": "Opinion of Lord Keith of Kinkel",
+      "parentId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood",
+      "metadata": {
+        "description": "Leading opinion characterizing loss from defects in the building itself as pure economic loss"
       }
     },
     {
@@ -81,7 +104,7 @@
       "typeId": "judgment",
       "label": "Robinson v. Chief Constable of West Yorkshire Police [2018] UKSC 4",
       "metadata": {
-        "description": "Supreme Court decision clarifying that the Caparo test is not a universal formula; novel cases should be decided by analogy with established categories"
+        "description": "Supreme Court decision clarifying, as previously articulated in Michael (2015), that Caparo did not establish a universal tripartite test"
       }
     },
     {
@@ -90,191 +113,252 @@
       "label": "Opinion of Lord Reed",
       "parentId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable",
       "metadata": {
-        "description": "Leading opinion articulating the incremental, analogy-based approach to novel duty-of-care situations"
+        "description": "Leading opinion articulating the incremental, analogy-based approach and the proper reading of Caparo"
       }
     }
   ],
   "versions": [
     {
-      "id": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue",
-      "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
+      "id": "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue",
+      "itemId": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "type": "interpretive",
-      "validityInterval": [
-        "1932-05-26T00:00:00Z",
-        "1977-05-12T00:00:00Z"
-      ],
-      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-duty-of-care",
-      "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
+      "validityInterval": ["1932-05-26T00:00:00Z", "1977-05-12T00:00:00Z"],
+      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-methodology",
+      "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-methodology",
       "metadata": {
-        "versionType": "commonLawPrecedent",
-        "authorityLevel": "binding",
-        "intervalSemantics": "half-open"
+        "versionType": "authoritativeMethodologyArticulation",
+        "versionSemantics": "successive-authoritative-articulation",
+        "terminationSemantics": "superseded-as-current-articulation",
+        "authorityLevel": "binding"
       }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns",
-      "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
+      "id": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns",
+      "itemId": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "type": "interpretive",
-      "validityInterval": [
-        "1977-05-12T00:00:00Z",
-        "1990-02-08T00:00:00Z"
-      ],
-      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
-      "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
+      "validityInterval": ["1977-05-12T00:00:00Z", "1990-02-08T00:00:00Z"],
+      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-methodology",
+      "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-methodology",
+      "derivesFromVersionIds": ["urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"],
       "metadata": {
-        "versionType": "commonLawPrecedent",
+        "versionType": "authoritativeMethodologyArticulation",
+        "versionSemantics": "successive-authoritative-articulation",
+        "terminationSemantics": "superseded-as-current-articulation",
         "authorityLevel": "binding",
-        "intervalSemantics": "half-open"
+        "retainsFoundationalAuthorityIds": ["urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson"]
       }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo",
-      "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
+      "id": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo",
+      "itemId": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "type": "interpretive",
-      "validityInterval": [
-        "1990-02-08T00:00:00Z",
-        "2018-02-08T00:00:00Z"
-      ],
-      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
-      "terminatedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care",
+      "validityInterval": ["1990-02-08T00:00:00Z", "2018-02-08T00:00:00Z"],
+      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-methodology",
+      "terminatedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-methodology",
+      "derivesFromVersionIds": ["urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"],
       "metadata": {
-        "versionType": "commonLawPrecedent",
+        "versionType": "authoritativeMethodologyArticulation",
+        "versionSemantics": "successive-authoritative-articulation",
+        "terminationSemantics": "superseded-as-current-articulation",
         "authorityLevel": "binding",
-        "intervalSemantics": "half-open"
+        "derivationNote": "Derivation with reformulation: departs from the broad Anns two-stage approach while remaining within the cumulative doctrinal lineage."
       }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson",
-      "itemId": "urn:lex:uk:common-law;principle!duty-of-care",
+      "id": "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson",
+      "itemId": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "type": "interpretive",
-      "validityInterval": [
-        "2018-02-08T00:00:00Z",
-        null
-      ],
-      "producedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care",
+      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "producedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-methodology",
+      "derivesFromVersionIds": ["urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"],
       "metadata": {
-        "versionType": "commonLawPrecedent",
+        "versionType": "authoritativeMethodologyArticulation",
+        "versionSemantics": "successive-authoritative-articulation",
         "authorityLevel": "binding",
-        "intervalSemantics": "half-open"
+        "effectType": "clarifies",
+        "temporalEffect": "declaratory",
+        "supersedesOnlyAsCurrentArticulation": true
       }
+    },
+    {
+      "id": "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building",
+      "itemId": "urn:lex:uk:common-law;proposition!anns-local-authority-loss-to-defective-building",
+      "type": "interpretive",
+      "validityInterval": ["1977-05-12T00:00:00Z", "1990-07-26T00:00:00Z"],
+      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#establishment-proposition",
+      "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood#overruling-proposition",
+      "metadata": {
+        "versionType": "propositionAuthorityState",
+        "precedentialStatus": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building",
+      "itemId": "urn:lex:uk:common-law;proposition!anns-local-authority-loss-to-defective-building",
+      "type": "interpretive",
+      "validityInterval": ["1990-07-26T00:00:00Z", null],
+      "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood#overruling-proposition",
+      "derivesFromVersionIds": ["urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"],
+      "metadata": {
+        "versionType": "propositionAuthorityState",
+        "precedentialStatus": "overruled",
+        "statusSource": "Murphy v. Brentwood DC [1991] 1 AC 398",
+        "contentInheritance": "unchanged",
+        "note": "The propositional content is inherited unchanged from the predecessor Version via the derivation relation; only the authority state changes."
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26",
+      "itemId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson",
+      "type": "documentary",
+      "validityInterval": ["1932-05-26T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentExpression" }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12",
+      "itemId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton",
+      "type": "documentary",
+      "validityInterval": ["1977-05-12T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentExpression" }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08",
+      "itemId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman",
+      "type": "documentary",
+      "validityInterval": ["1990-02-08T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentExpression" }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26",
+      "itemId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood",
+      "type": "documentary",
+      "validityInterval": ["1990-07-26T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentExpression" }
+    },
+    {
+      "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08",
+      "itemId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable",
+      "type": "documentary",
+      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentExpression" }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson!opinion-atkin",
       "type": "documentary",
-      "validityInterval": [
-        "1932-05-26T00:00:00Z",
-        null
-      ],
-      "metadata": {
-        "versionType": "judgmentComponent",
-        "intervalSemantics": "half-open"
-      }
+      "validityInterval": ["1932-05-26T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentComponent" }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton!opinion-wilberforce",
       "type": "documentary",
-      "validityInterval": [
-        "1977-05-12T00:00:00Z",
-        null
-      ],
-      "metadata": {
-        "versionType": "judgmentComponent",
-        "intervalSemantics": "half-open"
-      }
+      "validityInterval": ["1977-05-12T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentComponent" }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman!opinion-bridge",
       "type": "documentary",
-      "validityInterval": [
-        "1990-02-08T00:00:00Z",
-        null
-      ],
-      "metadata": {
-        "versionType": "judgmentComponent",
-        "intervalSemantics": "half-open"
-      }
+      "validityInterval": ["1990-02-08T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentComponent" }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26!opinion-keith",
+      "itemId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood!opinion-keith",
+      "type": "documentary",
+      "validityInterval": ["1990-07-26T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentComponent" }
     },
     {
       "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed",
       "itemId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable!opinion-reed",
       "type": "documentary",
-      "validityInterval": [
-        "2018-02-08T00:00:00Z",
-        null
-      ],
-      "metadata": {
-        "versionType": "judgmentComponent",
-        "intervalSemantics": "half-open"
-      }
+      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "metadata": { "versionType": "judgmentComponent" }
     }
   ],
   "textUnits": [
     {
-      "id": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue~ratio;en",
+      "id": "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue~ratio;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue",
+      "sourceId": "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue",
       "language": "en",
       "aspect": "ratio",
-      "content": "You must take reasonable care to avoid acts or omissions which you can reasonably foresee would be likely to injure your neighbour. A manufacturer owes a duty of care to the ultimate consumer of a product where there is no reasonable possibility of intermediate examination, and where the absence of such care may result in injury to the consumer's health."
+      "content": "You must take reasonable care to avoid acts or omissions which you can reasonably foresee would be likely to injure your neighbour. A manufacturer owes a duty of care to the ultimate consumer of a product where there is no reasonable possibility of intermediate examination.",
+      "metadata": { "textUnitNature": "curated-synthesis" }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue~holding;en",
+      "id": "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue~holding;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue",
+      "sourceId": "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue",
       "language": "en",
       "aspect": "holding",
-      "content": "A duty of care exists independently of any contractual relationship. Manufacturers owe a duty of care to consumers of their products, breach of which gives rise to liability in tort for negligence."
+      "content": "A duty of care may exist independently of contract. A manufacturer may owe a duty of care to the ultimate consumer where the product is intended to reach the consumer in the form in which it left the manufacturer and there is no reasonable possibility of intermediate examination.",
+      "metadata": { "textUnitNature": "curated-synthesis" }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns~ratio;en",
+      "id": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns~ratio;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns",
+      "sourceId": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns",
       "language": "en",
       "aspect": "ratio",
-      "content": "A duty of care is established by a two-stage inquiry. First, there must be a sufficient relationship of proximity or neighbourhood between the alleged wrongdoer and the person who has suffered damage, such that carelessness on the part of the former may be likely to cause damage to the latter. Second, if the first question is answered affirmatively, it is necessary to consider whether there are any considerations which ought to negative, or to reduce or limit the scope of the duty, the class of persons to whom it is owed, or the damages to which a breach of it may give rise."
+      "content": "To establish a duty of care it is not necessary to bring the facts within previously recognized categories. First, one asks whether there is a sufficient relationship of proximity or neighbourhood such that carelessness may be likely to cause damage; if so, a prima facie duty arises. Secondly, one considers whether there are considerations which ought to negative, reduce or limit the scope of the duty.",
+      "metadata": { "textUnitNature": "curated-synthesis" }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns~holding;en",
+      "id": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns~holding;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns",
+      "sourceId": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns",
       "language": "en",
       "aspect": "holding",
-      "content": "The neighbour principle is extended through a two-stage test: proximity-foreseeability plus policy considerations. A duty of care arises unless there are policy reasons to exclude it."
+      "content": "The methodology for extending duties beyond established categories is reconfigured through a two-stage inquiry, with Donoghue preserved as a foundational authority.",
+      "metadata": { "textUnitNature": "curated-synthesis" }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo~ratio;en",
+      "id": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo~ratio;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo",
+      "sourceId": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo",
       "language": "en",
       "aspect": "ratio",
-      "content": "The establishment of a duty of care requires a three-stage test. First, the harm must be reasonably foreseeable as a result of the defendant's conduct. Second, there must be a relationship of proximity or neighbourhood between the parties. Third, it must be fair, just, and reasonable in all the circumstances to impose a duty of care. The law should develop novel categories of duty incrementally and by analogy with established categories, rather than by applying a single, universal principle."
+      "content": "In addition to the foreseeability of damage, the law requires a relationship of proximity and that the situation be one in which the court considers it fair, just and reasonable to impose a duty of a given scope. The law should develop novel categories of duty incrementally and by analogy with established categories, rather than by a massive extension of a prima facie duty restrained only by indefinable considerations.",
+      "metadata": { "textUnitNature": "curated-synthesis" }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo~holding;en",
+      "id": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo~holding;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo",
+      "sourceId": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo",
       "language": "en",
       "aspect": "holding",
-      "content": "The Anns two-stage test is departed from. A duty of care arises only where foreseeability, proximity, and fair-just-reasonable considerations are all satisfied. Policy considerations are reintroduced as an explicit filter."
+      "content": "The broad Anns approach is departed from; duties in novel situations are recognized incrementally, by analogy with established authorities, with foreseeability, proximity and fairness as contextual considerations rather than a mechanical test.",
+      "metadata": { "textUnitNature": "curated-synthesis" }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson~ratio;en",
+      "id": "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson~ratio;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson",
+      "sourceId": "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson",
       "language": "en",
       "aspect": "ratio",
-      "content": "The three-stage Caparo test is not a universal formula to be applied mechanically to every duty-of-care question. Where established categories of duty exist, courts should apply them directly. Where a novel situation arises, courts should develop the law incrementally by analogy with established categories, rather than applying Caparo as a free-standing test. The Caparo criteria remain useful analytical tools but do not constitute a mandatory gateway in all circumstances."
+      "content": "The proposition that there is a Caparo test applicable to all claims in negligence is mistaken; that understanding mistakes the whole point of Caparo, which was to repudiate a single universal test and to adopt an approach based on precedent and on the development of the law incrementally and by analogy with established authorities. In established categories, courts apply the precedents; it is normally only in novel cases that they go beyond them.",
+      "metadata": { "textUnitNature": "curated-synthesis" }
     },
     {
-      "id": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson~holding;en",
+      "id": "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson~holding;en",
       "sourceType": "Version",
-      "sourceId": "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson",
+      "sourceId": "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson",
       "language": "en",
       "aspect": "holding",
-      "content": "In established categories of duty of care, the Caparo three-stage test does not need to be reapplied. Novel situations are decided incrementally by analogy with established categories. Policy-sensitive analysis remains relevant for genuinely novel cases."
+      "content": "Established duty categories are applied directly; genuinely novel cases are developed incrementally and by analogy, with foreseeability, proximity and fairness informing that inquiry. This clarifies, rather than changes, the Caparo-based methodology.",
+      "metadata": { "textUnitNature": "curated-synthesis" }
+    },
+    {
+      "id": "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building~holding;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building",
+      "language": "en",
+      "aspect": "holding",
+      "content": "A local authority exercising building-control functions may owe owners or occupiers a private-law duty permitting recovery for the cost of remedying, or the diminution in value caused by, dangerous latent defects in the building itself.",
+      "metadata": { "textUnitNature": "curated-extraction" }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin~ratio;en",
@@ -282,7 +366,8 @@
       "sourceId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin",
       "language": "en",
       "aspect": "ratio",
-      "content": "The rule that you are to love your neighbour becomes in law: you must not injure your neighbour. You must take reasonable care to avoid acts or omissions which you can reasonably foresee would be likely to injure your neighbour. Who, then, in law, is my neighbour? The answer seems to be persons who are so closely and directly affected by my act that I ought reasonably to have them in contemplation as being so affected when I am directing my mind to the acts or omissions which are called in question."
+      "content": "The rule that you are to love your neighbour becomes in law: you must not injure your neighbour. Who, then, in law, is my neighbour? Persons who are so closely and directly affected by my act that I ought reasonably to have them in contemplation as being so affected when I am directing my mind to the acts or omissions which are called in question.",
+      "metadata": { "textUnitNature": "curated-extraction" }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce~ratio;en",
@@ -290,7 +375,8 @@
       "sourceId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce",
       "language": "en",
       "aspect": "ratio",
-      "content": "The position has now been reached that in order to establish that a duty of care arises in a particular situation, it is not necessary to bring the facts of that situation within those of previous situations in which a duty of care has been held to exist. Rather the question has to be approached in two stages. First one has to ask whether, as between the alleged wrongdoer and the person who has suffered damage, there is a sufficient relationship of proximity or neighbourhood such that, in the reasonable contemplation of the former, carelessness on his part may be likely to cause damage to the latter, in which case a prima facie duty of care arises. Secondly, if the first question is answered affirmatively, it is necessary to consider whether there are any considerations which ought to negative, or to reduce or limit the scope of the duty or the class of person to whom it is owed."
+      "content": "The position has now been reached that, in order to establish that a duty of care arises, it is not necessary to bring the facts within those of previous situations in which a duty has been held to exist; the question is approached in two stages, proximity and countervailing considerations.",
+      "metadata": { "textUnitNature": "curated-extraction" }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge~ratio;en",
@@ -298,7 +384,17 @@
       "sourceId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge",
       "language": "en",
       "aspect": "ratio",
-      "content": "What emerges is that, in addition to the foreseeability of damage, necessary ingredients in any situation giving rise to a duty of care are that there should exist between the party owing the duty and the party to whom it is owed a relationship characterised by the law as one of proximity or neighbourhood and that the situation should be one in which the court considers it fair, just and reasonable that the law should impose a duty of a given scope upon the one party for the benefit of the other."
+      "content": "In addition to foreseeability, necessary ingredients are a relationship of proximity and that the situation be one in which the court considers it fair, just and reasonable to impose a duty; the law should develop novel categories incrementally and by analogy with established categories.",
+      "metadata": { "textUnitNature": "curated-extraction" }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26!opinion-keith~ratio;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26!opinion-keith",
+      "language": "en",
+      "aspect": "ratio",
+      "content": "Loss arising from a defect in the quality of the building itself is pure economic loss, not ordinarily recoverable in negligence; Anns is departed from as regards local-authority liability for such loss, personal injury being expressly left open.",
+      "metadata": { "textUnitNature": "curated-extraction" }
     },
     {
       "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed~ratio;en",
@@ -306,168 +402,175 @@
       "sourceId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed",
       "language": "en",
       "aspect": "ratio",
-      "content": "It is normally only in a novel type of case, where established principles do not provide an answer, that the courts need to go beyond those principles in order to decide whether a duty of care should be recognised. The characterisation of Caparo as laying down a tripartite test applicable to all claims in negligence is mistaken. In the ordinary run of cases, courts consider what has been decided previously and follow the precedents unless it is necessary to consider whether the precedents should be departed from."
+      "content": "It is normally only in a novel type of case, where established principles do not provide an answer, that the courts need to go beyond those principles to decide whether a duty of care should be recognised. The characterisation of Caparo as laying down a tripartite test applicable to all claims is mistaken, as Lord Toulson pointed out in Michael.",
+      "metadata": { "textUnitNature": "curated-extraction" }
     }
   ],
   "actions": [
     {
-      "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-duty-of-care",
+      "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-methodology",
       "parentId": null,
       "type": "Establishment",
       "eventTime": "1932-05-26T00:00:00Z",
-      "validityInterval": [
-        "1932-05-26T00:00:00Z",
-        "1977-05-12T00:00:00Z"
-      ],
-      "sourceVersionIds": [
-        "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin"
-      ],
+      "validityInterval": ["1932-05-26T00:00:00Z", null],
+      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin"],
       "terminatesVersionIds": [],
-      "producesVersionIds": [
-        "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"
-      ],
+      "producesVersionIds": ["urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"],
       "metadata": {
         "court": "House of Lords",
-        "chamber": "Appellate Committee",
-        "rapporteur": "Lord Atkin",
+        "leadingOpinionBy": "Lord Atkin",
         "vote": "3-2",
-        "caseNumber": "[1932] AC 562",
-        "citation": "Donoghue v. Stevenson [1932] UKHL 100",
-        "label": "Donoghue v. Stevenson Adjudication Event",
-        "authorityLevel": "binding",
-        "intervalSemantics": "half-open"
+        "citation": "Donoghue v. Stevenson [1932] AC 562",
+        "label": "Donoghue Establishment of the Duty-Recognition Methodology (curated snapshot)",
+        "authorityLevel": "binding"
       }
     },
     {
-      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
+      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-methodology",
       "parentId": null,
       "type": "Refinement",
       "eventTime": "1977-05-12T00:00:00Z",
-      "validityInterval": [
-        "1977-05-12T00:00:00Z",
-        "1990-02-08T00:00:00Z"
-      ],
-      "sourceVersionIds": [
-        "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"
-      ],
-      "terminatesVersionIds": [
-        "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"
-      ],
-      "producesVersionIds": [
-        "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"
-      ],
+      "validityInterval": ["1977-05-12T00:00:00Z", null],
+      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"],
+      "terminatesVersionIds": ["urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"],
+      "producesVersionIds": ["urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"],
       "metadata": {
         "court": "House of Lords",
-        "chamber": "Appellate Committee",
-        "rapporteur": "Lord Wilberforce",
-        "caseNumber": "[1978] AC 728",
-        "citation": "Anns v. Merton London Borough Council [1978] AC 728",
-        "label": "Anns v. Merton Adjudication Event",
-        "refines": "Donoghue v. Stevenson",
-        "authorityLevel": "binding",
-        "intervalSemantics": "half-open"
+        "leadingOpinionBy": "Lord Wilberforce",
+        "citation": "Anns v. Merton LBC [1978] AC 728",
+        "label": "Anns Refinement of the Methodology (successor articulation within the cumulative lineage)",
+        "relationship": "generalizes",
+        "authorityLevel": "binding"
       }
     },
     {
-      "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
+      "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#establishment-proposition",
+      "parentId": null,
+      "type": "Establishment",
+      "eventTime": "1977-05-12T00:00:00Z",
+      "validityInterval": ["1977-05-12T00:00:00Z", null],
+      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"],
+      "terminatesVersionIds": [],
+      "producesVersionIds": ["urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"],
+      "metadata": {
+        "court": "House of Lords",
+        "leadingOpinionBy": "Lord Wilberforce",
+        "citation": "Anns v. Merton LBC [1978] AC 728",
+        "label": "Anns Establishment of the Local-Authority Loss-to-Defective-Building Proposition",
+        "note": "Second micro-event of the same Instrument: distinct Actions of one judgment operating on distinct target Items",
+        "authorityLevel": "binding"
+      }
+    },
+    {
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-methodology",
       "parentId": null,
       "type": "Refinement",
       "eventTime": "1990-02-08T00:00:00Z",
-      "validityInterval": [
-        "1990-02-08T00:00:00Z",
-        "2018-02-08T00:00:00Z"
-      ],
-      "sourceVersionIds": [
-        "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge"
-      ],
-      "terminatesVersionIds": [
-        "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"
-      ],
-      "producesVersionIds": [
-        "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"
-      ],
+      "validityInterval": ["1990-02-08T00:00:00Z", null],
+      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge"],
+      "terminatesVersionIds": ["urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"],
+      "producesVersionIds": ["urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"],
       "metadata": {
         "court": "House of Lords",
-        "chamber": "Appellate Committee",
-        "rapporteur": "Lord Bridge",
-        "caseNumber": "[1990] 2 AC 605",
+        "leadingOpinionBy": "Lord Bridge of Harwich",
         "citation": "Caparo Industries plc v. Dickman [1990] 2 AC 605",
-        "label": "Caparo v. Dickman Adjudication Event",
-        "refines": "Anns v. Merton",
-        "departsFrom": "Anns two-stage test",
-        "authorityLevel": "binding",
-        "intervalSemantics": "half-open"
+        "label": "Caparo Refinement of the Methodology",
+        "relationship": "departsFrom",
+        "departsFrom": "Anns two-stage approach (as a general method)",
+        "terminationSemantics": "superseded-as-current-articulation",
+        "authorityLevel": "binding"
       }
     },
     {
-      "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care",
+      "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood#overruling-proposition",
+      "parentId": null,
+      "type": "Overruling",
+      "eventTime": "1990-07-26T00:00:00Z",
+      "validityInterval": ["1990-07-26T00:00:00Z", null],
+      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26!opinion-keith"],
+      "terminatesVersionIds": ["urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"],
+      "producesVersionIds": ["urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building"],
+      "metadata": {
+        "court": "House of Lords",
+        "chamber": "Appellate Committee (seven-member panel)",
+        "leadingOpinionBy": "Lord Keith of Kinkel",
+        "citation": "Murphy v. Brentwood DC [1991] 1 AC 398",
+        "label": "Murphy Overruling of the Anns Proposition",
+        "overrules": "Anns proposition concerning local-authority liability for loss to the defective building itself",
+        "scope": "local authority; building-control functions; loss relating to the defective building itself; personal injury expressly left open",
+        "broaderEffectNote": "Murphy also marked the final disapproval of the broader Anns formula; that methodology-level effect is not separately materialized here, since the methodology Item had already transitioned to its Caparo-based articulation in February 1990"
+      }
+    },
+    {
+      "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-methodology",
       "parentId": null,
       "type": "Refinement",
       "eventTime": "2018-02-08T00:00:00Z",
-      "validityInterval": [
-        "2018-02-08T00:00:00Z",
-        null
-      ],
-      "sourceVersionIds": [
-        "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed"
-      ],
-      "terminatesVersionIds": [
-        "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"
-      ],
-      "producesVersionIds": [
-        "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson"
-      ],
+      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "sourceVersionIds": ["urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed"],
+      "terminatesVersionIds": ["urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"],
+      "producesVersionIds": ["urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson"],
       "metadata": {
         "court": "Supreme Court of the United Kingdom",
-        "rapporteur": "Lord Reed",
-        "caseNumber": "[2018] UKSC 4",
+        "leadingOpinionBy": "Lord Reed",
         "citation": "Robinson v. Chief Constable of West Yorkshire Police [2018] UKSC 4",
-        "label": "Robinson v. Chief Constable Adjudication Event",
-        "refines": "Caparo Industries plc v. Dickman",
-        "clarifies": "Caparo test is not a universal formula",
-        "authorityLevel": "binding",
-        "intervalSemantics": "half-open"
+        "label": "Robinson Authoritative Clarification of the Caparo-Based Methodology",
+        "relationship": "clarifies",
+        "effectType": "clarifies",
+        "temporalEffect": "declaratory",
+        "terminationSemantics": "superseded-as-current-articulation",
+        "clarifiesAuthorityIds": ["urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman"],
+        "clarificationPreviouslyArticulatedBy": {
+          "citation": "Michael v Chief Constable of South Wales Police [2015] UKSC 2, [2015] AC 1732",
+          "paragraph": 106
+        },
+        "authorityLevel": "binding"
       }
     }
   ],
   "sampleQueries": [
     {
-      "query": "getValidVersions('urn:lex:uk:common-law;principle!duty-of-care', '1950-01-01')",
-      "expectedResult": [
-        "urn:lex:uk:common-law;principle@1932-05-26!duty-of-care,donoghue"
-      ],
-      "interpretation": "On January 1, 1950, the duty of care principle is governed by Donoghue's original neighbour principle. The Item exists only as an interpretive version derived from the 1932 precedent; there is no underlying statutory text."
+      "query": "getValidVersions('urn:lex:uk:common-law;doctrine!duty-recognition-methodology', '1950-01-01')",
+      "expectedResult": ["urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"],
+      "interpretation": "Returns the selected 1932 doctrinal snapshot, grounded in Donoghue's neighbour conception and manufacturer-consumer holding. No underlying statutory version exists."
     },
     {
-      "query": "getValidVersions('urn:lex:uk:common-law;principle!duty-of-care', '1985-06-01')",
-      "expectedResult": [
-        "urn:lex:uk:common-law;principle@1977-05-12!duty-of-care,anns"
-      ],
-      "interpretation": "On June 1, 1985, the duty of care principle is governed by the Anns two-stage test (proximity-foreseeability plus policy). Donoghue's version has been superseded."
+      "query": "getValidVersions('urn:lex:uk:common-law;doctrine!duty-recognition-methodology', '1985-06-01')",
+      "expectedResult": ["urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"],
+      "interpretation": "Returns the cumulative Anns-era snapshot: Donoghue remains a foundational authority (see derivesFromVersionIds and retainsFoundationalAuthorityIds), while the two-stage methodology governs the extension of duties beyond established categories."
     },
     {
-      "query": "getValidVersions('urn:lex:uk:common-law;principle!duty-of-care', '2000-03-15')",
-      "expectedResult": [
-        "urn:lex:uk:common-law;principle@1990-02-08!duty-of-care,caparo"
-      ],
-      "interpretation": "On March 15, 2000, the duty of care principle is governed by the Caparo three-stage test (foreseeability, proximity, fair-just-reasonable). The Anns test has been departed from."
+      "query": "getValidVersions('urn:lex:uk:common-law;doctrine!duty-recognition-methodology', '2000-03-15')",
+      "expectedResult": ["urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"],
+      "interpretation": "Returns the Caparo-based incremental, analogy-driven articulation. Murphy's later scoped overruling of the Anns proposition leaves this answer unchanged: the methodology's active articulation was already Caparo's."
     },
     {
-      "query": "getValidVersions('urn:lex:uk:common-law;principle!duty-of-care', '2024-01-01')",
-      "expectedResult": [
-        "urn:lex:uk:common-law;principle@2018-02-08!duty-of-care,robinson"
-      ],
-      "interpretation": "On January 1, 2024, the duty of care principle is governed by Robinson's incremental, analogy-based approach. Caparo remains a useful analytical tool but is no longer applied mechanically to all cases."
+      "query": "getValidVersions('urn:lex:uk:common-law;proposition!anns-local-authority-loss-to-defective-building', '2000-03-15')",
+      "expectedResult": ["urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building"],
+      "interpretation": "A second call, directed to the proposition Item, returns the overruled authority state produced by Murphy; the propositional content is inherited unchanged from the predecessor via the derivation relation. Combined with the previous query, the two results can be deterministically composed by the agent: the answer is a composition of applicable states across Items, not a single global version."
     },
     {
-      "query": "getItemHistory('urn:lex:uk:common-law;principle!duty-of-care')",
+      "query": "getValidVersions('urn:lex:uk:common-law;doctrine!duty-recognition-methodology', '2024-01-01')",
+      "expectedResult": ["urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson"],
+      "interpretation": "Returns the current articulation produced by Robinson. The producing Action records clarifiesAuthorityIds (Caparo) with temporalEffect=declaratory, previously articulated in Michael (2015) at para 106; the Version records supersedesOnlyAsCurrentArticulation=true. Robinson supplies the clearest current articulation of the methodology; it does not terminate Caparo as an authority."
+    },
+    {
+      "query": "getItemHistory('urn:lex:uk:common-law;doctrine!duty-recognition-methodology')",
       "expectedResult": [
-        "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-duty-of-care",
-        "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-duty-of-care",
-        "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-duty-of-care",
-        "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-duty-of-care"
+        "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-methodology",
+        "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-methodology",
+        "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-methodology",
+        "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-methodology"
       ],
-      "interpretation": "Timeline of actions affecting this Item: (1) Establishment by Donoghue v. Stevenson (1932) created the neighbour principle; (2) Refinement by Anns v. Merton (1977) introduced the two-stage test; (3) Refinement by Caparo v. Dickman (1990) introduced the three-stage test, departing from Anns; (4) Refinement by Robinson (2018) clarified that Caparo is not a universal formula. Unlike the Brazilian cases, no underlying statutory version exists — the principle lives entirely through its chain of interpretive versions, demonstrating the framework's ability to model nearly a century of common-law evolution without any statutory anchor."
+      "interpretation": "The methodology lineage: Establishment (Donoghue) -> Refinement (Anns) -> Refinement (Caparo, departsFrom Anns) -> Refinement (Robinson, clarifies Caparo, declaratory). Murphy does not appear here: its materialized effect targets the proposition Item, not the methodology."
+    },
+    {
+      "query": "getItemHistory('urn:lex:uk:common-law;proposition!anns-local-authority-loss-to-defective-building')",
+      "expectedResult": [
+        "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#establishment-proposition",
+        "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood#overruling-proposition"
+      ],
+      "interpretation": "The proposition lineage: established by Anns (1977), overruled by Murphy (1990). Anns gives rise to two distinct Actions in this encoding—one on the methodology, one on the proposition—demonstrating that a single judgment may operate at distinct levels through the same event mechanism. The Anns judgment and Lord Wilberforce's opinion remain documentary Items with open-ended Versions."
     }
   ]
 }

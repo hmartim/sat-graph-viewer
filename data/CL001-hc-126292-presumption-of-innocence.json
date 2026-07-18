@@ -230,7 +230,7 @@
       "eventTime": "2016-02-17T00:00:00Z",
       "validityInterval": [
         "2016-02-17T00:00:00Z",
-        "2019-11-07T00:00:00Z"
+        null
       ],
       "sourceVersionIds": [
         "urn:lex:br:supremo.tribunal.federal;plenario:acordao;hc:2016-02-17;126292@2016-02-17!voto-zavascki"

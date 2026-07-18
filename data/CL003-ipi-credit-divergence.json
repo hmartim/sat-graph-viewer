@@ -12,7 +12,7 @@
         "url": "https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/02032022-E-possivel-usar-credito-de-IPI-resultante-da-entrada-de-insumo-tributado-na-saida-de-produto-nao-tributado.aspx"
       },
       {
-        "label": "STJ judgment PDF: EREsp 1.213.143/RS",
+        "label": "STJ prevailing vote: EREsp 1.213.143/RS",
         "url": "https://www.stj.jus.br/websecstj/cgi/revista/REJ.cgi/ATC?dt=20220201&formato=PDF&nreg=201001778782&seq=110601054&tipo=3"
       },
       {
@@ -30,14 +30,6 @@
       "label": "Law 9.779/1999, Art. 11 — IPI Credit for Desonerated Outputs",
       "metadata": {
         "description": "Statutory provision allowing use of IPI credit balances arising from taxed inputs applied in industrialization, expressly mentioning exempt and zero-rated products."
-      }
-    },
-    {
-      "id": "urn:lex:br:federal:constituicao:1988-10-05;1988!art153_par3_inc2",
-      "typeId": "item",
-      "label": "Art. 153, §3, II — IPI Non-Cumulativity",
-      "metadata": {
-        "description": "Constitutional background provision establishing the non-cumulative principle for IPI."
       }
     },
     {
@@ -148,6 +140,45 @@
         "versionType": "judgmentComponent",
         "intervalSemantics": "half-open"
       }
+    },
+    {
+      "id": "urn:lex:br:superior.tribunal.justica;turma.2:acordao;resp:2015-06-18;1404466@2015-06-18",
+      "itemId": "urn:lex:br:superior.tribunal.justica;turma.2:acordao;resp:2015-06-18;1404466",
+      "type": "documentary",
+      "validityInterval": [
+        "2015-06-18T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentExpression",
+        "intervalSemantics": "half-open"
+      }
+    },
+    {
+      "id": "urn:lex:br:superior.tribunal.justica;turma.1:acordao;resp:2017-02-14;1213143@2017-02-14",
+      "itemId": "urn:lex:br:superior.tribunal.justica;turma.1:acordao;resp:2017-02-14;1213143",
+      "type": "documentary",
+      "validityInterval": [
+        "2017-02-14T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentExpression",
+        "intervalSemantics": "half-open"
+      }
+    },
+    {
+      "id": "urn:lex:br:superior.tribunal.justica;secao.1:acordao;eresp:2021-12-02;1213143@2021-12-02",
+      "itemId": "urn:lex:br:superior.tribunal.justica;secao.1:acordao;eresp:2021-12-02;1213143",
+      "type": "documentary",
+      "validityInterval": [
+        "2021-12-02T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentExpression",
+        "intervalSemantics": "half-open"
+      }
     }
   ],
   "textUnits": [
@@ -232,9 +263,11 @@
       "eventTime": "2015-06-18T00:00:00Z",
       "validityInterval": [
         "2015-06-18T00:00:00Z",
-        "2021-12-02T00:00:00Z"
+        null
       ],
-      "sourceVersionIds": [],
+      "sourceVersionIds": [
+        "urn:lex:br:superior.tribunal.justica;turma.2:acordao;resp:2015-06-18;1404466@2015-06-18"
+      ],
       "terminatesVersionIds": [],
       "producesVersionIds": [
         "urn:lex:br:federal:lei:1999-01-19;9779@2015-06-18!art11,resp1404466"
@@ -256,9 +289,11 @@
       "eventTime": "2017-02-14T00:00:00Z",
       "validityInterval": [
         "2017-02-14T00:00:00Z",
-        "2021-12-02T00:00:00Z"
+        null
       ],
-      "sourceVersionIds": [],
+      "sourceVersionIds": [
+        "urn:lex:br:superior.tribunal.justica;turma.1:acordao;resp:2017-02-14;1213143@2017-02-14"
+      ],
       "terminatesVersionIds": [],
       "producesVersionIds": [
         "urn:lex:br:federal:lei:1999-01-19;9779@2017-02-14!art11,resp1213143"
@@ -298,7 +333,11 @@
         "caseNumber": "EREsp 1.213.143/RS",
         "label": "First Section resolution of IPI credit divergence",
         "intervalSemantics": "half-open",
-        "authorityLevel": "section_precedent"
+        "authorityLevel": "section_precedent",
+        "originalRapporteur": "Assusete Magalhães",
+        "opinionForCourtBy": "Regina Helena Costa",
+        "prevailingVoteBy": "Regina Helena Costa",
+        "vote": "4-3"
       }
     }
   ],
@@ -333,8 +372,9 @@
   "notes": {
     "replacementOfSyntheticDataset": "This file replaces the former synthetic STF panel split with a real STJ divergence resolved by EREsp 1.213.143/RS.",
     "jurisprudentialSplit": "The model preserves the statutory version alongside conflicting panel-level interpretive versions during the period of uncertainty.",
-    "resolutionMechanisms": "The First Section unification action terminates the panel-level conflicting I-TVs and produces a controlling section-level I-TV.",
+    "resolutionMechanisms": "The First Section unification action terminates the panel-level conflicting I-TVs and produces a unified higher-authority section-level I-TV.",
     "practicalImplications": "For compliance analytics, the metadata allows reasoning agents to identify the period of divergence, report uncertainty, and distinguish panel-level precedents from section-level unification.",
-    "topologyInsight": "The target Item is Law 9.779/1999, Art. 11, rather than only the constitutional non-cumulativity clause, because the STJ's prevailing reasoning treats the credit as an autonomous statutory benefit."
+    "topologyInsight": "The target Item is Law 9.779/1999, Art. 11, rather than only the constitutional non-cumulativity clause, because the STJ's prevailing reasoning treats the credit as an autonomous statutory benefit.",
+    "constitutionalBackground": "Art. 153, §3, II (IPI non-cumulativity) is discussed in the prevailing reasoning as constitutional background but is deliberately not materialized as a graph Item: the STJ's holding treats the credit as an autonomous statutory benefit under Law 9.779/1999, Art. 11, which is therefore the target Item."
   }
 }
