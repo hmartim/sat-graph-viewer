@@ -1,24 +1,28 @@
 {
   "metadata": {
     "caseName": "Duty-Recognition Methodology — Donoghue v. Stevenson (1932) to Robinson (2018)",
-    "description": "Cross-jurisdictional case study: the common-law methodology for recognizing duties of care in genuinely novel negligence cases, articulated through Donoghue (1932), generalized in Anns (1977), reoriented in Caparo (1990), and authoritatively clarified in Robinson (2018), previously articulated in Michael (2015). Murphy v. Brentwood (1990) is materialized as a scoped Overruling of a specific Anns proposition (local-authority liability for loss to the defective building itself), not of the Anns judgment as a document; Murphy also marked the final disapproval of the broader Anns formula, a methodology-level effect acknowledged but not separately materialized here. Versions of the methodology Item are curated snapshots of the current authoritative articulation within a cumulative doctrinal lineage (provenance-based, not purely additive). The encoding is deliberately selective; further authorities (e.g., Stovin, Gorringe) belong to related doctrinal branches not materialized here.",
+    "description": "Cross-jurisdictional case study: the common-law methodology for extending duties of care beyond established categories, articulated through Donoghue (1932), generalized in Anns (1977), reoriented in Caparo (1990), and authoritatively clarified in Robinson (2018), as previously articulated in Michael (2015). Murphy v. Brentwood (1990) is materialized as a scoped Overruling of a specific Anns proposition (local-authority liability for loss to the defective building itself), not of the Anns judgment as a document; Murphy also marked the final disapproval of the broader Anns formula, a methodology-level effect acknowledged but not separately materialized here. Versions of the methodology Item are curated snapshots of the current authoritative articulation within a cumulative doctrinal lineage (provenance-based, not purely additive). The encoding is deliberately selective; further authorities (e.g., Stovin, Gorringe) belong to related doctrinal branches not materialized here.",
     "doctrinalScope": "English law of negligence",
-    "appellateCourts": ["House of Lords", "Supreme Court of the United Kingdom"],
+    "appellateCourts": [
+      "House of Lords",
+      "Supreme Court of the United Kingdom"
+    ],
     "crossJurisdictionNote": "Donoghue v Stevenson arose on appeal from Scotland but is treated here as a foundational authority in the English law of negligence.",
     "conventions": {
       "validityIntervals": "Half-open [start, end): start inclusive, end exclusive; end(Version N) equals start(Version N+1) within a lineage.",
       "aspectVsNature": "TextUnit.aspect identifies the legal-reasoning role exposed to retrieval; metadata.textUnitNature records whether the content is a source excerpt, a curated extraction, or a synthesized doctrinal articulation.",
-      "derivation": "Top-level derivesFromVersionIds instantiates the framework's pre-existing derivation relation (R2) as a navigable graph relation.",
-      "vocabulary": "leadingOpinionBy is used for UK courts; Brazilian case studies retain the native term rapporteur (relator)."
+      "vocabulary": "leadingOpinionBy is used for UK courts; Brazilian case studies retain the native term rapporteur (relator).",
+      "lineage": "Successive Version states are linked through the existing Action-to-Version topology: the producing Action terminates the predecessor Version and produces the successor Version. getItemHistory reconstructs the lineage; no additional core relation or API primitive is introduced.",
+      "provenanceMetadata": "Retention, reformulation, clarification, and unchanged-content inheritance are recorded as application-profile metadata on Versions or Actions."
     }
   },
   "items": [
     {
       "id": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "typeId": "common-law-doctrine",
-      "label": "Duty-Recognition Methodology (Novel Negligence Cases)",
+      "label": "Duty-Recognition Methodology (Extension Beyond Established Categories)",
       "metadata": {
-        "description": "The general methodology for recognizing duties of care in genuinely novel negligence cases. Versions are curated snapshots of the current authoritative articulation within a cumulative doctrinal lineage; they do not imply that later precedents wholly displace earlier ones."
+        "description": "The general methodology for extending duties of care beyond established categories. Versions are curated snapshots of the current authoritative articulation within a cumulative doctrinal lineage; they do not imply that later precedents wholly displace earlier ones."
       }
     },
     {
@@ -122,7 +126,10 @@
       "id": "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue",
       "itemId": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "type": "interpretive",
-      "validityInterval": ["1932-05-26T00:00:00Z", "1977-05-12T00:00:00Z"],
+      "validityInterval": [
+        "1932-05-26T00:00:00Z",
+        "1977-05-12T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson#establishment-methodology",
       "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-methodology",
       "metadata": {
@@ -136,55 +143,72 @@
       "id": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns",
       "itemId": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "type": "interpretive",
-      "validityInterval": ["1977-05-12T00:00:00Z", "1990-02-08T00:00:00Z"],
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        "1990-02-08T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#refinement-methodology",
       "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-methodology",
-      "derivesFromVersionIds": ["urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"],
       "metadata": {
         "versionType": "authoritativeMethodologyArticulation",
         "versionSemantics": "successive-authoritative-articulation",
         "terminationSemantics": "superseded-as-current-articulation",
         "authorityLevel": "binding",
-        "retainsFoundationalAuthorityIds": ["urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson"]
+        "retainsFoundationalAuthorityIds": [
+          "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson"
+        ],
+        "predecessorVersionId": "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue",
+        "lineageNote": "The predecessor state is recoverable through the producing Action, which terminates the Donoghue-era Version and produces this successor articulation."
       }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo",
       "itemId": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "type": "interpretive",
-      "validityInterval": ["1990-02-08T00:00:00Z", "2018-02-08T00:00:00Z"],
+      "validityInterval": [
+        "1990-02-08T00:00:00Z",
+        "2018-02-08T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman#refinement-methodology",
       "terminatedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-methodology",
-      "derivesFromVersionIds": ["urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"],
       "metadata": {
         "versionType": "authoritativeMethodologyArticulation",
         "versionSemantics": "successive-authoritative-articulation",
         "terminationSemantics": "superseded-as-current-articulation",
         "authorityLevel": "binding",
-        "derivationNote": "Derivation with reformulation: departs from the broad Anns two-stage approach while remaining within the cumulative doctrinal lineage."
+        "derivationNote": "Derivation with reformulation: departs from the broad Anns two-stage approach while remaining within the cumulative doctrinal lineage.",
+        "predecessorVersionId": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns",
+        "lineageNote": "The predecessor state is recoverable through the producing Action, which terminates the Anns-era Version and produces this successor articulation."
       }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson",
       "itemId": "urn:lex:uk:common-law;doctrine!duty-recognition-methodology",
       "type": "interpretive",
-      "validityInterval": ["2018-02-08T00:00:00Z", null],
+      "validityInterval": [
+        "2018-02-08T00:00:00Z",
+        null
+      ],
       "producedByActionId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable#refinement-methodology",
-      "derivesFromVersionIds": ["urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"],
       "metadata": {
         "versionType": "authoritativeMethodologyArticulation",
         "versionSemantics": "successive-authoritative-articulation",
         "authorityLevel": "binding",
         "effectType": "clarifies",
         "temporalEffect": "declaratory",
-        "supersedesOnlyAsCurrentArticulation": true
+        "supersedesOnlyAsCurrentArticulation": true,
+        "predecessorVersionId": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo",
+        "lineageNote": "The predecessor state is recoverable through the producing Action, which terminates the Caparo-era Version as the current articulation and produces this declaratory clarification."
       }
     },
     {
       "id": "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building",
       "itemId": "urn:lex:uk:common-law;proposition!anns-local-authority-loss-to-defective-building",
       "type": "interpretive",
-      "validityInterval": ["1977-05-12T00:00:00Z", "1990-07-26T00:00:00Z"],
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        "1990-07-26T00:00:00Z"
+      ],
       "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton#establishment-proposition",
       "terminatedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood#overruling-proposition",
       "metadata": {
@@ -196,86 +220,139 @@
       "id": "urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building",
       "itemId": "urn:lex:uk:common-law;proposition!anns-local-authority-loss-to-defective-building",
       "type": "interpretive",
-      "validityInterval": ["1990-07-26T00:00:00Z", null],
+      "validityInterval": [
+        "1990-07-26T00:00:00Z",
+        null
+      ],
       "producedByActionId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood#overruling-proposition",
-      "derivesFromVersionIds": ["urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"],
       "metadata": {
         "versionType": "propositionAuthorityState",
         "precedentialStatus": "overruled",
         "statusSource": "Murphy v. Brentwood DC [1991] 1 AC 398",
         "contentInheritance": "unchanged",
-        "note": "The propositional content is inherited unchanged from the predecessor Version via the derivation relation; only the authority state changes."
+        "note": "The propositional content is preserved unchanged from the predecessor authority-state Version; only the precedential status changes. The producing Overruling Action records the transition, and this Version carries its own TextUnit with the unchanged content.",
+        "predecessorVersionId": "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"
       }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson",
       "type": "documentary",
-      "validityInterval": ["1932-05-26T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentExpression" }
+      "validityInterval": [
+        "1932-05-26T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentExpression"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton",
       "type": "documentary",
-      "validityInterval": ["1977-05-12T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentExpression" }
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentExpression"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman",
       "type": "documentary",
-      "validityInterval": ["1990-02-08T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentExpression" }
+      "validityInterval": [
+        "1990-02-08T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentExpression"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood",
       "type": "documentary",
-      "validityInterval": ["1990-07-26T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentExpression" }
+      "validityInterval": [
+        "1990-07-26T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentExpression"
+      }
     },
     {
       "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08",
       "itemId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable",
       "type": "documentary",
-      "validityInterval": ["2018-02-08T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentExpression" }
+      "validityInterval": [
+        "2018-02-08T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentExpression"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson!opinion-atkin",
       "type": "documentary",
-      "validityInterval": ["1932-05-26T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentComponent" }
+      "validityInterval": [
+        "1932-05-26T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton!opinion-wilberforce",
       "type": "documentary",
-      "validityInterval": ["1977-05-12T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentComponent" }
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman!opinion-bridge",
       "type": "documentary",
-      "validityInterval": ["1990-02-08T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentComponent" }
+      "validityInterval": [
+        "1990-02-08T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26!opinion-keith",
       "itemId": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood!opinion-keith",
       "type": "documentary",
-      "validityInterval": ["1990-07-26T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentComponent" }
+      "validityInterval": [
+        "1990-07-26T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
     },
     {
       "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed",
       "itemId": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable!opinion-reed",
       "type": "documentary",
-      "validityInterval": ["2018-02-08T00:00:00Z", null],
-      "metadata": { "versionType": "judgmentComponent" }
+      "validityInterval": [
+        "2018-02-08T00:00:00Z",
+        null
+      ],
+      "metadata": {
+        "versionType": "judgmentComponent"
+      }
     }
   ],
   "textUnits": [
@@ -286,7 +363,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "You must take reasonable care to avoid acts or omissions which you can reasonably foresee would be likely to injure your neighbour. A manufacturer owes a duty of care to the ultimate consumer of a product where there is no reasonable possibility of intermediate examination.",
-      "metadata": { "textUnitNature": "curated-synthesis" }
+      "metadata": {
+        "textUnitNature": "curated-synthesis"
+      }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue~holding;en",
@@ -295,7 +374,9 @@
       "language": "en",
       "aspect": "holding",
       "content": "A duty of care may exist independently of contract. A manufacturer may owe a duty of care to the ultimate consumer where the product is intended to reach the consumer in the form in which it left the manufacturer and there is no reasonable possibility of intermediate examination.",
-      "metadata": { "textUnitNature": "curated-synthesis" }
+      "metadata": {
+        "textUnitNature": "curated-synthesis"
+      }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns~ratio;en",
@@ -304,7 +385,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "To establish a duty of care it is not necessary to bring the facts within previously recognized categories. First, one asks whether there is a sufficient relationship of proximity or neighbourhood such that carelessness may be likely to cause damage; if so, a prima facie duty arises. Secondly, one considers whether there are considerations which ought to negative, reduce or limit the scope of the duty.",
-      "metadata": { "textUnitNature": "curated-synthesis" }
+      "metadata": {
+        "textUnitNature": "curated-synthesis"
+      }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns~holding;en",
@@ -313,7 +396,9 @@
       "language": "en",
       "aspect": "holding",
       "content": "The methodology for extending duties beyond established categories is reconfigured through a two-stage inquiry, with Donoghue preserved as a foundational authority.",
-      "metadata": { "textUnitNature": "curated-synthesis" }
+      "metadata": {
+        "textUnitNature": "curated-synthesis"
+      }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo~ratio;en",
@@ -322,7 +407,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "In addition to the foreseeability of damage, the law requires a relationship of proximity and that the situation be one in which the court considers it fair, just and reasonable to impose a duty of a given scope. The law should develop novel categories of duty incrementally and by analogy with established categories, rather than by a massive extension of a prima facie duty restrained only by indefinable considerations.",
-      "metadata": { "textUnitNature": "curated-synthesis" }
+      "metadata": {
+        "textUnitNature": "curated-synthesis"
+      }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo~holding;en",
@@ -331,7 +418,9 @@
       "language": "en",
       "aspect": "holding",
       "content": "The broad Anns approach is departed from; duties in novel situations are recognized incrementally, by analogy with established authorities, with foreseeability, proximity and fairness as contextual considerations rather than a mechanical test.",
-      "metadata": { "textUnitNature": "curated-synthesis" }
+      "metadata": {
+        "textUnitNature": "curated-synthesis"
+      }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson~ratio;en",
@@ -340,7 +429,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "The proposition that there is a Caparo test applicable to all claims in negligence is mistaken; that understanding mistakes the whole point of Caparo, which was to repudiate a single universal test and to adopt an approach based on precedent and on the development of the law incrementally and by analogy with established authorities. In established categories, courts apply the precedents; it is normally only in novel cases that they go beyond them.",
-      "metadata": { "textUnitNature": "curated-synthesis" }
+      "metadata": {
+        "textUnitNature": "curated-synthesis"
+      }
     },
     {
       "id": "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson~holding;en",
@@ -349,7 +440,9 @@
       "language": "en",
       "aspect": "holding",
       "content": "Established duty categories are applied directly; genuinely novel cases are developed incrementally and by analogy, with foreseeability, proximity and fairness informing that inquiry. This clarifies, rather than changes, the Caparo-based methodology.",
-      "metadata": { "textUnitNature": "curated-synthesis" }
+      "metadata": {
+        "textUnitNature": "curated-synthesis"
+      }
     },
     {
       "id": "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building~holding;en",
@@ -358,7 +451,23 @@
       "language": "en",
       "aspect": "holding",
       "content": "A local authority exercising building-control functions may owe owners or occupiers a private-law duty permitting recovery for the cost of remedying, or the diminution in value caused by, dangerous latent defects in the building itself.",
-      "metadata": { "textUnitNature": "curated-extraction" }
+      "metadata": {
+        "textUnitNature": "curated-extraction"
+      }
+    },
+    {
+      "id": "urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building~holding;en",
+      "sourceType": "Version",
+      "sourceId": "urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building",
+      "language": "en",
+      "aspect": "holding",
+      "content": "A local authority exercising building-control functions may owe owners or occupiers a private-law duty permitting recovery for the cost of remedying, or the diminution in value caused by, dangerous latent defects in the building itself.",
+      "metadata": {
+        "textUnitNature": "curated-extraction",
+        "contentInheritance": "unchanged",
+        "predecessorVersionId": "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building",
+        "precedentialStatus": "overruled"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin~ratio;en",
@@ -367,7 +476,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "The rule that you are to love your neighbour becomes in law: you must not injure your neighbour. Who, then, in law, is my neighbour? Persons who are so closely and directly affected by my act that I ought reasonably to have them in contemplation as being so affected when I am directing my mind to the acts or omissions which are called in question.",
-      "metadata": { "textUnitNature": "curated-extraction" }
+      "metadata": {
+        "textUnitNature": "curated-extraction"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce~ratio;en",
@@ -376,7 +487,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "The position has now been reached that, in order to establish that a duty of care arises, it is not necessary to bring the facts within those of previous situations in which a duty has been held to exist; the question is approached in two stages, proximity and countervailing considerations.",
-      "metadata": { "textUnitNature": "curated-extraction" }
+      "metadata": {
+        "textUnitNature": "curated-extraction"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge~ratio;en",
@@ -385,7 +498,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "In addition to foreseeability, necessary ingredients are a relationship of proximity and that the situation be one in which the court considers it fair, just and reasonable to impose a duty; the law should develop novel categories incrementally and by analogy with established categories.",
-      "metadata": { "textUnitNature": "curated-extraction" }
+      "metadata": {
+        "textUnitNature": "curated-extraction"
+      }
     },
     {
       "id": "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26!opinion-keith~ratio;en",
@@ -394,7 +509,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "Loss arising from a defect in the quality of the building itself is pure economic loss, not ordinarily recoverable in negligence; Anns is departed from as regards local-authority liability for such loss, personal injury being expressly left open.",
-      "metadata": { "textUnitNature": "curated-extraction" }
+      "metadata": {
+        "textUnitNature": "curated-extraction"
+      }
     },
     {
       "id": "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed~ratio;en",
@@ -403,7 +520,9 @@
       "language": "en",
       "aspect": "ratio",
       "content": "It is normally only in a novel type of case, where established principles do not provide an answer, that the courts need to go beyond those principles to decide whether a duty of care should be recognised. The characterisation of Caparo as laying down a tripartite test applicable to all claims is mistaken, as Lord Toulson pointed out in Michael.",
-      "metadata": { "textUnitNature": "curated-extraction" }
+      "metadata": {
+        "textUnitNature": "curated-extraction"
+      }
     }
   ],
   "actions": [
@@ -412,10 +531,17 @@
       "parentId": null,
       "type": "Establishment",
       "eventTime": "1932-05-26T00:00:00Z",
-      "validityInterval": ["1932-05-26T00:00:00Z", null],
-      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin"],
+      "validityInterval": [
+        "1932-05-26T00:00:00Z",
+        null
+      ],
+      "sourceVersionIds": [
+        "urn:lex:uk:house-of-lords:judgment:1932-05-26;donoghue-v-stevenson@1932-05-26!opinion-atkin"
+      ],
       "terminatesVersionIds": [],
-      "producesVersionIds": ["urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"
+      ],
       "metadata": {
         "court": "House of Lords",
         "leadingOpinionBy": "Lord Atkin",
@@ -430,10 +556,19 @@
       "parentId": null,
       "type": "Refinement",
       "eventTime": "1977-05-12T00:00:00Z",
-      "validityInterval": ["1977-05-12T00:00:00Z", null],
-      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"],
-      "terminatesVersionIds": ["urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"],
-      "producesVersionIds": ["urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"],
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        null
+      ],
+      "sourceVersionIds": [
+        "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"
+      ],
+      "terminatesVersionIds": [
+        "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"
+      ],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"
+      ],
       "metadata": {
         "court": "House of Lords",
         "leadingOpinionBy": "Lord Wilberforce",
@@ -448,10 +583,17 @@
       "parentId": null,
       "type": "Establishment",
       "eventTime": "1977-05-12T00:00:00Z",
-      "validityInterval": ["1977-05-12T00:00:00Z", null],
-      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"],
+      "validityInterval": [
+        "1977-05-12T00:00:00Z",
+        null
+      ],
+      "sourceVersionIds": [
+        "urn:lex:uk:house-of-lords:judgment:1977-05-12;anns-v-merton@1977-05-12!opinion-wilberforce"
+      ],
       "terminatesVersionIds": [],
-      "producesVersionIds": ["urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"
+      ],
       "metadata": {
         "court": "House of Lords",
         "leadingOpinionBy": "Lord Wilberforce",
@@ -466,10 +608,19 @@
       "parentId": null,
       "type": "Refinement",
       "eventTime": "1990-02-08T00:00:00Z",
-      "validityInterval": ["1990-02-08T00:00:00Z", null],
-      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge"],
-      "terminatesVersionIds": ["urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"],
-      "producesVersionIds": ["urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"],
+      "validityInterval": [
+        "1990-02-08T00:00:00Z",
+        null
+      ],
+      "sourceVersionIds": [
+        "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman@1990-02-08!opinion-bridge"
+      ],
+      "terminatesVersionIds": [
+        "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"
+      ],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"
+      ],
       "metadata": {
         "court": "House of Lords",
         "leadingOpinionBy": "Lord Bridge of Harwich",
@@ -486,10 +637,19 @@
       "parentId": null,
       "type": "Overruling",
       "eventTime": "1990-07-26T00:00:00Z",
-      "validityInterval": ["1990-07-26T00:00:00Z", null],
-      "sourceVersionIds": ["urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26!opinion-keith"],
-      "terminatesVersionIds": ["urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"],
-      "producesVersionIds": ["urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building"],
+      "validityInterval": [
+        "1990-07-26T00:00:00Z",
+        null
+      ],
+      "sourceVersionIds": [
+        "urn:lex:uk:house-of-lords:judgment:1990-07-26;murphy-v-brentwood@1990-07-26!opinion-keith"
+      ],
+      "terminatesVersionIds": [
+        "urn:lex:uk:common-law;proposition@1977-05-12!anns-local-authority-loss-to-defective-building"
+      ],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building"
+      ],
       "metadata": {
         "court": "House of Lords",
         "chamber": "Appellate Committee (seven-member panel)",
@@ -506,10 +666,19 @@
       "parentId": null,
       "type": "Refinement",
       "eventTime": "2018-02-08T00:00:00Z",
-      "validityInterval": ["2018-02-08T00:00:00Z", null],
-      "sourceVersionIds": ["urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed"],
-      "terminatesVersionIds": ["urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"],
-      "producesVersionIds": ["urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson"],
+      "validityInterval": [
+        "2018-02-08T00:00:00Z",
+        null
+      ],
+      "sourceVersionIds": [
+        "urn:lex:uk:supreme-court:judgment:2018-02-08;robinson-v-chief-constable@2018-02-08!opinion-reed"
+      ],
+      "terminatesVersionIds": [
+        "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"
+      ],
+      "producesVersionIds": [
+        "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson"
+      ],
       "metadata": {
         "court": "Supreme Court of the United Kingdom",
         "leadingOpinionBy": "Lord Reed",
@@ -519,7 +688,9 @@
         "effectType": "clarifies",
         "temporalEffect": "declaratory",
         "terminationSemantics": "superseded-as-current-articulation",
-        "clarifiesAuthorityIds": ["urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman"],
+        "clarifiesAuthorityIds": [
+          "urn:lex:uk:house-of-lords:judgment:1990-02-08;caparo-v-dickman"
+        ],
         "clarificationPreviouslyArticulatedBy": {
           "citation": "Michael v Chief Constable of South Wales Police [2015] UKSC 2, [2015] AC 1732",
           "paragraph": 106
@@ -531,28 +702,38 @@
   "sampleQueries": [
     {
       "query": "getValidVersions('urn:lex:uk:common-law;doctrine!duty-recognition-methodology', '1950-01-01')",
-      "expectedResult": ["urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"],
+      "expectedResult": [
+        "urn:lex:uk:common-law;doctrine@1932-05-26!duty-recognition-methodology,donoghue"
+      ],
       "interpretation": "Returns the selected 1932 doctrinal snapshot, grounded in Donoghue's neighbour conception and manufacturer-consumer holding. No underlying statutory version exists."
     },
     {
       "query": "getValidVersions('urn:lex:uk:common-law;doctrine!duty-recognition-methodology', '1985-06-01')",
-      "expectedResult": ["urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"],
-      "interpretation": "Returns the cumulative Anns-era snapshot: Donoghue remains a foundational authority (see derivesFromVersionIds and retainsFoundationalAuthorityIds), while the two-stage methodology governs the extension of duties beyond established categories."
+      "expectedResult": [
+        "urn:lex:uk:common-law;doctrine@1977-05-12!duty-recognition-methodology,anns"
+      ],
+      "interpretation": "Returns the Anns-era snapshot within the cumulative doctrinal lineage: Donoghue remains a foundational authority (recorded in retainsFoundationalAuthorityIds), while the two-stage methodology governs the extension of duties beyond established categories. The predecessor state is recoverable through the producing Action and getItemHistory."
     },
     {
       "query": "getValidVersions('urn:lex:uk:common-law;doctrine!duty-recognition-methodology', '2000-03-15')",
-      "expectedResult": ["urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"],
+      "expectedResult": [
+        "urn:lex:uk:common-law;doctrine@1990-02-08!duty-recognition-methodology,caparo"
+      ],
       "interpretation": "Returns the Caparo-based incremental, analogy-driven articulation. Murphy's later scoped overruling of the Anns proposition leaves this answer unchanged: the methodology's active articulation was already Caparo's."
     },
     {
       "query": "getValidVersions('urn:lex:uk:common-law;proposition!anns-local-authority-loss-to-defective-building', '2000-03-15')",
-      "expectedResult": ["urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building"],
-      "interpretation": "A second call, directed to the proposition Item, returns the overruled authority state produced by Murphy; the propositional content is inherited unchanged from the predecessor via the derivation relation. Combined with the previous query, the two results can be deterministically composed by the agent: the answer is a composition of applicable states across Items, not a single global version."
+      "expectedResult": [
+        "urn:lex:uk:common-law;proposition@1990-07-26!anns-local-authority-loss-to-defective-building"
+      ],
+      "interpretation": "A second call, directed to the proposition Item, returns the overruled authority state produced by Murphy. That Version preserves the propositional content in its own TextUnit, with unchanged-content inheritance and the predecessor identifier recorded in metadata. Combined with the previous query, the two deterministically retrieved states can be composed by the agent under an explicit resolution policy. The legal answer may therefore depend on applicable states across multiple Items rather than on a single global version."
     },
     {
       "query": "getValidVersions('urn:lex:uk:common-law;doctrine!duty-recognition-methodology', '2024-01-01')",
-      "expectedResult": ["urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson"],
-      "interpretation": "Returns the current articulation produced by Robinson. The producing Action records clarifiesAuthorityIds (Caparo) with temporalEffect=declaratory, previously articulated in Michael (2015) at para 106; the Version records supersedesOnlyAsCurrentArticulation=true. Robinson supplies the clearest current articulation of the methodology; it does not terminate Caparo as an authority."
+      "expectedResult": [
+        "urn:lex:uk:common-law;doctrine@2018-02-08!duty-recognition-methodology,robinson"
+      ],
+      "interpretation": "Robinson supplies the current articulation selected in this encoding; it does not terminate Caparo as an authority."
     },
     {
       "query": "getItemHistory('urn:lex:uk:common-law;doctrine!duty-recognition-methodology')",
